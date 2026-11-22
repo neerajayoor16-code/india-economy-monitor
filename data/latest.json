@@ -367,52 +367,52 @@
       "last_error": "no feed item for 'Industrial Outlook Survey' and no last known publication id"
     },
     "vehicles": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "seeded_from": "old dashboard value",
       "last_error": "SIAM: secure connection failed (site certificate problem): SSLError"
     },
     "cpi": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "wpi": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "iip": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "unemployment": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "gdp": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "oecd_cli": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "repo_rate": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "yield_spread": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "nifty": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "bank_credit": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     },
     "gst": {
-      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_checked": "2026-11-22",
       "last_updated": "2026-11-22T22:04:00+05:30"
     }
   },
