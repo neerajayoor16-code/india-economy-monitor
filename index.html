@@ -106,16 +106,16 @@
 
     /* Ensure sticky nav does not cover anchor targets */
     section[id] {
-      scroll-margin-top: 18px;
+      scroll-margin-top: 20px;
     }
 
     /* =========================================================================
        TOP HEADER & HERO VERDICT BANNER
        ========================================================================= */
     .hero-header {
-      background: linear-gradient(145deg, var(--navy-950) 0%, var(--navy-900) 58%, #1a2947 100%);
+      background: var(--navy-950);
       color: var(--text-inverse);
-      padding: 22px 0 26px;
+      padding: 24px 0 28px;
       position: relative;
       overflow: hidden;
     }
@@ -124,9 +124,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle at 85% 15%, rgba(79, 70, 229, 0.24), transparent 46%),
-        radial-gradient(circle at 12% 85%, rgba(5, 150, 105, 0.16), transparent 42%);
+      display: none;
       pointer-events: none;
     }
 
@@ -143,31 +141,30 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
     }
 
     .brand-kicker {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #a5b4fc;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: #94a3b8;
     }
 
     .date-pill {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 6px 12px;
+      gap: 8px;
+      padding: 8px 12px;
       border-radius: var(--radius-pill);
-      background: rgba(16, 185, 129, 0.16);
-      border: 1px solid rgba(52, 211, 153, 0.38);
-      color: #a7f3d0;
-      font-size: 0.78rem;
-      font-weight: 650;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #cbd5e1;
+      font-size: 0.8125rem;
+      font-weight: 500;
     }
 
     .live-dot {
@@ -175,21 +172,13 @@
       height: 8px;
       border-radius: 50%;
       background: #34d399;
-      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.75);
-      animation: dotPulse 2.2s infinite;
-    }
-
-    @keyframes dotPulse {
-      0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.75); }
-      70% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
     }
 
     .hero-title {
       margin: 0;
       font-size: clamp(1.5rem, 4.6vw, 2.2rem);
-      font-weight: 800;
-      letter-spacing: -0.025em;
+      font-weight: 600;
+      letter-spacing: -0.01em;
       line-height: 1.18;
       color: #ffffff;
     }
@@ -202,40 +191,40 @@
       backdrop-filter: blur(8px);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .verdict-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .verdict-tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
+      gap: 8px;
+      padding: 4px 12px;
       border-radius: var(--radius-pill);
-      font-size: 0.78rem;
-      font-weight: 750;
-      color: #ffffff;
-      background: linear-gradient(90deg, #059669 0%, #d97706 100%);
-      box-shadow: 0 2px 10px rgba(217, 119, 6, 0.28);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
     }
 
     .verdict-heading {
       margin: 0;
       font-size: clamp(1.12rem, 3.2vw, 1.42rem);
-      font-weight: 800;
+      font-weight: 600;
       color: #ffffff;
-      letter-spacing: -0.015em;
+      letter-spacing: 0;
     }
 
     .verdict-summary {
       margin: 0;
-      font-size: 0.94rem;
+      font-size: 0.9375rem;
       color: #e2e8f0;
       line-height: 1.58;
       max-width: 860px;
@@ -244,7 +233,7 @@
     .hero-actions {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 12px;
       margin-top: 2px;
     }
 
@@ -255,11 +244,11 @@
       justify-content: center;
       gap: 8px;
       min-height: 46px;
-      padding: 10px 16px;
+      padding: 12px 16px;
       border-radius: var(--radius-md);
       font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 0.9375rem;
+      font-weight: 500;
       cursor: pointer;
       border: 1px solid transparent;
       transition: transform 0.12s ease, background-color 0.16s ease, border-color 0.16s ease;
@@ -297,13 +286,12 @@
     }
 
     .btn-accent {
-      background: var(--accent-solid);
+      background: var(--navy-900);
       color: #ffffff;
-      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.28);
     }
 
     .btn-accent:hover {
-      background: #4338ca;
+      background: var(--navy-800);
     }
 
     .btn-outline {
@@ -321,7 +309,7 @@
     .scorecard-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      gap: 12px;
     }
 
     .score-tile {
@@ -329,7 +317,7 @@
       border: 1px solid rgba(255, 255, 255, 0.16);
       background: rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-md);
-      padding: 12px 14px;
+      padding: 12px 16px;
       min-height: 68px;
       text-align: left;
       cursor: pointer;
@@ -353,25 +341,25 @@
     .score-tile.good { border-left: 4px solid #34d399; }
     .score-tile.watch { border-left: 4px solid #fbbf24; }
     .score-tile.warn { border-left: 4px solid #fb7185; }
-    .score-tile.all { border-left: 4px solid #818cf8; }
+    .score-tile.all { border-left: 4px solid #94a3b8; }
 
     .score-num {
-      font-size: 1.45rem;
-      font-weight: 800;
+      font-size: 1.5rem;
+      font-weight: 600;
       line-height: 1.05;
     }
 
     .score-label {
-      font-size: 0.78rem;
-      font-weight: 650;
+      font-size: 0.8125rem;
+      font-weight: 500;
       color: #cbd5e1;
       margin-top: 2px;
     }
 
     .score-arrow {
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       color: #94a3b8;
-      font-weight: 700;
+      font-weight: 500;
     }
 
     /* =========================================================================
@@ -381,7 +369,7 @@
       padding: 20px 0 calc(96px + env(safe-area-inset-bottom));
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 24px;
     }
 
     .card {
@@ -393,7 +381,7 @@
     }
 
     .card-body {
-      padding: 18px 16px;
+      padding: 20px 16px;
     }
 
     .section-head {
@@ -402,29 +390,28 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .section-eyebrow {
-      font-size: 0.74rem;
-      font-weight: 750;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--accent-solid);
-      margin-bottom: 3px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--text-muted);
+      margin-bottom: 4px;
     }
 
     .section-title {
       margin: 0;
       font-size: clamp(1.15rem, 3vw, 1.38rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-weight: 600;
+      letter-spacing: 0;
       color: var(--navy-900);
     }
 
     .section-sub {
       margin: 4px 0 0;
-      font-size: 0.88rem;
+      font-size: 0.875rem;
       color: var(--text-muted);
     }
 
@@ -432,11 +419,11 @@
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
+      gap: 4px;
+      padding: 4px 12px;
       border-radius: var(--radius-pill);
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.2;
       white-space: nowrap;
       border: 1px solid transparent;
@@ -461,9 +448,9 @@
     }
 
     .badge-accent {
-      background: var(--accent-bg);
-      color: var(--accent-text);
-      border-color: var(--accent-border);
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border-color: var(--border-light);
     }
 
     /* =========================================================================
@@ -479,7 +466,7 @@
       background: var(--bg-soft);
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
-      padding: 10px 8px 6px;
+      padding: 12px 8px 8px;
     }
 
     .cycle-svg {
@@ -494,14 +481,8 @@
       transition: opacity 0.16s ease;
     }
 
-    @keyframes herePulse {
-      0% { r: 9; opacity: 0.7; }
-      75% { r: 22; opacity: 0; }
-      100% { r: 22; opacity: 0; }
-    }
-
     .here-pulse {
-      animation: herePulse 2.1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+      display: none;
     }
 
     .phase-btn-grid {
@@ -512,21 +493,21 @@
 
     .phase-tab {
       min-height: 46px;
-      padding: 10px 12px;
+      padding: 12px 12px;
       border-radius: var(--radius-md);
       border: 1.5px solid var(--border-light);
       background: var(--bg-card);
       color: var(--text-secondary);
       font-family: inherit;
-      font-size: 0.84rem;
-      font-weight: 700;
+      font-size: 0.875rem;
+      font-weight: 500;
       cursor: pointer;
       text-align: center;
-      transition: all 0.15s ease;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .phase-tab:active {
@@ -556,41 +537,40 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border-light);
     }
 
     .phase-detail-title {
       margin: 0;
-      font-size: 1.05rem;
-      font-weight: 800;
+      font-size: 1rem;
+      font-weight: 600;
       color: var(--navy-900);
     }
 
     .phase-facts {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 9px;
+      gap: 8px;
     }
 
     .phase-fact {
       background: #ffffff;
       border: 1px solid var(--border-light);
       border-radius: var(--radius-sm);
-      padding: 10px 12px;
+      padding: 12px 12px;
     }
 
     .phase-fact-label {
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent-solid);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--text-muted);
       margin-bottom: 2px;
     }
 
     .phase-fact-text {
-      font-size: 0.86rem;
+      font-size: 0.875rem;
       color: var(--text-primary);
       line-height: 1.45;
     }
@@ -623,7 +603,7 @@
     }
 
     .gauge-card:hover {
-      border-color: var(--accent-solid);
+      border-color: var(--border-strong);
       box-shadow: var(--shadow-md);
     }
 
@@ -640,24 +620,24 @@
     }
 
     .gauge-name {
-      font-size: 0.92rem;
-      font-weight: 750;
+      font-size: 0.9375rem;
+      font-weight: 500;
       color: var(--navy-900);
       line-height: 1.25;
     }
 
     .gauge-period {
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
     .gauge-num {
       font-size: 1.75rem;
-      font-weight: 850;
-      letter-spacing: -0.03em;
+      font-weight: 600;
+      letter-spacing: 0;
       line-height: 1.08;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .gauge-bar-box {
@@ -703,9 +683,9 @@
     .gauge-axis {
       display: flex;
       justify-content: space-between;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
-      margin-top: 7px;
+      margin-top: 8px;
       font-weight: 600;
     }
 
@@ -713,9 +693,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--accent-solid);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
       padding-top: 8px;
       border-top: 1px dashed var(--border-light);
     }
@@ -726,7 +706,7 @@
     .controls-stack {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 16px;
     }
 
@@ -747,20 +727,20 @@
     .filter-pill {
       flex: 0 0 auto;
       min-height: 44px;
-      padding: 0 14px;
+      padding: 0 16px;
       border-radius: var(--radius-pill);
       border: 1.5px solid var(--border-light);
       background: var(--bg-card);
       color: var(--text-secondary);
       font-family: inherit;
-      font-size: 0.84rem;
-      font-weight: 700;
+      font-size: 0.875rem;
+      font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       white-space: nowrap;
-      transition: all 0.14s ease;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
     }
 
     .filter-pill:active {
@@ -806,7 +786,7 @@
     .search-input {
       width: 100%;
       min-height: 48px;
-      padding: 10px 46px 10px 42px;
+      padding: 12px 48px 12px 44px;
       border-radius: var(--radius-md);
       border: 1.5px solid var(--border-strong);
       background: #ffffff;
@@ -831,8 +811,8 @@
       border: none;
       background: transparent;
       color: var(--text-muted);
-      font-size: 1.15rem;
-      font-weight: 700;
+      font-size: 1.125rem;
+      font-weight: 500;
       cursor: pointer;
       border-radius: 50%;
       display: none;
@@ -853,7 +833,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      font-size: 0.82rem;
+      font-size: 0.8125rem;
       color: var(--text-muted);
       font-weight: 600;
       margin-bottom: 12px;
@@ -864,10 +844,10 @@
       border: none;
       color: var(--accent-solid);
       font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
+      font-size: 0.8125rem;
+      font-weight: 500;
       cursor: pointer;
-      padding: 6px 8px;
+      padding: 8px 8px;
       min-height: 36px;
       border-radius: 8px;
     }
@@ -877,7 +857,7 @@
     }
 
     .step-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .step-group:last-child {
@@ -887,7 +867,7 @@
     .step-header {
       background: var(--navy-900);
       color: #ffffff;
-      padding: 13px 15px;
+      padding: 12px 16px;
       border-radius: var(--radius-md) var(--radius-md) 0 0;
       display: flex;
       flex-wrap: wrap;
@@ -896,17 +876,15 @@
       gap: 8px;
     }
 
-    .step-header.step-present { background: #172554; }
-    .step-header.step-future { background: #1e1b4b; }
 
     .step-header-title {
       margin: 0;
-      font-size: 0.96rem;
-      font-weight: 750;
+      font-size: 0.9375rem;
+      font-weight: 500;
     }
 
     .step-header-sub {
-      font-size: 0.78rem;
+      font-size: 0.8125rem;
       color: #cbd5e1;
       margin-top: 2px;
     }
@@ -914,7 +892,7 @@
     .indicator-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 12px;
       padding: 12px;
       background: var(--bg-soft);
       border: 1px solid var(--border-light);
@@ -930,7 +908,7 @@
       background: #ffffff;
       border: 1.5px solid var(--border-light);
       border-radius: var(--radius-md);
-      padding: 14px;
+      padding: 16px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -939,7 +917,7 @@
     }
 
     .ind-card:hover {
-      border-color: var(--accent-solid);
+      border-color: var(--border-strong);
       box-shadow: var(--shadow-sm);
     }
 
@@ -956,27 +934,27 @@
     }
 
     .ind-name {
-      font-size: 0.94rem;
-      font-weight: 800;
+      font-size: 0.9375rem;
+      font-weight: 600;
       color: var(--navy-900);
       line-height: 1.25;
     }
 
     .ind-period {
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
     .ind-value {
-      font-size: 1.22rem;
-      font-weight: 850;
+      font-size: 1.25rem;
+      font-weight: 600;
       color: var(--navy-900);
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
     }
 
     .ind-summary {
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
       line-height: 1.48;
     }
@@ -988,7 +966,7 @@
       gap: 8px;
       padding-top: 8px;
       border-top: 1px solid var(--bg-subtle);
-      font-size: 0.76rem;
+      font-size: 0.75rem;
     }
 
     .ind-source {
@@ -997,8 +975,8 @@
     }
 
     .ind-learn {
-      color: var(--accent-solid);
-      font-weight: 750;
+      color: var(--text-secondary);
+      font-weight: 500;
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -1007,7 +985,7 @@
 
     .empty-state {
       text-align: center;
-      padding: 34px 16px;
+      padding: 36px 16px;
       background: var(--bg-soft);
       border: 1px dashed var(--border-strong);
       border-radius: var(--radius-md);
@@ -1028,15 +1006,15 @@
       border: 1px solid var(--border-light);
       border-left: 4px solid var(--watch-solid);
       border-radius: var(--radius-md);
-      padding: 15px;
+      padding: 16px;
       box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 8px;
     }
 
     .signpost-card.soon { border-left-color: var(--warn-solid); }
-    .signpost-card.later { border-left-color: var(--accent-solid); }
+    .signpost-card.later { border-left-color: var(--border-strong); }
 
     .signpost-top {
       display: flex;
@@ -1046,21 +1024,21 @@
     }
 
     .signpost-date {
-      font-size: 0.8rem;
-      font-weight: 800;
+      font-size: 0.8125rem;
+      font-weight: 600;
       color: var(--navy-900);
     }
 
     .signpost-title {
       margin: 0;
-      font-size: 0.96rem;
-      font-weight: 800;
+      font-size: 0.9375rem;
+      font-weight: 600;
       color: var(--navy-900);
     }
 
     .signpost-desc {
       margin: 0;
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
       line-height: 1.5;
     }
@@ -1072,29 +1050,29 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .cadence-card {
       background: var(--bg-soft);
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
-      padding: 15px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
     .cadence-card h4 {
       margin: 2px 0 0;
-      font-size: 0.96rem;
-      font-weight: 800;
+      font-size: 0.9375rem;
+      font-weight: 600;
       color: var(--navy-900);
     }
 
     .cadence-card p {
       margin: 0;
-      font-size: 0.84rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
       line-height: 1.5;
     }
@@ -1103,12 +1081,12 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .portal-link {
       min-height: 46px;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-light);
       background: #ffffff;
@@ -1117,13 +1095,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
     }
 
     .portal-link:hover {
-      border-color: var(--accent-solid);
-      background: var(--accent-bg);
+      border-color: var(--border-strong);
+      background: var(--bg-soft);
     }
 
     .portal-link:active {
@@ -1131,33 +1109,33 @@
     }
 
     .portal-title {
-      font-size: 0.86rem;
-      font-weight: 750;
+      font-size: 0.875rem;
+      font-weight: 500;
       color: var(--navy-900);
     }
 
     .portal-sub {
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
     }
 
     .portal-ext {
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--accent-solid);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
       white-space: nowrap;
     }
 
     .prompt-card {
       background: var(--bg-soft);
-      border: 1.5px solid var(--accent-border);
+      border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
       overflow: hidden;
     }
 
     .prompt-head {
       background: #ffffff;
-      padding: 14px 16px;
+      padding: 16px 16px;
       border-bottom: 1px solid var(--border-light);
       display: flex;
       flex-direction: column;
@@ -1172,9 +1150,9 @@
 
     .prompt-pre {
       margin: 0;
-      padding: 14px 16px;
+      padding: 16px 16px;
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.8125rem;
       line-height: 1.55;
       color: var(--navy-900);
       white-space: pre-wrap;
@@ -1193,8 +1171,8 @@
     .site-footer {
       border-top: 1px solid var(--border-light);
       background: #ffffff;
-      padding: 18px 0 calc(84px + env(safe-area-inset-bottom));
-      font-size: 0.8rem;
+      padding: 20px 0 calc(84px + env(safe-area-inset-bottom));
+      font-size: 0.8125rem;
       color: var(--text-muted);
     }
 
@@ -1218,7 +1196,7 @@
       backdrop-filter: blur(12px);
       border-top: 1px solid var(--border-light);
       box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.08);
-      padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+      padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 4px;
@@ -1229,12 +1207,12 @@
       border: none;
       background: transparent;
       min-height: 50px;
-      padding: 6px 4px;
+      padding: 8px 4px;
       border-radius: 12px;
       color: var(--text-muted);
       font-family: inherit;
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.75rem;
+      font-weight: 500;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -1296,7 +1274,7 @@
     }
 
     .sheet-drag-zone {
-      padding: 10px 18px 12px;
+      padding: 12px 20px 12px;
       border-bottom: 1px solid var(--border-light);
       background: #ffffff;
       cursor: grab;
@@ -1322,8 +1300,8 @@
 
     .sheet-title {
       margin: 4px 0 0;
-      font-size: 1.15rem;
-      font-weight: 850;
+      font-size: 1.125rem;
+      font-weight: 600;
       color: var(--navy-900);
       line-height: 1.25;
     }
@@ -1337,7 +1315,7 @@
       background: var(--bg-soft);
       color: var(--navy-900);
       font-size: 1.25rem;
-      font-weight: 700;
+      font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -1350,7 +1328,7 @@
     }
 
     .sheet-body {
-      padding: 16px 18px 20px;
+      padding: 16px 20px 20px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       flex: 1 1 auto;
@@ -1361,15 +1339,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       width: 100%;
-      padding: 7px 12px;
-      margin-bottom: 14px;
+      padding: 8px 12px;
+      margin-bottom: 16px;
       border-radius: var(--radius-pill);
-      background: var(--accent-bg);
-      color: var(--accent-text);
-      font-size: 0.76rem;
-      font-weight: 700;
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 500;
       text-align: center;
     }
 
@@ -1396,24 +1374,24 @@
       background: var(--bg-soft);
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
-      padding: 14px;
-      margin-bottom: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
     }
 
     .modal-reading-val {
-      font-size: 1.45rem;
-      font-weight: 850;
+      font-size: 1.5rem;
+      font-weight: 600;
       color: var(--navy-900);
       line-height: 1.15;
     }
 
     .modal-reading-period {
-      font-size: 0.8rem;
+      font-size: 0.8125rem;
       color: var(--text-muted);
       font-weight: 600;
       margin-top: 2px;
@@ -1421,15 +1399,15 @@
 
     .explainer-block {
       margin-bottom: 12px;
-      padding: 12px 14px;
+      padding: 12px 16px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-light);
       background: #ffffff;
     }
 
     .explainer-block.example-block {
-      background: var(--accent-bg);
-      border-color: var(--accent-border);
+      background: var(--bg-soft);
+      border-color: var(--border-light);
     }
 
     .explainer-block.verdict-good {
@@ -1448,22 +1426,21 @@
     }
 
     .explainer-label {
-      font-size: 0.73rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0;
       color: var(--text-muted);
       margin-bottom: 4px;
     }
 
-    .example-block .explainer-label { color: var(--accent-text); }
+    .example-block .explainer-label { color: var(--text-secondary); }
     .verdict-good .explainer-label { color: var(--good-text); }
     .verdict-watch .explainer-label { color: var(--watch-text); }
     .verdict-warn .explainer-label { color: var(--warn-text); }
 
     .explainer-text {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 0.9375rem;
       color: var(--text-primary);
       line-height: 1.52;
     }
@@ -1471,30 +1448,30 @@
     /* Sticky bottom bar inside Explainer Modal */
     .sheet-footer {
       flex-shrink: 0;
-      padding: 12px 16px calc(14px + env(safe-area-inset-bottom));
+      padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
       background: #ffffff;
       border-top: 1px solid var(--border-light);
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .sheet-nav-btn {
       min-height: 48px;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-radius: var(--radius-md);
       border: 1.5px solid var(--border-strong);
       background: var(--bg-soft);
       color: var(--navy-900);
       font-family: inherit;
-      font-size: 0.88rem;
-      font-weight: 750;
+      font-size: 0.875rem;
+      font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .sheet-nav-btn:active {
@@ -1509,8 +1486,8 @@
     }
 
     .sheet-counter {
-      font-size: 0.82rem;
-      font-weight: 800;
+      font-size: 0.8125rem;
+      font-weight: 600;
       color: var(--text-muted);
       text-align: center;
       white-space: nowrap;
@@ -1521,8 +1498,8 @@
     .guide-grid {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .guide-step {
@@ -1545,8 +1522,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 0.9rem;
+      font-weight: 600;
+      font-size: 0.9375rem;
     }
 
     .legend-row {
@@ -1567,15 +1544,15 @@
       z-index: 300;
       background: var(--navy-950);
       color: #ffffff;
-      padding: 13px 16px;
+      padding: 12px 16px;
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-lg);
-      font-size: 0.88rem;
-      font-weight: 650;
+      font-size: 0.875rem;
+      font-weight: 500;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 8px;
       opacity: 0;
       transform: translateY(18px);
       pointer-events: none;
@@ -1605,8 +1582,8 @@
       }
 
       main {
-        padding: 26px 0 calc(36px + env(safe-area-inset-bottom));
-        gap: 26px;
+        padding: 28px 0 calc(36px + env(safe-area-inset-bottom));
+        gap: 28px;
       }
 
       .card-body {
@@ -1614,9 +1591,11 @@
       }
 
       .wave-layout {
-        grid-template-columns: 1.3fr 1fr;
-        align-items: start;
-        gap: 22px;
+        gap: 24px;
+      }
+
+      .phase-facts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       }
 
       .phase-btn-grid {
@@ -1661,7 +1640,7 @@
       }
 
       .site-footer {
-        padding: 20px 0 26px;
+        padding: 20px 0 28px;
       }
 
       /* Centered Dialog Cards on Desktop */
@@ -1687,15 +1666,15 @@
 
       .sheet-drag-zone {
         cursor: default;
-        padding: 18px 22px 14px;
+        padding: 20px 24px 16px;
       }
 
       .sheet-body {
-        padding: 18px 22px 22px;
+        padding: 20px 24px 24px;
       }
 
       .sheet-footer {
-        padding: 14px 22px;
+        padding: 16px 24px;
       }
 
       .swipe-hint-pill {
@@ -1731,17 +1710,16 @@
       <div class="hero-top-row">
         <span class="brand-kicker">India Economic Health Monitor</span>
         <span class="date-pill">
-          <span class="live-dot" aria-hidden="true"></span>
           Data as of November 22, 2026
         </span>
       </div>
 
-      <h1 class="hero-title">Business Cycle Dashboard</h1>
+      <h1 class="hero-title">Business cycle dashboard</h1>
 
       <div class="verdict-box">
         <div class="verdict-row">
-          <span class="verdict-tag">Current Phase Verdict</span>
-          <h2 class="verdict-heading">Late-Stage Expansion (Boom Phase)</h2>
+          <span class="verdict-tag">Current phase</span>
+          <h2 class="verdict-heading">Late-stage expansion (boom phase)</h2>
         </div>
         <p class="verdict-summary">
           India's economy is running strong with booming factory output, record vehicle sales, and rising stock markets. However, inflation has crossed the central bank's 6% comfort limit and borrowing is growing very fast, which is why the RBI recently raised interest rates to keep the economy from overheating.
@@ -1750,11 +1728,11 @@
         <div class="hero-actions">
           <button type="button" class="btn btn-white" id="btnOpenGuide">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            How to Read This (30s Guide)
+            How to read this (30s guide)
           </button>
           <button type="button" class="btn btn-glass" id="btnCopyWhatsapp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            Copy WhatsApp Summary
+            Copy WhatsApp summary
           </button>
         </div>
       </div>
@@ -1771,21 +1749,21 @@
         <button type="button" class="score-tile watch" data-score-filter="watch">
           <div>
             <div class="score-num tabular-nums">3</div>
-            <div class="score-label">Watch Closely</div>
+            <div class="score-label">Watch closely</div>
           </div>
           <span class="score-arrow" aria-hidden="true">&rarr;</span>
         </button>
         <button type="button" class="score-tile warn" data-score-filter="warn">
           <div>
             <div class="score-num tabular-nums">2</div>
-            <div class="score-label">Warning Signs</div>
+            <div class="score-label">Warning signs</div>
           </div>
           <span class="score-arrow" aria-hidden="true">&rarr;</span>
         </button>
         <button type="button" class="score-tile all" data-score-filter="all">
           <div>
             <div class="score-num tabular-nums">16</div>
-            <div class="score-label">All Indicators</div>
+            <div class="score-label">All indicators</div>
           </div>
           <span class="score-arrow" aria-hidden="true">&rarr;</span>
         </button>
@@ -1802,9 +1780,9 @@
       <div class="card-body">
         <div class="section-head">
           <div>
-            <div class="section-eyebrow">Section 1: Big Picture</div>
-            <h2 class="section-title">Where India Sits in the Economic Cycle</h2>
-            <p class="section-sub">Tap any phase button or shaded zone on the wave to see how growth, jobs, prices, and everyday life behave.</p>
+            <div class="section-eyebrow">Big picture</div>
+            <h2 class="section-title">Where India sits in the economic cycle</h2>
+            <p class="section-sub">Select a phase or a shaded zone on the wave to see how growth, jobs, prices, and everyday life behave.</p>
           </div>
         </div>
 
@@ -1841,14 +1819,14 @@
                 <line x1="56" y1="138" x2="796" y2="138" stroke="#0f172a" stroke-width="1.8" stroke-dasharray="6 5" />
 
                 <!-- Left Axis Hints -->
-                <text x="10" y="42" font-size="11" font-weight="700" fill="#047857">Above</text>
-                <text x="10" y="55" font-size="11" font-weight="700" fill="#047857">Normal</text>
-                <text x="10" y="218" font-size="11" font-weight="700" fill="#be123c">Below</text>
-                <text x="10" y="231" font-size="11" font-weight="700" fill="#be123c">Normal</text>
+                <text x="10" y="42" font-size="11" font-weight="500" fill="#047857">Above</text>
+                <text x="10" y="55" font-size="11" font-weight="500" fill="#047857">normal</text>
+                <text x="10" y="218" font-size="11" font-weight="500" fill="#be123c">Below</text>
+                <text x="10" y="231" font-size="11" font-weight="500" fill="#be123c">normal</text>
 
                 <!-- Trend Line Pill -->
                 <rect x="606" y="125" width="176" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
-                <text x="694" y="141" text-anchor="middle" font-size="10.5" font-weight="750" fill="#0f172a">Long-Term Normal Trend</text>
+                <text x="694" y="141" text-anchor="middle" font-size="10.5" font-weight="500" fill="#0f172a">Long-term normal trend</text>
 
                 <!-- Growth Cycle Sinusoidal Wave -->
                 <path
@@ -1867,15 +1845,15 @@
 
                 <!-- Turning Points -->
                 <circle cx="72" cy="218" r="4.5" fill="#4f46e5" />
-                <text x="86" y="236" font-size="10.5" font-weight="700" fill="#334155">Bottom</text>
+                <text x="86" y="236" font-size="10.5" font-weight="500" fill="#334155">Bottom</text>
 
                 <circle cx="422" cy="58" r="4.5" fill="#d97706" />
-                <text x="422" y="45" text-anchor="middle" font-size="11" font-weight="800" fill="#b45309">Peak</text>
+                <text x="422" y="45" text-anchor="middle" font-size="11" font-weight="600" fill="#b45309">Peak</text>
 
                 <circle cx="772" cy="218" r="4.5" fill="#e11d48" />
-                <text x="760" y="236" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155">Bottom</text>
+                <text x="760" y="236" text-anchor="middle" font-size="10.5" font-weight="500" fill="#334155">Bottom</text>
 
-                <!-- Pulsing YOU ARE HERE Marker (Late-Stage Expansion / Boom) -->
+                <!-- YOU ARE HERE Marker (Late-Stage Expansion / Boom) -->
                 <g class="svg-zone" data-phase="expansion" role="button" aria-label="You are here: Late-Stage Expansion">
                   <circle class="here-pulse" cx="386" cy="68" r="12" fill="#d97706" opacity="0.5" />
                   <circle cx="386" cy="68" r="8.5" fill="#d97706" stroke="#ffffff" stroke-width="2.5" />
@@ -1883,12 +1861,12 @@
                   <g filter="url(#pillShadow)">
                     <rect x="192" y="22" width="142" height="30" rx="15" fill="#0f172a" />
                     <circle cx="209" cy="37" r="4.5" fill="#34d399" />
-                    <text x="220" y="41" font-size="11.5" font-weight="800" fill="#ffffff">YOU ARE HERE</text>
+                    <text x="220" y="41" font-size="11.5" font-weight="600" fill="#ffffff">You are here</text>
                   </g>
                 </g>
 
                 <!-- Phase Labels Underneath -->
-                <g font-size="12" font-weight="800" text-anchor="middle">
+                <g font-size="12" font-weight="600" text-anchor="middle">
                   <text x="159" y="268" fill="#4338ca" class="svg-zone" data-phase="recovery">1. Recovery</text>
                   <text x="334" y="268" fill="#047857" class="svg-zone" data-phase="expansion">2. Expansion / Boom</text>
                   <text x="509" y="268" fill="#b45309" class="svg-zone" data-phase="slowdown">3. Slowdown</text>
@@ -1918,9 +1896,9 @@
     <section aria-label="4 Key Health Gauges">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow">Section 2: Vital Signs</div>
-          <h2 class="section-title">4 Key Health Gauges</h2>
-          <p class="section-sub">Tap any gauge to open its plain-English explainer card with an everyday Indian example.</p>
+          <div class="section-eyebrow">Vital signs</div>
+          <h2 class="section-title">4 key health gauges</h2>
+          <p class="section-sub">Select a gauge to open its plain-English explainer with an everyday Indian example.</p>
         </div>
       </div>
 
@@ -1951,7 +1929,7 @@
             </div>
           </div>
           <div class="gauge-cta">
-            <span>Tap to understand this metric</span>
+            <span>What this means</span>
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
@@ -1964,7 +1942,7 @@
                 <div class="gauge-name">CPI Retail Inflation</div>
                 <div class="gauge-period">Oct 2026 (MoSPI)</div>
               </div>
-              <span class="badge badge-warn">Warning Sign</span>
+              <span class="badge badge-warn">Warning sign</span>
             </div>
             <div class="gauge-num tabular-nums" style="color:var(--warn-text);">6.09%</div>
           </div>
@@ -1982,7 +1960,7 @@
             </div>
           </div>
           <div class="gauge-cta">
-            <span>Tap to understand this metric</span>
+            <span>What this means</span>
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
@@ -1995,7 +1973,7 @@
                 <div class="gauge-name">Bank Credit Growth</div>
                 <div class="gauge-period">Oct 31, 2026 (RBI)</div>
               </div>
-              <span class="badge badge-watch">Watch Closely</span>
+              <span class="badge badge-watch">Watch closely</span>
             </div>
             <div class="gauge-num tabular-nums" style="color:var(--watch-text);">19.54%</div>
           </div>
@@ -2013,7 +1991,7 @@
             </div>
           </div>
           <div class="gauge-cta">
-            <span>Tap to understand this metric</span>
+            <span>What this means</span>
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
@@ -2044,7 +2022,7 @@
             </div>
           </div>
           <div class="gauge-cta">
-            <span>Tap to understand this metric</span>
+            <span>What this means</span>
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
@@ -2058,9 +2036,9 @@
       <div class="card-body">
         <div class="section-head">
           <div>
-            <div class="section-eyebrow">Section 3: Complete Scorecard</div>
-            <h2 class="section-title">3-Step Economic Checkup (16 Indicators)</h2>
-            <p class="section-sub">Tap any indicator card to learn what it means, see an everyday Indian example, and swipe left or right to browse.</p>
+            <div class="section-eyebrow">Complete scorecard</div>
+            <h2 class="section-title">3-step economic checkup (16 indicators)</h2>
+            <p class="section-sub">Select an indicator to see what it means and an everyday Indian example. Use the arrows or swipe to browse.</p>
           </div>
         </div>
 
@@ -2068,17 +2046,17 @@
           <!-- Step Filter Bar -->
           <div class="pill-scroll" role="tablist" aria-label="Filter by economic step">
             <button type="button" class="filter-pill active" data-step-filter="all" role="tab" aria-selected="true">All (16)</button>
-            <button type="button" class="filter-pill" data-step-filter="past" role="tab" aria-selected="false">Step 1: Past / Lagging (5)</button>
-            <button type="button" class="filter-pill" data-step-filter="present" role="tab" aria-selected="false">Step 2: Present / Coincident (6)</button>
-            <button type="button" class="filter-pill" data-step-filter="future" role="tab" aria-selected="false">Step 3: Future / Leading (5)</button>
+            <button type="button" class="filter-pill" data-step-filter="past" role="tab" aria-selected="false">Step 1: Past / lagging (5)</button>
+            <button type="button" class="filter-pill" data-step-filter="present" role="tab" aria-selected="false">Step 2: Present / coincident (6)</button>
+            <button type="button" class="filter-pill" data-step-filter="future" role="tab" aria-selected="false">Step 3: Future / leading (5)</button>
           </div>
 
           <!-- Signal Filter Bar -->
           <div class="pill-scroll" role="tablist" aria-label="Filter by health signal">
-            <button type="button" class="filter-pill active" data-signal-filter="all" role="tab" aria-selected="true">All Signals</button>
+            <button type="button" class="filter-pill active" data-signal-filter="all" role="tab" aria-selected="true">All signals</button>
             <button type="button" class="filter-pill sig-good" data-signal-filter="good" role="tab" aria-selected="false">Good (11)</button>
-            <button type="button" class="filter-pill sig-watch" data-signal-filter="watch" role="tab" aria-selected="false">Watch Closely (3)</button>
-            <button type="button" class="filter-pill sig-warn" data-signal-filter="warn" role="tab" aria-selected="false">Warning Signs (2)</button>
+            <button type="button" class="filter-pill sig-watch" data-signal-filter="watch" role="tab" aria-selected="false">Watch closely (3)</button>
+            <button type="button" class="filter-pill sig-warn" data-signal-filter="warn" role="tab" aria-selected="false">Warning signs (2)</button>
           </div>
 
           <!-- Search Input (16px font to prevent iOS zoom) -->
@@ -2107,17 +2085,17 @@
     <section aria-label="Early Warning Signposts and Upcoming Dates">
       <div class="section-head">
         <div>
-          <div class="section-eyebrow">Section 4: What to Watch Next</div>
-          <h2 class="section-title">4 Early Warning Signposts &amp; Upcoming Dates</h2>
+          <div class="section-eyebrow">What to watch next</div>
+          <h2 class="section-title">4 early warning signposts &amp; upcoming dates</h2>
           <p class="section-sub">Key upcoming releases that will tell us whether India stays in a boom or starts cooling into a slowdown.</p>
         </div>
       </div>
 
       <div class="signpost-grid">
-        <article class="signpost-card soon">
+        <article class="signpost-card">
           <div class="signpost-top">
             <span class="signpost-date">Nov 23, 2026</span>
-            <span class="badge badge-warn">Tomorrow</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-11-23" data-end="2026-11-23">Nov 23</span>
           </div>
           <h3 class="signpost-title">HSBC Flash India PMI (Nov)</h3>
           <p class="signpost-desc">Watch if factory new orders keep cooling after October's slight dip, or if strong services activity keeps business momentum high.</p>
@@ -2126,27 +2104,27 @@
         <article class="signpost-card">
           <div class="signpost-top">
             <span class="signpost-date">Nov 30, 2026</span>
-            <span class="badge badge-watch">In 8 Days</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-11-30" data-end="2026-11-30">Nov 30</span>
           </div>
-          <h3 class="signpost-title">MoSPI Q2 FY27 GDP Release</h3>
+          <h3 class="signpost-title">MoSPI Q2 FY27 GDP release</h3>
           <p class="signpost-desc">Check if real GDP growth cools noticeably below Q1's strong 7.8% pace (market expectations sit around 7.5% to 7.6%).</p>
         </article>
 
         <article class="signpost-card">
           <div class="signpost-top">
             <span class="signpost-date">Dec 2 to 4, 2026</span>
-            <span class="badge badge-watch">In 10 Days</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-12-02" data-end="2026-12-04">Dec 2 to 4</span>
           </div>
-          <h3 class="signpost-title">RBI MPC Rate Decision</h3>
+          <h3 class="signpost-title">RBI MPC rate decision</h3>
           <p class="signpost-desc">Watch for another interest rate hike after October retail inflation reached 6.09% and crossed the RBI's 6% comfort ceiling.</p>
         </article>
 
-        <article class="signpost-card later">
+        <article class="signpost-card">
           <div class="signpost-top">
             <span class="signpost-date">Mid-Dec 2026</span>
-            <span class="badge badge-accent">Next Month</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-12-12" data-end="2026-12-16" data-approx="true">Mid-Dec</span>
           </div>
-          <h3 class="signpost-title">Nov CPI &amp; Factory Inventory Build</h3>
+          <h3 class="signpost-title">Nov CPI &amp; factory inventory build</h3>
           <p class="signpost-desc">Watch if food inflation finally cools down and whether unsold finished goods keep piling up at factories, a classic late-boom warning.</p>
         </article>
       </div>
@@ -2159,8 +2137,8 @@
       <div class="card-body">
         <div class="section-head">
           <div>
-            <div class="section-eyebrow">Section 5: Keep It Fresh</div>
-            <h2 class="section-title">When to Refresh &amp; Official Data Portals</h2>
+            <div class="section-eyebrow">Keep it fresh</div>
+            <h2 class="section-title">When to refresh &amp; official data portals</h2>
             <p class="section-sub">Most Indian economic reports arrive in two monthly waves rather than on the 1st of the month.</p>
           </div>
         </div>
@@ -2168,26 +2146,26 @@
         <!-- 3 Refresh Schedule Cards -->
         <div class="cadence-grid">
           <div class="cadence-card">
-            <span class="badge badge-good" style="align-self:flex-start;">6th to 8th of Every Month</span>
-            <h4>Primary Monthly Refresh</h4>
+            <span class="badge badge-good" style="align-self:flex-start;">6th to 8th of every month</span>
+            <h4>Primary monthly refresh</h4>
             <p>Best main check-in. Captures GST collections (1st), HSBC PMIs (1st to 3rd), auto sales (1st to 3rd), Core Industries, and OECD CLI (around the 8th).</p>
           </div>
 
           <div class="cadence-card">
-            <span class="badge badge-watch" style="align-self:flex-start;">16th of Every Month</span>
-            <h4>Mid-Month Check</h4>
+            <span class="badge badge-watch" style="align-self:flex-start;">16th of every month</span>
+            <h4>Mid-month check</h4>
             <p>Captures CPI retail inflation (12th), IIP factory output (12th), WPI wholesale inflation (14th), PLFS jobs data (around the 15th), and RBI credit data.</p>
           </div>
 
           <div class="cadence-card">
-            <span class="badge badge-accent" style="align-self:flex-start;">1st Week of Mar, Jun, Sep, Dec</span>
-            <h4>Quarterly Anchor</h4>
+            <span class="badge badge-accent" style="align-self:flex-start;">1st week of Mar, Jun, Sep, Dec</span>
+            <h4>Quarterly anchor</h4>
             <p>Captures MoSPI's quarterly Real GDP report (released on the last working day of Feb, May, Aug, Nov) alongside bi-monthly RBI rate decisions.</p>
           </div>
         </div>
 
         <!-- Official Source Links -->
-        <h3 style="margin:0 0 10px;font-size:0.96rem;font-weight:800;color:var(--navy-900);">Official Public Data Portals</h3>
+        <h3 style="margin:0 0 12px;font-size:0.9375rem;font-weight:600;color:var(--navy-900);">Official public data portals</h3>
         <div class="portal-grid">
           <a class="portal-link" href="https://data.rbi.org.in" target="_blank" rel="noopener noreferrer">
             <div><div class="portal-title">RBI DBIE</div><div class="portal-sub">Bank credit, yields, money supply</div></div>
@@ -2231,14 +2209,14 @@
         <div class="prompt-card">
           <div class="prompt-head">
             <div>
-              <div style="font-size:0.95rem;font-weight:800;color:var(--navy-900);">Reusable Monthly AI Refresh Prompt</div>
-              <div style="font-size:0.82rem;color:var(--text-muted);margin-top:2px;">Paste this into any web-enabled AI on the 8th or 16th of any month to regenerate this entire Indian economic checkup with fresh numbers.</div>
+              <div style="font-size:0.9375rem;font-weight:600;color:var(--navy-900);">Reusable monthly AI refresh prompt</div>
+              <div style="font-size:0.8125rem;color:var(--text-muted);margin-top:2px;">Paste this into any web-enabled AI on the 8th or 16th of any month to regenerate this entire Indian economic checkup with fresh numbers.</div>
             </div>
             <div class="prompt-actions">
-              <button type="button" class="btn btn-outline" id="btnTogglePrompt">Show Prompt</button>
+              <button type="button" class="btn btn-outline" id="btnTogglePrompt">Show prompt</button>
               <button type="button" class="btn btn-accent" id="btnCopyPrompt">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                Copy AI Prompt
+                Copy AI prompt
               </button>
             </div>
           </div>
@@ -2321,7 +2299,7 @@ OUTPUT FORMAT:
         <div class="sheet-handle" aria-hidden="true"></div>
         <div class="sheet-header-row">
           <div>
-            <span class="badge badge-accent" id="indModalStepBadge">Step 1: Past / Lagging</span>
+            <span class="badge badge-accent" id="indModalStepBadge">Step 1: Past / lagging</span>
             <h3 class="sheet-title" id="indModalTitle">Indicator Name</h3>
           </div>
           <button type="button" class="sheet-close" id="btnCloseIndModal" aria-label="Close indicator details">&times;</button>
@@ -2359,14 +2337,14 @@ OUTPUT FORMAT:
         <div class="sheet-header-row">
           <div>
             <span class="badge badge-accent">30-Second Guide</span>
-            <h3 class="sheet-title" id="guideModalTitle">How to Read This Dashboard</h3>
+            <h3 class="sheet-title" id="guideModalTitle">How to read this dashboard</h3>
           </div>
           <button type="button" class="sheet-close" id="btnCloseGuide" aria-label="Close guide">&times;</button>
         </div>
       </div>
 
       <div class="sheet-body">
-        <p style="margin:0 0 14px;font-size:0.9rem;color:var(--text-secondary);">
+        <p style="margin:0 0 16px;font-size:0.9375rem;color:var(--text-secondary);">
           Think of India's economy like driving a car on a highway. Economists look at three types of clues together to know where we are:
         </p>
 
@@ -2374,24 +2352,24 @@ OUTPUT FORMAT:
           <div class="guide-step">
             <div class="guide-icon">1</div>
             <div>
-              <div style="font-weight:800;color:var(--navy-900);font-size:0.92rem;">Past / Lagging Indicators = The Rearview Mirror</div>
-              <div style="font-size:0.84rem;color:var(--text-secondary);margin-top:2px;">Inflation, unemployment, and central bank rates change after a trend is already underway. They confirm what the economy has been doing.</div>
+              <div style="font-weight:600;color:var(--navy-900);font-size:0.9375rem;">Past / Lagging Indicators = The Rearview Mirror</div>
+              <div style="font-size:0.875rem;color:var(--text-secondary);margin-top:2px;">Inflation, unemployment, and central bank rates change after a trend is already underway. They confirm what the economy has been doing.</div>
             </div>
           </div>
 
           <div class="guide-step">
             <div class="guide-icon" style="background:#1d4ed8;">2</div>
             <div>
-              <div style="font-weight:800;color:var(--navy-900);font-size:0.92rem;">Present / Coincident Indicators = The Speedometer</div>
-              <div style="font-size:0.84rem;color:var(--text-secondary);margin-top:2px;">Factory output, GST collections, car sales, and GDP show how fast the economy is moving right now.</div>
+              <div style="font-weight:600;color:var(--navy-900);font-size:0.9375rem;">Present / Coincident Indicators = The Speedometer</div>
+              <div style="font-size:0.875rem;color:var(--text-secondary);margin-top:2px;">Factory output, GST collections, car sales, and GDP show how fast the economy is moving right now.</div>
             </div>
           </div>
 
           <div class="guide-step">
             <div class="guide-icon" style="background:#4f46e5;">3</div>
             <div>
-              <div style="font-weight:800;color:var(--navy-900);font-size:0.92rem;">Future / Leading Indicators = The Headlights</div>
-              <div style="font-size:0.84rem;color:var(--text-secondary);margin-top:2px;">Stock markets, bond yield spreads, business surveys (PMIs), and composite leading indexes point to where the road is turning next.</div>
+              <div style="font-weight:600;color:var(--navy-900);font-size:0.9375rem;">Future / Leading Indicators = The Headlights</div>
+              <div style="font-size:0.875rem;color:var(--text-secondary);margin-top:2px;">Stock markets, bond yield spreads, business surveys (PMIs), and composite leading indexes point to where the road is turning next.</div>
             </div>
           </div>
         </div>
@@ -2407,7 +2385,7 @@ OUTPUT FORMAT:
 
         <div class="explainer-block example-block" style="margin-bottom:0;">
           <div class="explainer-label">Pro Tip</div>
-          <p class="explainer-text">Tap any indicator card or gauge on this page to get a plain-English explanation with an everyday Indian example, then swipe left or right to flip through all 16 indicators like flashcards.</p>
+          <p class="explainer-text">Select any indicator card or gauge on this page to get a plain-English explanation with an everyday Indian example, then swipe left or right to flip through all 16 indicators like flashcards.</p>
         </div>
       </div>
 
@@ -2429,6 +2407,59 @@ OUTPUT FORMAT:
        VANILLA JAVASCRIPT: DATA, FILTERING, BOTTOM SHEETS & SWIPE GESTURES
        ======================================================================= -->
   <script>
+
+    /* =========================================================================
+       COUNTDOWN BADGES: calculated from today's date on every page load.
+       Each badge carries data-start / data-end (YYYY-MM-DD, local date).
+       A bad date fails loudly: console error plus "Date error" on the badge.
+       ========================================================================= */
+    function parseLocalDate(text) {
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text || "");
+      if (!m) return null;
+      const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+      return d.getMonth() === Number(m[2]) - 1 ? d : null;
+    }
+
+    function countdownLabel(daysToStart, daysToEnd, approx) {
+      if (daysToEnd < 0) return { text: "Done", tone: "accent" };
+      if (daysToStart <= 0) return { text: approx ? "Due now" : "Today", tone: "warn" };
+      if (daysToStart === 1 && !approx) return { text: "Tomorrow", tone: "warn" };
+      if (approx && daysToStart >= 14) return { text: `In about ${Math.round(daysToStart / 7)} weeks`, tone: "accent" };
+      if (approx) return { text: `In about ${daysToStart} days`, tone: daysToStart <= 7 ? "watch" : "accent" };
+      return { text: `In ${daysToStart} days`, tone: daysToStart <= 7 ? "watch" : "accent" };
+    }
+
+    function updateCountdowns(today) {
+      const base = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const DAY = 86400000;
+      const results = [];
+      document.querySelectorAll("[data-countdown]").forEach((badge) => {
+        const start = parseLocalDate(badge.dataset.start);
+        const end = parseLocalDate(badge.dataset.end);
+        const card = badge.closest(".signpost-card");
+        if (!start || !end || end < start) {
+          console.error("Countdown badge has a bad date:", badge.dataset.start, badge.dataset.end, badge);
+          badge.textContent = "Date error";
+          badge.className = "badge badge-warn";
+          results.push("ERROR");
+          return;
+        }
+        const daysToStart = Math.round((start - base) / DAY);
+        const daysToEnd = Math.round((end - base) / DAY);
+        const label = countdownLabel(daysToStart, daysToEnd, badge.dataset.approx === "true");
+        badge.textContent = label.text;
+        badge.className = `badge badge-${label.tone}`;
+        if (card) {
+          card.classList.toggle("soon", label.tone === "warn");
+          card.classList.toggle("later", label.tone === "accent");
+        }
+        results.push(`${badge.dataset.start}: ${label.text}`);
+      });
+      return results;
+    }
+
+    window.updateCountdowns = updateCountdowns;
+    console.info("Countdowns:", updateCountdowns(new Date()).join(" | "));
     (function () {
       "use strict";
 
@@ -2437,8 +2468,8 @@ OUTPUT FORMAT:
          --------------------------------------------------------------------- */
       const PHASES = {
         recovery: {
-          title: "1. Recovery (Bouncing Back)",
-          badge: "Below Trend, Heading Up",
+          title: "1. Recovery (bouncing back)",
+          badge: "Below trend, heading up",
           badgeClass: "badge-accent",
           growth: "The economy has passed its lowest point and starts growing again, though activity is still below its normal long-term level.",
           jobs: "Layoffs slow down. Companies first ask existing staff to work overtime before opening large new hiring drives.",
@@ -2447,8 +2478,8 @@ OUTPUT FORMAT:
           everyday: "Stores offer good deals, EMIs feel lighter, and stock markets often start rising months before daily news feels cheerful."
         },
         expansion: {
-          title: "2. Expansion / Boom (India Today)",
-          badge: "You Are Here (Nov 2026)",
+          title: "2. Expansion / boom (India today)",
+          badge: "You are here (Nov 2026)",
           badgeClass: "badge-good",
           growth: "Business activity climbs above its long-term normal trend. Factories run near full speed and companies build new plants.",
           jobs: "Hiring is strong across sectors and unemployment drops. Late in a boom, skilled workers become harder to find.",
@@ -2457,8 +2488,8 @@ OUTPUT FORMAT:
           everyday: "Showrooms and malls are packed, salaries and stock portfolios look healthy, but grocery bills and new loan EMIs start creeping higher."
         },
         slowdown: {
-          title: "3. Slowdown (Easing Off the Gas)",
-          badge: "Past Peak, Cooling Down",
+          title: "3. Slowdown (easing off the gas)",
+          badge: "Past peak, cooling down",
           badgeClass: "badge-watch",
           growth: "The economy is still growing above normal, but the speed starts slowing down after passing its peak.",
           jobs: "Companies keep hiring, but much more selectively and at a slower pace than during the boom.",
@@ -2467,8 +2498,8 @@ OUTPUT FORMAT:
           everyday: "Sales slow slightly before factories cut output, so unsold stock builds up. Investors begin preferring steady, defensive businesses."
         },
         contraction: {
-          title: "4. Contraction (Downturn)",
-          badge: "Below Normal Trend",
+          title: "4. Contraction (downturn)",
+          badge: "Below normal trend",
           badgeClass: "badge-warn",
           growth: "Economic activity drops below its normal trend. If the drop is broad and lasts long enough, it becomes a recession.",
           jobs: "Companies first cut overtime and freeze new hiring, and may later trim staff if sales stay weak. Unemployment rises.",
@@ -2486,12 +2517,12 @@ OUTPUT FORMAT:
         {
           id: 1,
           step: "past",
-          stepLabel: "Step 1: Past / Lagging",
+          stepLabel: "Step 1: Past / lagging",
           name: "CPI Retail Inflation",
           value: "6.09% YoY",
           period: "Oct 2026",
           signal: "warn",
-          signalLabel: "Warning Sign",
+          signalLabel: "Warning sign",
           summary: "Up from 5.54% in Sep; food inflation jumped to 8.94%, crossing RBI's 6% upper comfort limit.",
           officialSource: "MoSPI (base 2024=100)",
           plainEnglishDefinition: "Measures how fast everyday household prices (groceries, rent, fuel, healthcare, and education) are rising compared to one year ago.",
@@ -2502,12 +2533,12 @@ OUTPUT FORMAT:
         {
           id: 2,
           step: "past",
-          stepLabel: "Step 1: Past / Lagging",
+          stepLabel: "Step 1: Past / lagging",
           name: "WPI Wholesale Inflation",
           value: "12.29% YoY",
           period: "Oct 2026",
           signal: "warn",
-          signalLabel: "Warning Sign",
+          signalLabel: "Warning sign",
           summary: "Up from 11.39% in Sep (3rd straight monthly rise); fuel and power surged +32.84%.",
           officialSource: "DPIIT",
           plainEnglishDefinition: "Tracks bulk prices paid by factories, distributors, and wholesalers for raw materials, fuel, power, and manufactured goods before items reach retail shops.",
@@ -2518,7 +2549,7 @@ OUTPUT FORMAT:
         {
           id: 3,
           step: "past",
-          stepLabel: "Step 1: Past / Lagging",
+          stepLabel: "Step 1: Past / lagging",
           name: "Unemployment Rate (PLFS)",
           value: "4.9%",
           period: "Oct 2026",
@@ -2534,12 +2565,12 @@ OUTPUT FORMAT:
         {
           id: 4,
           step: "past",
-          stepLabel: "Step 1: Past / Lagging",
+          stepLabel: "Step 1: Past / lagging",
           name: "Bank Credit Growth",
           value: "19.54% YoY",
           period: "Oct 31, 2026",
           signal: "watch",
-          signalLabel: "Watch Closely",
+          signalLabel: "Watch closely",
           summary: "4th straight month above 19%; Credit-to-Deposit ratio reached 82.1% while deposits grew 16.86%.",
           officialSource: "RBI Fortnightly Data",
           plainEnglishDefinition: "Measures how fast Indian banks are giving out new loans to families (home, car, personal loans) and businesses compared to a year ago.",
@@ -2550,12 +2581,12 @@ OUTPUT FORMAT:
         {
           id: 5,
           step: "past",
-          stepLabel: "Step 1: Past / Lagging",
+          stepLabel: "Step 1: Past / lagging",
           name: "RBI Repo Rate (Policy Rate)",
           value: "5.50%",
           period: "Oct 7, 2026",
           signal: "watch",
-          signalLabel: "Watch Closely",
+          signalLabel: "Watch closely",
           summary: "Hiked +25 bps on Oct 7, 2026 (first hike since Feb 2023); stance shifted to 'calibrated tightening'.",
           officialSource: "RBI MPC",
           plainEnglishDefinition: "The benchmark interest rate at which the Reserve Bank of India lends short-term money to commercial banks.",
@@ -2568,7 +2599,7 @@ OUTPUT FORMAT:
         {
           id: 6,
           step: "present",
-          stepLabel: "Step 2: Present / Coincident",
+          stepLabel: "Step 2: Present / coincident",
           name: "Index of Core Industries (ICI)",
           value: "+10.9% YoY",
           period: "Oct 2026",
@@ -2584,7 +2615,7 @@ OUTPUT FORMAT:
         {
           id: 7,
           step: "present",
-          stepLabel: "Step 2: Present / Coincident",
+          stepLabel: "Step 2: Present / coincident",
           name: "Index of Industrial Production (IIP)",
           value: "+6.7% YoY",
           period: "Sep 2026",
@@ -2600,7 +2631,7 @@ OUTPUT FORMAT:
         {
           id: 8,
           step: "present",
-          stepLabel: "Step 2: Present / Coincident",
+          stepLabel: "Step 2: Present / coincident",
           name: "Conference Board CEI (India)",
           value: "192.8",
           period: "Sep 2026",
@@ -2616,7 +2647,7 @@ OUTPUT FORMAT:
         {
           id: 9,
           step: "present",
-          stepLabel: "Step 2: Present / Coincident",
+          stepLabel: "Step 2: Present / coincident",
           name: "GST Collections",
           value: "Rs. 2.31 Lakh Cr",
           period: "Oct 2026",
@@ -2632,7 +2663,7 @@ OUTPUT FORMAT:
         {
           id: 10,
           step: "present",
-          stepLabel: "Step 2: Present / Coincident",
+          stepLabel: "Step 2: Present / coincident",
           name: "Passenger Vehicle Sales",
           value: "5.19 Lakh Units",
           period: "Oct 2026",
@@ -2648,7 +2679,7 @@ OUTPUT FORMAT:
         {
           id: 11,
           step: "present",
-          stepLabel: "Step 2: Present / Coincident",
+          stepLabel: "Step 2: Present / coincident",
           name: "Real GDP Growth (Reference)",
           value: "7.8% YoY",
           period: "Q1 FY27",
@@ -2666,7 +2697,7 @@ OUTPUT FORMAT:
         {
           id: 12,
           step: "future",
-          stepLabel: "Step 3: Future / Leading",
+          stepLabel: "Step 3: Future / leading",
           name: "Indian Stock Markets",
           value: "Sensex 83,919.71 / Nifty 25,800.60",
           period: "Nov 20, 2026 Close",
@@ -2682,7 +2713,7 @@ OUTPUT FORMAT:
         {
           id: 13,
           step: "future",
-          stepLabel: "Step 3: Future / Leading",
+          stepLabel: "Step 3: Future / leading",
           name: "Bond Yield Spread (10Y vs Repo)",
           value: "+168 bps",
           period: "Nov 20, 2026",
@@ -2698,12 +2729,12 @@ OUTPUT FORMAT:
         {
           id: 14,
           step: "future",
-          stepLabel: "Step 3: Future / Leading",
+          stepLabel: "Step 3: Future / leading",
           name: "HSBC India PMIs",
           value: "Composite 56.2",
           period: "Oct 2026",
           signal: "watch",
-          signalLabel: "Watch Closely",
+          signalLabel: "Watch closely",
           summary: "Services hit 4-month high (55.8), but Manufacturing eased to 54.7 (from 55.1) with softer business optimism and rising finished-goods stocks.",
           officialSource: "HSBC / S&P Global",
           plainEnglishDefinition: "A monthly survey asking purchasing managers at hundreds of Indian factories and service firms whether new orders, hiring, and output are growing or shrinking. Above 50 means growing; below 50 means shrinking.",
@@ -2714,7 +2745,7 @@ OUTPUT FORMAT:
         {
           id: 15,
           step: "future",
-          stepLabel: "Step 3: Future / Leading",
+          stepLabel: "Step 3: Future / leading",
           name: "Conference Board LEI (India)",
           value: "193.9",
           period: "Sep 2026",
@@ -2730,7 +2761,7 @@ OUTPUT FORMAT:
         {
           id: 16,
           step: "future",
-          stepLabel: "Step 3: Future / Leading",
+          stepLabel: "Step 3: Future / leading",
           name: "OECD Leading Index (CLI)",
           value: "101.45",
           period: "Oct 2026",
@@ -2894,15 +2925,15 @@ OUTPUT FORMAT:
               <div class="phase-fact-text">${data.jobs}</div>
             </div>
             <div class="phase-fact">
-              <div class="phase-fact-label">Prices &amp; Inflation</div>
+              <div class="phase-fact-label">Prices &amp; inflation</div>
               <div class="phase-fact-text">${data.prices}</div>
             </div>
             <div class="phase-fact">
-              <div class="phase-fact-label">Borrowing &amp; Rates</div>
+              <div class="phase-fact-label">Borrowing &amp; rates</div>
               <div class="phase-fact-text">${data.borrowing}</div>
             </div>
             <div class="phase-fact">
-              <div class="phase-fact-label">Everyday Life in India</div>
+              <div class="phase-fact-label">Everyday life in India</div>
               <div class="phase-fact-text">${data.everyday}</div>
             </div>
           </div>
@@ -2943,19 +2974,19 @@ OUTPUT FORMAT:
         {
           key: "past",
           headerClass: "",
-          title: "Step 1: Past / Lagging Indicators (5)",
+          title: "Step 1: Past / lagging indicators (5)",
           sub: "The Rearview Mirror: confirms what the economy has been doing"
         },
         {
           key: "present",
           headerClass: "step-present",
-          title: "Step 2: Present / Coincident Indicators (6)",
+          title: "Step 2: Present / coincident indicators (6)",
           sub: "The Speedometer: measures how fast the economy is moving right now"
         },
         {
           key: "future",
           headerClass: "step-future",
-          title: "Step 3: Future / Leading Indicators (5)",
+          title: "Step 3: Future / leading indicators (5)",
           sub: "The Headlights: signals where the economy is likely heading next"
         }
       ];
@@ -2996,9 +3027,9 @@ OUTPUT FORMAT:
         if (filtered.length === 0) {
           container.innerHTML = `
             <div class="empty-state">
-              <div style="font-weight:800;font-size:1rem;color:var(--navy-900);margin-bottom:6px;">No matching indicators found</div>
-              <div style="font-size:0.86rem;margin-bottom:14px;">Try clearing your search or switching back to All Indicators.</div>
-              <button type="button" class="btn btn-accent" id="btnEmptyReset">Show All 16 Indicators</button>
+              <div style="font-weight:600;font-size:1rem;color:var(--navy-900);margin-bottom:8px;">No matching indicators found</div>
+              <div style="font-size:0.875rem;margin-bottom:16px;">Try clearing your search or switching back to All Indicators.</div>
+              <button type="button" class="btn btn-accent" id="btnEmptyReset">Show all 16 indicators</button>
             </div>
           `;
           const emptyBtn = document.getElementById("btnEmptyReset");
@@ -3024,7 +3055,7 @@ OUTPUT FORMAT:
               <div class="ind-summary">${item.summary}</div>
               <div class="ind-card-foot">
                 <span class="ind-source">${item.officialSource}</span>
-                <span class="ind-learn">Tap to learn <span aria-hidden="true">&rarr;</span></span>
+                <span class="ind-learn">Details <span aria-hidden="true">&rarr;</span></span>
               </div>
             </button>
           `).join("");
@@ -3123,7 +3154,7 @@ OUTPUT FORMAT:
               <div class="modal-reading-val tabular-nums">${item.value}</div>
               <div class="modal-reading-period">${item.period} | Source: ${item.officialSource}</div>
             </div>
-            <span class="badge ${getSignalClass(item.signal)}" style="font-size:0.82rem;padding:6px 12px;">${item.signalLabel}</span>
+            <span class="badge ${getSignalClass(item.signal)}" style="font-size:0.8125rem;padding:8px 12px;">${item.signalLabel}</span>
           </div>
 
           <div class="explainer-block">
@@ -3393,7 +3424,7 @@ OUTPUT FORMAT:
           const btnTogglePrompt = document.getElementById("btnTogglePrompt");
           btnTogglePrompt.addEventListener("click", () => {
             const collapsed = promptPre.classList.toggle("collapsed");
-            btnTogglePrompt.textContent = collapsed ? "Show Prompt" : "Hide Prompt";
+            btnTogglePrompt.textContent = collapsed ? "Show prompt" : "Hide prompt";
           });
           document.getElementById("btnCopyPrompt").addEventListener("click", () => {
             copyToClipboard(promptPre.textContent.trim(), "Monthly AI prompt copied to clipboard!");
