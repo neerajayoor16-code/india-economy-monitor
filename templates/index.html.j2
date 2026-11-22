@@ -1710,7 +1710,7 @@
       <div class="hero-top-row">
         <span class="brand-kicker">India Economic Health Monitor</span>
         <span class="date-pill">
-          Data as of November 22, 2026
+          Data checked {{ site.asOf }}
         </span>
       </div>
 
@@ -1719,10 +1719,10 @@
       <div class="verdict-box">
         <div class="verdict-row">
           <span class="verdict-tag">Current phase</span>
-          <h2 class="verdict-heading">Late-stage expansion (boom phase)</h2>
+          <h2 class="verdict-heading">{{ site.phaseHeadline }}</h2>
         </div>
         <p class="verdict-summary">
-          India's economy is running strong with booming factory output, record vehicle sales, and rising stock markets. However, inflation has crossed the central bank's 6% comfort limit and borrowing is growing very fast, which is why the RBI recently raised interest rates to keep the economy from overheating.
+          {{ site.verdictSummary }}
         </p>
 
         <div class="hero-actions">
@@ -1741,28 +1741,28 @@
       <div class="scorecard-grid" aria-label="Indicator Health Scorecard">
         <button type="button" class="score-tile good" data-score-filter="good">
           <div>
-            <div class="score-num tabular-nums">11</div>
+            <div class="score-num tabular-nums">{{ site.counts.good }}</div>
             <div class="score-label">Good</div>
           </div>
           <span class="score-arrow" aria-hidden="true">&rarr;</span>
         </button>
         <button type="button" class="score-tile watch" data-score-filter="watch">
           <div>
-            <div class="score-num tabular-nums">3</div>
+            <div class="score-num tabular-nums">{{ site.counts.watch }}</div>
             <div class="score-label">Watch closely</div>
           </div>
           <span class="score-arrow" aria-hidden="true">&rarr;</span>
         </button>
         <button type="button" class="score-tile warn" data-score-filter="warn">
           <div>
-            <div class="score-num tabular-nums">2</div>
+            <div class="score-num tabular-nums">{{ site.counts.warn }}</div>
             <div class="score-label">Warning signs</div>
           </div>
           <span class="score-arrow" aria-hidden="true">&rarr;</span>
         </button>
         <button type="button" class="score-tile all" data-score-filter="all">
           <div>
-            <div class="score-num tabular-nums">16</div>
+            <div class="score-num tabular-nums">{{ site.counts.total }}</div>
             <div class="score-label">All indicators</div>
           </div>
           <span class="score-arrow" aria-hidden="true">&rarr;</span>
@@ -1853,15 +1853,14 @@
                 <circle cx="772" cy="218" r="4.5" fill="#e11d48" />
                 <text x="760" y="236" text-anchor="middle" font-size="10.5" font-weight="500" fill="#334155">Bottom</text>
 
-                <!-- YOU ARE HERE Marker (Late-Stage Expansion / Boom) -->
-                <g class="svg-zone" data-phase="expansion" role="button" aria-label="You are here: Late-Stage Expansion">
-                  <circle class="here-pulse" cx="386" cy="68" r="12" fill="#d97706" opacity="0.5" />
-                  <circle cx="386" cy="68" r="8.5" fill="#d97706" stroke="#ffffff" stroke-width="2.5" />
-                  <line x1="386" y1="68" x2="326" y2="42" stroke="#0f172a" stroke-width="1.4" />
+                <!-- YOU ARE HERE Marker (position comes from the phase rule) -->
+                <g class="svg-zone" data-phase="{{ site.phaseKey }}" role="button" aria-label="{{ site.marker.label }}">
+                  <circle cx="{{ site.marker.x }}" cy="{{ site.marker.y }}" r="8.5" fill="#d97706" stroke="#ffffff" stroke-width="2.5" />
+                  <line x1="{{ site.marker.x }}" y1="{{ site.marker.y }}" x2="{{ site.marker.lineX }}" y2="52" stroke="#0f172a" stroke-width="1.4" />
                   <g filter="url(#pillShadow)">
-                    <rect x="192" y="22" width="142" height="30" rx="15" fill="#0f172a" />
-                    <circle cx="209" cy="37" r="4.5" fill="#34d399" />
-                    <text x="220" y="41" font-size="11.5" font-weight="600" fill="#ffffff">You are here</text>
+                    <rect x="{{ site.marker.pillX }}" y="22" width="142" height="30" rx="15" fill="#0f172a" />
+                    <circle cx="{{ site.marker.pillX + 17 }}" cy="37" r="4.5" fill="#34d399" />
+                    <text x="{{ site.marker.pillX + 28 }}" y="41" font-size="11.5" font-weight="600" fill="#ffffff">You are here</text>
                   </g>
                 </g>
 
@@ -1903,29 +1902,28 @@
       </div>
 
       <div class="gauge-grid">
-        <!-- Gauge 1: Real GDP Growth (links to Indicator #11) -->
-        <button type="button" class="gauge-card" data-open-indicator="11">
+        {%- for g in site.gauges %}
+        <button type="button" class="gauge-card" data-open-indicator="{{ g.id }}">
           <div>
             <div class="gauge-top">
               <div>
-                <div class="gauge-name">Real GDP Growth</div>
-                <div class="gauge-period">Q1 FY27 (MoSPI)</div>
+                <div class="gauge-name">{{ g.name }}</div>
+                <div class="gauge-period">{{ g.period }}</div>
               </div>
-              <span class="badge badge-good">Good</span>
+              <span class="badge badge-{{ g.signal }}">{{ g.signalLabel }}</span>
             </div>
-            <div class="gauge-num tabular-nums" style="color:var(--good-text);">7.8%</div>
+            <div class="gauge-num tabular-nums" style="color:var(--{{ g.signal }}-text);">{{ g.display }}</div>
           </div>
           <div class="gauge-bar-box">
-            <!-- Scale 3% to 10% (range 7). Trend band 6.5% to 7.0% => 50% to 57.1%. Current 7.8% => 68.6% -->
             <div class="gauge-track">
-              <div class="gauge-zone" style="left:50%;width:7.1%;background:rgba(79,70,229,0.28);"></div>
-              <div class="gauge-ref" style="left:53.5%;" title="Long-term trend 6.5% to 7.0%"></div>
-              <div class="gauge-dot" style="left:68.6%;background:var(--good-solid);"></div>
+              <div class="gauge-zone" style="left:{{ g.zoneLeft }}%;width:{{ g.zoneWidth }}%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:{{ g.refLeft }}%;" title="{{ g.refTitle }}"></div>
+              <div class="gauge-dot" style="left:{{ g.dotLeft }}%;background:var(--{{ g.signal }}-solid);"></div>
             </div>
             <div class="gauge-axis tabular-nums">
-              <span>3%</span>
-              <span>Trend: 6.5% to 7.0%</span>
-              <span>10%</span>
+              <span>{{ g.axis[0] }}</span>
+              <span>{{ g.axis[1] }}</span>
+              <span>{{ g.axis[2] }}</span>
             </div>
           </div>
           <div class="gauge-cta">
@@ -1933,99 +1931,7 @@
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
-
-        <!-- Gauge 2: CPI Retail Inflation (links to Indicator #1) -->
-        <button type="button" class="gauge-card" data-open-indicator="1">
-          <div>
-            <div class="gauge-top">
-              <div>
-                <div class="gauge-name">CPI Retail Inflation</div>
-                <div class="gauge-period">Oct 2026 (MoSPI)</div>
-              </div>
-              <span class="badge badge-warn">Warning sign</span>
-            </div>
-            <div class="gauge-num tabular-nums" style="color:var(--warn-text);">6.09%</div>
-          </div>
-          <div class="gauge-bar-box">
-            <!-- Scale 0% to 8%. RBI comfort 2% to 6% => 25% to 75%. Current 6.09% => 76.1% -->
-            <div class="gauge-track">
-              <div class="gauge-zone" style="left:25%;width:50%;background:rgba(5,150,105,0.2);"></div>
-              <div class="gauge-ref" style="left:75%;background:var(--warn-solid);" title="RBI upper limit 6.0%"></div>
-              <div class="gauge-dot" style="left:76.1%;background:var(--warn-solid);"></div>
-            </div>
-            <div class="gauge-axis tabular-nums">
-              <span>0%</span>
-              <span>RBI limit: 6.0%</span>
-              <span>8%</span>
-            </div>
-          </div>
-          <div class="gauge-cta">
-            <span>What this means</span>
-            <span aria-hidden="true">&rarr;</span>
-          </div>
-        </button>
-
-        <!-- Gauge 3: Bank Credit Growth (links to Indicator #4) -->
-        <button type="button" class="gauge-card" data-open-indicator="4">
-          <div>
-            <div class="gauge-top">
-              <div>
-                <div class="gauge-name">Bank Credit Growth</div>
-                <div class="gauge-period">Oct 31, 2026 (RBI)</div>
-              </div>
-              <span class="badge badge-watch">Watch closely</span>
-            </div>
-            <div class="gauge-num tabular-nums" style="color:var(--watch-text);">19.54%</div>
-          </div>
-          <div class="gauge-bar-box">
-            <!-- Scale 5% to 25% (range 20). Healthy 12% to 16% => 35% to 55%. Current 19.54% => 72.7% -->
-            <div class="gauge-track">
-              <div class="gauge-zone" style="left:35%;width:20%;background:rgba(5,150,105,0.24);"></div>
-              <div class="gauge-ref" style="left:55%;background:var(--watch-solid);" title="Upper healthy zone 16%"></div>
-              <div class="gauge-dot" style="left:72.7%;background:var(--watch-solid);"></div>
-            </div>
-            <div class="gauge-axis tabular-nums">
-              <span>5%</span>
-              <span>Healthy: 12% to 16%</span>
-              <span>25%</span>
-            </div>
-          </div>
-          <div class="gauge-cta">
-            <span>What this means</span>
-            <span aria-hidden="true">&rarr;</span>
-          </div>
-        </button>
-
-        <!-- Gauge 4: OECD Leading Index (links to Indicator #16) -->
-        <button type="button" class="gauge-card" data-open-indicator="16">
-          <div>
-            <div class="gauge-top">
-              <div>
-                <div class="gauge-name">OECD Leading Index (CLI)</div>
-                <div class="gauge-period">Oct 2026 (OECD)</div>
-              </div>
-              <span class="badge badge-good">Good</span>
-            </div>
-            <div class="gauge-num tabular-nums" style="color:var(--good-text);">101.45</div>
-          </div>
-          <div class="gauge-bar-box">
-            <!-- Scale 98 to 103 (range 5). 100.0 => 40%. Current 101.45 => 69% -->
-            <div class="gauge-track">
-              <div class="gauge-zone" style="left:40%;width:29%;background:rgba(5,150,105,0.25);"></div>
-              <div class="gauge-ref" style="left:40%;" title="Normal trend line 100.0"></div>
-              <div class="gauge-dot" style="left:69%;background:var(--good-solid);"></div>
-            </div>
-            <div class="gauge-axis tabular-nums">
-              <span>98.0</span>
-              <span>Normal line: 100.0</span>
-              <span>103.0</span>
-            </div>
-          </div>
-          <div class="gauge-cta">
-            <span>What this means</span>
-            <span aria-hidden="true">&rarr;</span>
-          </div>
-        </button>
+        {%- endfor %}
       </div>
     </section>
 
@@ -2054,9 +1960,9 @@
           <!-- Signal Filter Bar -->
           <div class="pill-scroll" role="tablist" aria-label="Filter by health signal">
             <button type="button" class="filter-pill active" data-signal-filter="all" role="tab" aria-selected="true">All signals</button>
-            <button type="button" class="filter-pill sig-good" data-signal-filter="good" role="tab" aria-selected="false">Good (11)</button>
-            <button type="button" class="filter-pill sig-watch" data-signal-filter="watch" role="tab" aria-selected="false">Watch closely (3)</button>
-            <button type="button" class="filter-pill sig-warn" data-signal-filter="warn" role="tab" aria-selected="false">Warning signs (2)</button>
+            <button type="button" class="filter-pill sig-good" data-signal-filter="good" role="tab" aria-selected="false">Good ({{ site.counts.good }})</button>
+            <button type="button" class="filter-pill sig-watch" data-signal-filter="watch" role="tab" aria-selected="false">Watch closely ({{ site.counts.watch }})</button>
+            <button type="button" class="filter-pill sig-warn" data-signal-filter="warn" role="tab" aria-selected="false">Warning signs ({{ site.counts.warn }})</button>
           </div>
 
           <!-- Search Input (16px font to prevent iOS zoom) -->
@@ -2092,41 +1998,16 @@
       </div>
 
       <div class="signpost-grid">
+        {%- for p in site.signposts %}
         <article class="signpost-card">
           <div class="signpost-top">
-            <span class="signpost-date">Nov 23, 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-11-23" data-end="2026-11-23">Nov 23</span>
+            <span class="signpost-date">{{ p.dateLabel }}</span>
+            <span class="badge badge-accent" data-countdown data-start="{{ p.start }}" data-end="{{ p.end }}">{{ p.dateLabel }}</span>
           </div>
-          <h3 class="signpost-title">HSBC Flash India PMI (Nov)</h3>
-          <p class="signpost-desc">Watch if factory new orders keep cooling after October's slight dip, or if strong services activity keeps business momentum high.</p>
+          <h3 class="signpost-title">{{ p.title }}</h3>
+          <p class="signpost-desc">{{ p.desc }}</p>
         </article>
-
-        <article class="signpost-card">
-          <div class="signpost-top">
-            <span class="signpost-date">Nov 30, 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-11-30" data-end="2026-11-30">Nov 30</span>
-          </div>
-          <h3 class="signpost-title">MoSPI Q2 FY27 GDP release</h3>
-          <p class="signpost-desc">Check if real GDP growth cools noticeably below Q1's strong 7.8% pace (market expectations sit around 7.5% to 7.6%).</p>
-        </article>
-
-        <article class="signpost-card">
-          <div class="signpost-top">
-            <span class="signpost-date">Dec 2 to 4, 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-12-02" data-end="2026-12-04">Dec 2 to 4</span>
-          </div>
-          <h3 class="signpost-title">RBI MPC rate decision</h3>
-          <p class="signpost-desc">Watch for another interest rate hike after October retail inflation reached 6.09% and crossed the RBI's 6% comfort ceiling.</p>
-        </article>
-
-        <article class="signpost-card">
-          <div class="signpost-top">
-            <span class="signpost-date">Mid-Dec 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-12-12" data-end="2026-12-16" data-approx="true">Mid-Dec</span>
-          </div>
-          <h3 class="signpost-title">Nov CPI &amp; factory inventory build</h3>
-          <p class="signpost-desc">Watch if food inflation finally cools down and whether unsold finished goods keep piling up at factories, a classic late-boom warning.</p>
-        </article>
+        {%- endfor %}
       </div>
     </section>
 
@@ -2205,53 +2086,14 @@
           </a>
         </div>
 
-        <!-- Reusable AI Prompt -->
+        <!-- How this page updates -->
         <div class="prompt-card">
           <div class="prompt-head">
             <div>
-              <div style="font-size:0.9375rem;font-weight:600;color:var(--navy-900);">Reusable monthly AI refresh prompt</div>
-              <div style="font-size:0.8125rem;color:var(--text-muted);margin-top:2px;">Paste this into any web-enabled AI on the 8th or 16th of any month to regenerate this entire Indian economic checkup with fresh numbers.</div>
-            </div>
-            <div class="prompt-actions">
-              <button type="button" class="btn btn-outline" id="btnTogglePrompt">Show prompt</button>
-              <button type="button" class="btn btn-accent" id="btnCopyPrompt">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                Copy AI prompt
-              </button>
+              <div style="font-size:0.9375rem;font-weight:600;color:var(--navy-900);">How this page updates</div>
+              <div style="font-size:0.8125rem;color:var(--text-muted);margin-top:4px;">Every 30 minutes on weekdays (10:00 to 18:30 IST), a program reads each official source above. A new number goes live only after automatic checks: it must be a real number in a sane range, not older than the number shown, and not a sudden jump. Every card shows its source and release period. If a source fails, the card keeps its last number and shows a warning when it gets too old. The signals use fixed rules, explained on the methodology page.</div>
             </div>
           </div>
-          <pre class="prompt-pre collapsed" id="aiPromptText">Act as a PhD macroeconomist. Perform a clear, beginner-friendly 3-step business cycle diagnosis for India as of [INSERT TODAY'S DATE] using the growth cycle framework (measuring whether economic activity is above or below its long-term normal trend).
-
-Use live web search to fetch the latest official readings (include the exact release month or quarter, comparison to the prior period, and official source) for all 16 indicators below:
-
-STEP 1: PAST / LAGGING INDICATORS (The Rearview Mirror: confirming what has already happened)
-1. CPI Retail Inflation YoY (MoSPI) vs the RBI's 2% to 6% comfort band, plus food inflation
-2. WPI Wholesale Inflation YoY (DPIIT)
-3. Unemployment Rate (MoSPI PLFS)
-4. Scheduled Commercial Bank Credit Growth YoY, Deposit Growth YoY, and Credit-to-Deposit Ratio (RBI Fortnightly)
-5. RBI Policy Repo Rate, most recent MPC action, and monetary stance
-
-STEP 2: PRESENT / COINCIDENT INDICATORS (The Speedometer: showing how fast the economy is moving right now)
-6. Index of Eight Core Industries YoY (DPIIT)
-7. Index of Industrial Production / IIP YoY (MoSPI)
-8. The Conference Board Coincident Economic Index (CEI) for India (level and month-on-month %)
-9. Gross and Net GST Collections (Ministry of Finance)
-10. Domestic Passenger Vehicle Sales YoY (SIAM)
-11. Latest Quarterly Real GDP Growth YoY (MoSPI) and next release date
-
-STEP 3: FUTURE / LEADING INDICATORS (The Headlights: pointing toward where the economy is heading next)
-12. Indian Stock Markets: BSE Sensex, Nifty 50, and Bank Nifty recent performance
-13. Bond Yield Spreads: India 10-Year G-Sec yield minus RBI Repo Rate, plus 10Y G-Sec minus 364-day T-bill yield (note if flattening or inverted)
-14. HSBC / S&amp;P Global India PMIs (Composite, Services, Manufacturing vs 50.0 expansion threshold; note new orders and finished-goods inventories)
-15. The Conference Board Leading Economic Index (LEI) for India (level and month-on-month %)
-16. OECD Composite Leading Indicator (CLI) for India (level vs 100.0 long-term trend and recent direction)
-
-OUTPUT FORMAT:
-- Keep all language simple, clear, and jargon-free (no em-dashes or en-dashes).
-- Label each indicator as Good, Watch Closely, or Warning Sign, and include a one-line everyday Indian example explaining why it matters.
-- Combine all 3 steps into one clear Business Cycle Verdict: Recovery, Early/Mid Expansion, Late-Stage Expansion (Boom), Slowdown, or Contraction, explaining why it is this phase and not the next one.
-- List the top 4 upcoming Indian macro dates and early warning signposts to watch over the next 30 days.
-- End with a short, emoji-friendly WhatsApp summary I can share with friends.</pre>
         </div>
       </div>
     </section>
@@ -2263,7 +2105,7 @@ OUTPUT FORMAT:
        ======================================================================= -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div>India Economic Health Monitor: Plain-English Business Cycle Dashboard. Data snapshot as of November 22, 2026.</div>
+      <div>India Economic Health Monitor: Plain-English Business Cycle Dashboard. Data checked {{ site.asOf }}.</div>
       <div>Educational &amp; informational use only. Works 100% offline.</div>
     </div>
   </footer>
@@ -2477,7 +2319,7 @@ OUTPUT FORMAT:
          3. APPLICATION STATE
          --------------------------------------------------------------------- */
       const state = {
-        activePhase: "expansion",
+        activePhase: {{ phase_key_json }},
         stepFilter: "all",
         signalFilter: "all",
         searchQuery: "",
@@ -2568,34 +2410,7 @@ OUTPUT FORMAT:
       }
 
       function getWhatsappSummaryText() {
-        return [
-          "🇮🇳 *India Economic Health Monitor* (Nov 22, 2026)",
-          "",
-          "📍 *Verdict: Late-Stage Expansion (Boom Phase)*",
-          "India's economy is running strong with booming factory output, record car sales, and rising stock markets. However, inflation has crossed the RBI's 6% comfort limit and bank borrowing is growing very fast, which is why the RBI recently raised interest rates to prevent overheating.",
-          "",
-          "📊 *Scorecard:* 11 Good | 3 Watch Closely | 2 Warning Signs",
-          "",
-          "🔎 *Past / Lagging (Rearview Mirror):*",
-          "- CPI Retail Inflation: 6.09% (Warning: above 6% limit; food 8.94%)",
-          "- WPI Wholesale Inflation: 12.29% (Warning: 3rd straight rise)",
-          "- Unemployment (PLFS): 4.9% (Good: down from 5.5% in Jun)",
-          "- Bank Credit Growth: 19.54% (Watch: CD ratio 82.1%)",
-          "- RBI Repo Rate: 5.50% (Watch: +25 bps hike in Oct)",
-          "",
-          "⚡ *Present / Coincident (Speedometer):*",
-          "- 8 Core Industries: +10.9% | IIP Factory Output: +6.7%",
-          "- GST Collections: Rs. 2.31 Lakh Cr (+22.9%) | Car Sales: 5.19 Lakh (+12.4%)",
-          "- Real GDP (Q1 FY27): 7.8% | Conf. Board CEI: 192.8 (+3.5% MoM)",
-          "",
-          "🔦 *Future / Leading (Headlights):*",
-          "- Sensex: 83,920 | Nifty 50: 25,801 | Bank Nifty: 64,635 (Record)",
-          "- 10Y vs Repo Spread: +168 bps (Healthy, though 10Y-1Y narrowed to ~55 bps)",
-          "- HSBC Composite PMI: 56.2 (Services 55.8, Mfg eased to 54.7)",
-          "- Conf. Board LEI: 193.9 (+0.6%) | OECD CLI: 101.45 (Above 100 & rising)",
-          "",
-          "🗓️ *Watch Next:* Nov 23 Flash PMI | Nov 30 Q2 GDP | Dec 2 to 4 RBI MPC"
-        ].join("\n");
+        return {{ whatsapp_json }};
       }
 
       /* ---------------------------------------------------------------------
@@ -2973,7 +2788,7 @@ OUTPUT FORMAT:
          --------------------------------------------------------------------- */
       function init() {
         try {
-          renderPhase("expansion");
+          renderPhase({{ phase_key_json }});
           renderIndicatorList();
 
           // Phase tabs & SVG zones
@@ -3097,16 +2912,6 @@ OUTPUT FORMAT:
             copyToClipboard(getWhatsappSummaryText(), "WhatsApp summary copied! Paste and share.");
           });
 
-          // Reusable AI Prompt Toggle & Copy
-          const promptPre = document.getElementById("aiPromptText");
-          const btnTogglePrompt = document.getElementById("btnTogglePrompt");
-          btnTogglePrompt.addEventListener("click", () => {
-            const collapsed = promptPre.classList.toggle("collapsed");
-            btnTogglePrompt.textContent = collapsed ? "Show prompt" : "Hide prompt";
-          });
-          document.getElementById("btnCopyPrompt").addEventListener("click", () => {
-            copyToClipboard(promptPre.textContent.trim(), "Monthly AI prompt copied to clipboard!");
-          });
 
           // Sticky Mobile Quick-Nav Bar
           const mobileNavBtns = document.querySelectorAll(".mobile-nav-btn");

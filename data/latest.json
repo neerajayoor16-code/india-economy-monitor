@@ -1,0 +1,605 @@
+{
+  "readings": {
+    "core_industries": {
+      "indicator": "core_industries",
+      "value": 10.9,
+      "unit": "%",
+      "display": "+10.9% YoY",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "Office of the Economic Adviser, DPIIT (via PIB)",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2339126",
+      "previous": 8.2,
+      "previous_label": "Sep 2026",
+      "details": {},
+      "fetched_at": "2026-11-22T16:34:00+00:00"
+    },
+    "rail_freight": {
+      "indicator": "rail_freight",
+      "value": 8.32,
+      "unit": "%",
+      "display": "+8.32% YoY",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "Ministry of Railways (via PIB)",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2332375",
+      "previous": null,
+      "previous_label": null,
+      "details": {
+        "million_tonnes": 145.07,
+        "million_tonnes_year_ago": 133.93,
+        "stated_growth": 8.32
+      },
+      "fetched_at": "2026-11-22T16:34:00+00:00"
+    },
+    "consumer_confidence": {
+      "indicator": "consumer_confidence",
+      "value": 113.5,
+      "unit": "index",
+      "display": "113.5",
+      "period_label": "Sep 2026",
+      "period_end": "2026-09-30",
+      "source_name": "RBI Urban Consumer Confidence Survey",
+      "source_url": "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=24093",
+      "previous": 115.4,
+      "previous_label": "Jul 2026",
+      "details": {
+        "net_responses_year_ahead": {
+          "economy": 7.8,
+          "employment": 11.7,
+          "prices": -77.0,
+          "income": 45.8,
+          "spending": 79.2
+        },
+        "formula": "100 + average of 5 net responses"
+      },
+      "fetched_at": "2026-11-22T16:34:00+00:00"
+    },
+    "industrial_outlook": {
+      "indicator": "industrial_outlook",
+      "value": 126.3,
+      "unit": "index",
+      "display": "126.3",
+      "period_label": "Q3 FY27 (expected)",
+      "period_end": "2026-12-31",
+      "source_name": "RBI Industrial Outlook Survey",
+      "source_url": "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=24090",
+      "previous": 111.1,
+      "previous_label": "Q2 FY27",
+      "details": {},
+      "fetched_at": "2026-11-22T16:34:00+00:00"
+    },
+    "vehicles": {
+      "indicator": "vehicles",
+      "value": 12.4,
+      "unit": "%",
+      "display": "5.19 Lakh Units",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "SIAM (entered by hand from the old dashboard; not yet checked by the fetcher)",
+      "source_url": "https://www.siam.in/",
+      "previous": null,
+      "previous_label": null,
+      "details": {
+        "entered_by_hand": true,
+        "lakh_units": 5.19
+      },
+      "fetched_at": "2026-11-22T16:34:00+00:00"
+    },
+    "cpi": {
+      "indicator": "cpi",
+      "value": 6.09,
+      "unit": "%",
+      "display": "6.09% YoY",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "MoSPI (base 2024=100)",
+      "source_url": "https://esankhyiki.mospi.gov.in/",
+      "previous": 5.54,
+      "previous_label": "Sep 2026",
+      "details": {
+        "index": 110.05,
+        "inflation_by_sector": {
+          "Rural": 6.63,
+          "Urban": 5.41,
+          "Combined": 6.09
+        }
+      },
+      "fetched_at": "2026-11-22T16:34:02+00:00"
+    },
+    "wpi": {
+      "indicator": "wpi",
+      "value": 12.29,
+      "unit": "%",
+      "display": "12.29% YoY",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "DPIIT via MoSPI (base 2022-23)",
+      "source_url": "https://esankhyiki.mospi.gov.in/",
+      "previous": 11.39,
+      "previous_label": "Sep 2026",
+      "details": {
+        "index": 113.3,
+        "index_year_ago": 100.9
+      },
+      "fetched_at": "2026-11-22T16:34:04+00:00"
+    },
+    "iip": {
+      "indicator": "iip",
+      "value": 6.7,
+      "unit": "%",
+      "display": "+6.7% YoY",
+      "period_label": "Sep 2026",
+      "period_end": "2026-09-30",
+      "source_name": "MoSPI (base 2022-23)",
+      "source_url": "https://esankhyiki.mospi.gov.in/",
+      "previous": 7.8,
+      "previous_label": "Aug 2026",
+      "details": {
+        "index": 124.3
+      },
+      "fetched_at": "2026-11-22T16:34:04+00:00"
+    },
+    "unemployment": {
+      "indicator": "unemployment",
+      "value": 4.9,
+      "unit": "%",
+      "display": "4.9%",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "MoSPI PLFS (monthly, age 15+)",
+      "source_url": "https://esankhyiki.mospi.gov.in/",
+      "previous": 5.0,
+      "previous_label": "Sep 2026",
+      "details": {
+        "history": [
+          [
+            "Oct 2026",
+            4.9
+          ],
+          [
+            "Sep 2026",
+            5.0
+          ],
+          [
+            "Aug 2026",
+            5.0
+          ],
+          [
+            "Jul 2026",
+            5.1
+          ],
+          [
+            "Jun 2026",
+            5.5
+          ]
+        ]
+      },
+      "fetched_at": "2026-11-22T16:34:05+00:00"
+    },
+    "gdp": {
+      "indicator": "gdp",
+      "value": 7.8,
+      "unit": "%",
+      "display": "7.8% YoY",
+      "period_label": "Q1 FY27",
+      "period_end": "2026-06-30",
+      "source_name": "MoSPI National Accounts (base 2022-23)",
+      "source_url": "https://esankhyiki.mospi.gov.in/",
+      "previous": 8.6,
+      "previous_label": "Q4 FY26",
+      "details": {
+        "gdp_constant_crore": 8136153.0
+      },
+      "fetched_at": "2026-11-22T16:34:05+00:00"
+    },
+    "oecd_cli": {
+      "indicator": "oecd_cli",
+      "value": 101.45,
+      "unit": "index",
+      "display": "101.45",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "OECD Data Explorer",
+      "source_url": "https://www.oecd.org/en/data/indicators/composite-leading-indicator-cli.html",
+      "previous": 101.39,
+      "previous_label": "Sep 2026",
+      "details": {
+        "rising": true,
+        "raw": 101.4458,
+        "raw_previous": 101.389,
+        "history": [
+          [
+            "2025-11",
+            100.3986
+          ],
+          [
+            "2025-12",
+            100.5277
+          ],
+          [
+            "2026-01",
+            100.6502
+          ],
+          [
+            "2026-02",
+            100.7659
+          ],
+          [
+            "2026-03",
+            100.8753
+          ],
+          [
+            "2026-04",
+            100.98
+          ],
+          [
+            "2026-05",
+            101.0794
+          ],
+          [
+            "2026-06",
+            101.1711
+          ],
+          [
+            "2026-07",
+            101.2537
+          ],
+          [
+            "2026-08",
+            101.326
+          ],
+          [
+            "2026-09",
+            101.389
+          ],
+          [
+            "2026-10",
+            101.4458
+          ]
+        ]
+      },
+      "fetched_at": "2026-11-22T16:34:06+00:00"
+    },
+    "repo_rate": {
+      "indicator": "repo_rate",
+      "value": 5.5,
+      "unit": "%",
+      "display": "5.50%",
+      "period_label": "Nov 19, 2026",
+      "period_end": "2026-11-19",
+      "source_name": "RBI website (Current Rates)",
+      "source_url": "https://www.rbi.org.in/home.aspx",
+      "previous": null,
+      "previous_label": null,
+      "details": {},
+      "fetched_at": "2026-11-22T16:34:07+00:00"
+    },
+    "yield_spread": {
+      "indicator": "yield_spread",
+      "value": 176.0,
+      "unit": "bps",
+      "display": "+176 bps",
+      "period_label": "Nov 19, 2026",
+      "period_end": "2026-11-19",
+      "source_name": "RBI website (Government Securities Market)",
+      "source_url": "https://www.rbi.org.in/home.aspx",
+      "previous": null,
+      "previous_label": null,
+      "details": {
+        "ten_year_bond": "6.94% GS 2036",
+        "ten_year_yield": 7.2629,
+        "repo_rate": 5.5
+      },
+      "fetched_at": "2026-11-22T16:34:07+00:00"
+    },
+    "nifty": {
+      "indicator": "nifty",
+      "value": 25514.3,
+      "unit": "points",
+      "display": "25,514.30",
+      "period_label": "Nov 19, 2026",
+      "period_end": "2026-11-19",
+      "source_name": "RBI website (Capital Market; index by NSE)",
+      "source_url": "https://www.rbi.org.in/home.aspx",
+      "previous": null,
+      "previous_label": null,
+      "details": {
+        "sensex": 83021.75
+      },
+      "fetched_at": "2026-11-22T16:34:07+00:00"
+    },
+    "bank_credit": {
+      "indicator": "bank_credit",
+      "value": 19.54,
+      "unit": "%",
+      "display": "19.54% YoY",
+      "period_label": "Oct 31, 2026",
+      "period_end": "2026-10-31",
+      "source_name": "RBI Weekly Statistical Supplement",
+      "source_url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64013",
+      "previous": null,
+      "previous_label": null,
+      "details": {
+        "outstanding_crore": 23182499.0,
+        "yoy_change_crore": 3788844.0,
+        "rbi_stated_growth": 19.5
+      },
+      "fetched_at": "2026-11-22T16:34:09+00:00"
+    },
+    "gst": {
+      "indicator": "gst",
+      "value": 22.9,
+      "unit": "%",
+      "display": "Rs. 2.31 Lakh Cr",
+      "period_label": "Oct 2026",
+      "period_end": "2026-10-31",
+      "source_name": "GSTN monthly revenue report",
+      "source_url": "https://tutorial.gst.gov.in/downloads/news/gst_revenue_report_final_for_publishing_oct_2026.pdf",
+      "previous": null,
+      "previous_label": null,
+      "details": {
+        "gross_crore": 231290.0,
+        "gross_crore_year_ago": 188125.0,
+        "growth_pct": 22.9,
+        "lakh_crore": 2.31
+      },
+      "fetched_at": "2026-11-22T16:34:10+00:00"
+    }
+  },
+  "status": {
+    "core_industries": {
+      "last_checked": "2026-11-22T22:04:00+05:30",
+      "seeded_from": "official page saved 22 Nov 2026"
+    },
+    "rail_freight": {
+      "last_checked": "2026-11-22T22:04:00+05:30",
+      "seeded_from": "official page saved 22 Nov 2026"
+    },
+    "consumer_confidence": {
+      "last_checked": "2026-11-22T22:04:00+05:30",
+      "seeded_from": "official page saved 22 Nov 2026",
+      "last_error": "no feed item for 'Consumer Confidence Survey' and no last known publication id"
+    },
+    "industrial_outlook": {
+      "last_checked": "2026-11-22T22:04:00+05:30",
+      "seeded_from": "official page saved 22 Nov 2026",
+      "last_error": "no feed item for 'Industrial Outlook Survey' and no last known publication id"
+    },
+    "vehicles": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "seeded_from": "old dashboard value",
+      "last_error": "SIAM: secure connection failed (site certificate problem): SSLError"
+    },
+    "cpi": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "wpi": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "iip": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "unemployment": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "gdp": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "oecd_cli": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "repo_rate": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "yield_spread": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "nifty": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "bank_credit": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    },
+    "gst": {
+      "last_checked": "2026-11-22T22:06:16+05:30",
+      "last_updated": "2026-11-22T22:04:00+05:30"
+    }
+  },
+  "texts": {
+    "cpi": {
+      "summary": "CPI Retail Inflation: 6.09% YoY in Oct 2026, up from 5.54% in Sep 2026.",
+      "goodOrBadVerdict": "Warning sign right now: RBI target 4%, tolerance band 2% to 6%.",
+      "everydayIndianExample": "When retail inflation is high, the same monthly basket of groceries, rent, school fees and medicines costs noticeably more than it did a year ago, so household savings shrink unless salaries rise as fast.",
+      "fingerprint": "6.09|2026-10-31|5.54|warn|2",
+      "writer": "template"
+    },
+    "wpi": {
+      "summary": "WPI Wholesale Inflation: 12.29% YoY in Oct 2026, up from 11.39% in Sep 2026.",
+      "goodOrBadVerdict": "Warning sign right now: wholesale inflation above 8% feeds into retail prices.",
+      "everydayIndianExample": "Wholesale prices are what shops and factories pay. When diesel, steel or cooking oil gets dearer at the wholesale level, shop prices for those items usually rise a few weeks later.",
+      "fingerprint": "12.29|2026-10-31|11.39|warn|2",
+      "writer": "template"
+    },
+    "unemployment": {
+      "summary": "Unemployment Rate (PLFS): 4.9% in Oct 2026, down from 5.0% in Sep 2026.",
+      "goodOrBadVerdict": "Good right now: low and not rising.",
+      "everydayIndianExample": "A falling unemployment rate means more people looking for work find it, so fresh graduates get offers sooner and workers have more power to ask for a raise.",
+      "fingerprint": "4.9|2026-10-31|5.0|good|2",
+      "writer": "template"
+    },
+    "bank_credit": {
+      "summary": "Bank Credit Growth: 19.54% YoY on Oct 31, 2026.",
+      "goodOrBadVerdict": "Watch closely right now: healthy credit growth band 12% to 16%.",
+      "everydayIndianExample": "Fast credit growth means banks are lending freely for homes, cars and businesses. It helps growth, but very fast lending can push up prices and risky loans.",
+      "fingerprint": "19.54|2026-10-31|None|watch|2",
+      "writer": "template"
+    },
+    "repo_rate": {
+      "summary": "RBI Repo Rate (Policy Rate): 5.50% on Nov 19, 2026.",
+      "goodOrBadVerdict": "Watch closely right now: real policy rate -0.59 points (repo minus CPI) outside the 0.5 to 2.5 band.",
+      "everydayIndianExample": "The repo rate sets the base for loan rates. When RBI raises it, EMIs on new and floating-rate home and car loans usually go up within a few months; when it cuts, they go down.",
+      "fingerprint": "5.5|2026-11-19|None|watch|2",
+      "writer": "template"
+    },
+    "core_industries": {
+      "summary": "Index of Core Industries (ICI): +10.9% YoY in Oct 2026, up from 8.2% in Sep 2026.",
+      "goodOrBadVerdict": "Good right now: growth of 4% or more is healthy; below zero is a contraction.",
+      "everydayIndianExample": "Coal, electricity, steel, cement and fuel feed almost every other industry. When their output grows, it usually means construction sites, factories and power plants are busy.",
+      "fingerprint": "10.9|2026-10-31|8.2|good|2",
+      "writer": "template"
+    },
+    "iip": {
+      "summary": "Index of Industrial Production (IIP): +6.7% YoY in Sep 2026, down from 7.8% in Aug 2026.",
+      "goodOrBadVerdict": "Good right now: growth of 4% or more is healthy; below zero is a contraction.",
+      "everydayIndianExample": "Factory output covers everything from cars to medicines. Rising output means more shifts, more overtime and steadier jobs for factory workers.",
+      "fingerprint": "6.7|2026-09-30|7.8|good|2",
+      "writer": "template"
+    },
+    "rail_freight": {
+      "summary": "Railway Freight Loading: +8.32% YoY in Oct 2026.",
+      "goodOrBadVerdict": "Good right now: freight growth of 3% or more signals active trade.",
+      "everydayIndianExample": "When a steel plant in Odisha gets more orders, it books more rakes of iron ore and coal. That extra loading shows up in the railway freight number weeks before it shows up in factory output data.",
+      "fingerprint": "8.32|2026-10-31|None|good|2",
+      "writer": "template"
+    },
+    "gst": {
+      "summary": "GST Collections: Rs. 2.31 Lakh Cr in Oct 2026, +22.9% from a year earlier.",
+      "goodOrBadVerdict": "Good right now: gross GST growth of 8% or more signals strong spending.",
+      "everydayIndianExample": "GST is paid on most things people buy. Higher collections mean more buying and selling across the country, and more money for the government to spend on roads and schemes.",
+      "fingerprint": "22.9|2026-10-31|None|good|2",
+      "writer": "template"
+    },
+    "vehicles": {
+      "summary": "Passenger Vehicle Sales: 5.19 Lakh Units in Oct 2026, +12.4% from a year earlier.",
+      "goodOrBadVerdict": "Good right now: sales growth of 5% or more signals strong demand.",
+      "everydayIndianExample": "Car and SUV sales show how confident families feel about big purchases. Strong sales usually mean steady incomes and easy loan approvals.",
+      "fingerprint": "12.4|2026-10-31|None|good|2",
+      "writer": "template"
+    },
+    "gdp": {
+      "summary": "Real GDP Growth (Reference): 7.8% YoY in Q1 FY27, down from 8.6% in Q4 FY26.",
+      "goodOrBadVerdict": "Good right now: real growth of 6.5% or more is India's recent trend pace.",
+      "everydayIndianExample": "GDP growth is the total of all incomes earned in the country. Faster growth usually means more jobs, more business for shops and higher tax collections.",
+      "fingerprint": "7.8|2026-06-30|8.6|good|2",
+      "writer": "template"
+    },
+    "nifty": {
+      "summary": "Nifty 50 (Stock Market): 25,514.30 on Nov 19, 2026.",
+      "goodOrBadVerdict": "Watch closely right now: not enough history yet to judge the trend; shown as watch closely until it can be judged (kept from the last run: not enough history yet to judge the trend).",
+      "everydayIndianExample": "If you put a fixed amount into an index fund every month through a SIP, your fund tracks this index. A rising Nifty lifts the value of those savings; a falling Nifty lowers it.",
+      "fingerprint": "25514.3|2026-11-19|None|watch|2",
+      "writer": "template"
+    },
+    "yield_spread": {
+      "summary": "Bond Yield Spread (10Y vs Repo): +176 bps on Nov 19, 2026.",
+      "goodOrBadVerdict": "Good right now: a 10-year yield well above the repo rate signals normal growth expectations; below zero (inversion) is a warning.",
+      "everydayIndianExample": "When long-term government bonds pay clearly more than the repo rate, lenders expect normal growth ahead. If the gap closes or turns negative, markets expect a slowdown.",
+      "fingerprint": "176.0|2026-11-19|None|good|2",
+      "writer": "template"
+    },
+    "consumer_confidence": {
+      "summary": "Consumer Confidence (RBI): 113.5 in Sep 2026, down from 115.4 in Jul 2026.",
+      "goodOrBadVerdict": "Good right now: index above 100 means more optimists than pessimists; 110 or more is clearly positive.",
+      "everydayIndianExample": "A family in Pune that expects a salary rise next year is more likely to book a new two-wheeler or start home renovation now. Many such decisions together move this index.",
+      "fingerprint": "113.5|2026-09-30|115.4|good|2",
+      "writer": "template"
+    },
+    "industrial_outlook": {
+      "summary": "Business Expectations (RBI): 126.3 in Q3 FY27 (expected), up from 111.1 in Q2 FY27.",
+      "goodOrBadVerdict": "Good right now: index above 100 means more optimists than pessimists; 110 or more is clearly positive.",
+      "everydayIndianExample": "When a textile mill in Tiruppur expects more export orders next quarter, it hires workers and buys yarn now. RBI's survey asks companies like this about their plans.",
+      "fingerprint": "126.3|2026-12-31|111.1|good|2",
+      "writer": "template"
+    },
+    "oecd_cli": {
+      "summary": "OECD Leading Index (CLI): 101.45 in Oct 2026, up from 101.39 in Sep 2026.",
+      "goodOrBadVerdict": "Good right now: above 100 and rising.",
+      "everydayIndianExample": "The OECD's leading index combines several early signals into one number. Above 100 means activity is above its long-term trend; the direction shows where it is heading.",
+      "fingerprint": "101.45|2026-10-31|101.39|good|2",
+      "writer": "template"
+    }
+  },
+  "signals": {
+    "cpi": {
+      "signal": "warn",
+      "reason": "RBI target 4%, tolerance band 2% to 6%"
+    },
+    "wpi": {
+      "signal": "warn",
+      "reason": "wholesale inflation above 8% feeds into retail prices"
+    },
+    "unemployment": {
+      "signal": "good",
+      "reason": "low and not rising"
+    },
+    "bank_credit": {
+      "signal": "watch",
+      "reason": "healthy credit growth band 12% to 16%"
+    },
+    "repo_rate": {
+      "signal": "watch",
+      "reason": "real policy rate -0.59 points (repo minus CPI) outside the 0.5 to 2.5 band"
+    },
+    "core_industries": {
+      "signal": "good",
+      "reason": "growth of 4% or more is healthy; below zero is a contraction"
+    },
+    "iip": {
+      "signal": "good",
+      "reason": "growth of 4% or more is healthy; below zero is a contraction"
+    },
+    "rail_freight": {
+      "signal": "good",
+      "reason": "freight growth of 3% or more signals active trade"
+    },
+    "gst": {
+      "signal": "good",
+      "reason": "gross GST growth of 8% or more signals strong spending"
+    },
+    "vehicles": {
+      "signal": "good",
+      "reason": "sales growth of 5% or more signals strong demand"
+    },
+    "gdp": {
+      "signal": "good",
+      "reason": "real growth of 6.5% or more is India's recent trend pace"
+    },
+    "nifty": {
+      "signal": "watch",
+      "reason": "not enough history yet to judge the trend; shown as watch closely until it can be judged (kept from the last run: not enough history yet to judge the trend)"
+    },
+    "yield_spread": {
+      "signal": "good",
+      "reason": "a 10-year yield well above the repo rate signals normal growth expectations; below zero (inversion) is a warning"
+    },
+    "consumer_confidence": {
+      "signal": "good",
+      "reason": "index above 100 means more optimists than pessimists; 110 or more is clearly positive"
+    },
+    "industrial_outlook": {
+      "signal": "good",
+      "reason": "index above 100 means more optimists than pessimists; 110 or more is clearly positive"
+    },
+    "oecd_cli": {
+      "signal": "good",
+      "reason": "above 100 and rising"
+    }
+  },
+  "phase": {
+    "key": "expansion",
+    "headline": "Late-stage expansion",
+    "reason": "OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs"
+  },
+  "last_run": "2026-11-22T22:06:16+05:30"
+}

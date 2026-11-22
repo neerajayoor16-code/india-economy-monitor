@@ -11,6 +11,7 @@ RBI's data portal (DBIE) is NOT used: it encrypts its requests in the browser.
 from __future__ import annotations
 
 import datetime as dt
+import os
 import re
 
 from .common import MONTH_NUM, FetchError, NoNewRelease, Reading, html_lines, http_get, parse_xml, to_float
@@ -260,6 +261,8 @@ def _find_publication(title_pattern: str, last_known_id: int | None, probe: int 
         if m:
             url = PUBLICATION.format(id=m.group(1))
             return http_get(url).text, url
+    if os.environ.get("IEM_SKIP_PROBE"):
+        raise NoNewRelease(f"no feed item for {title_pattern!r}; full search skipped on light runs")
     if last_known_id is None:
         raise FetchError(f"no feed item for {title_pattern!r} and no last known publication id")
     for pid in range(last_known_id + 1, last_known_id + 1 + probe):

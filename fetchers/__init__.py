@@ -45,6 +45,14 @@ GROUPS: dict[str, Callable[[State], dict[str, Reading]]] = {
     "siam_vehicles": lambda s: {"vehicles": siam.fetch_vehicles()},
 }
 
+GROUP_INDICATORS = {
+    "mospi_cpi": ["cpi"], "mospi_wpi": ["wpi"], "mospi_iip": ["iip"], "mospi_unemployment": ["unemployment"],
+    "mospi_gdp": ["gdp"], "oecd_cli": ["oecd_cli"], "rbi_home": ["repo_rate", "yield_spread", "nifty"],
+    "rbi_bank_credit": ["bank_credit"], "rbi_consumer_confidence": ["consumer_confidence"],
+    "rbi_industrial_outlook": ["industrial_outlook"], "pib_core_industries": ["core_industries"],
+    "pib_rail_freight": ["rail_freight"], "gstn_gst": ["gst"], "siam_vehicles": ["vehicles"],
+}
+
 # The 16 indicators, in the order the page shows them.
 INDICATOR_IDS = [
     "cpi", "wpi", "unemployment", "bank_credit", "repo_rate",                      # past / lagging
@@ -52,4 +60,4 @@ INDICATOR_IDS = [
     "nifty", "yield_spread", "consumer_confidence", "industrial_outlook", "oecd_cli",  # future / leading
 ]
 
-__all__ = ["GROUPS", "INDICATOR_IDS", "FetchError", "NoNewRelease", "Reading", "State"]
+__all__ = ["GROUPS", "GROUP_INDICATORS", "INDICATOR_IDS", "FetchError", "NoNewRelease", "Reading", "State"]

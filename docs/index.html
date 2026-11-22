@@ -1710,7 +1710,7 @@
       <div class="hero-top-row">
         <span class="brand-kicker">India Economic Health Monitor</span>
         <span class="date-pill">
-          Data as of November 22, 2026
+          Data checked November 22, 2026
         </span>
       </div>
 
@@ -1719,10 +1719,10 @@
       <div class="verdict-box">
         <div class="verdict-row">
           <span class="verdict-tag">Current phase</span>
-          <h2 class="verdict-heading">Late-stage expansion (boom phase)</h2>
+          <h2 class="verdict-heading">Late-stage expansion</h2>
         </div>
         <p class="verdict-summary">
-          India's economy is running strong with booming factory output, record vehicle sales, and rising stock markets. However, inflation has crossed the central bank's 6% comfort limit and borrowing is growing very fast, which is why the RBI recently raised interest rates to keep the economy from overheating.
+          OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs. 11 of 16 indicators are in good shape. Warning signs: CPI Retail Inflation, WPI Wholesale Inflation. Watch closely: Bank Credit Growth, RBI Repo Rate (Policy Rate), Nifty 50 (Stock Market).
         </p>
 
         <div class="hero-actions">
@@ -1853,15 +1853,14 @@
                 <circle cx="772" cy="218" r="4.5" fill="#e11d48" />
                 <text x="760" y="236" text-anchor="middle" font-size="10.5" font-weight="500" fill="#334155">Bottom</text>
 
-                <!-- YOU ARE HERE Marker (Late-Stage Expansion / Boom) -->
-                <g class="svg-zone" data-phase="expansion" role="button" aria-label="You are here: Late-Stage Expansion">
-                  <circle class="here-pulse" cx="386" cy="68" r="12" fill="#d97706" opacity="0.5" />
+                <!-- YOU ARE HERE Marker (position comes from the phase rule) -->
+                <g class="svg-zone" data-phase="expansion" role="button" aria-label="You are here: Late-stage expansion">
                   <circle cx="386" cy="68" r="8.5" fill="#d97706" stroke="#ffffff" stroke-width="2.5" />
-                  <line x1="386" y1="68" x2="326" y2="42" stroke="#0f172a" stroke-width="1.4" />
+                  <line x1="386" y1="68" x2="386" y2="52" stroke="#0f172a" stroke-width="1.4" />
                   <g filter="url(#pillShadow)">
-                    <rect x="192" y="22" width="142" height="30" rx="15" fill="#0f172a" />
-                    <circle cx="209" cy="37" r="4.5" fill="#34d399" />
-                    <text x="220" y="41" font-size="11.5" font-weight="600" fill="#ffffff">You are here</text>
+                    <rect x="315" y="22" width="142" height="30" rx="15" fill="#0f172a" />
+                    <circle cx="332" cy="37" r="4.5" fill="#34d399" />
+                    <text x="343" y="41" font-size="11.5" font-weight="600" fill="#ffffff">You are here</text>
                   </g>
                 </g>
 
@@ -1903,12 +1902,11 @@
       </div>
 
       <div class="gauge-grid">
-        <!-- Gauge 1: Real GDP Growth (links to Indicator #11) -->
         <button type="button" class="gauge-card" data-open-indicator="11">
           <div>
             <div class="gauge-top">
               <div>
-                <div class="gauge-name">Real GDP Growth</div>
+                <div class="gauge-name">Real GDP Growth (Reference)</div>
                 <div class="gauge-period">Q1 FY27 (MoSPI)</div>
               </div>
               <span class="badge badge-good">Good</span>
@@ -1916,10 +1914,9 @@
             <div class="gauge-num tabular-nums" style="color:var(--good-text);">7.8%</div>
           </div>
           <div class="gauge-bar-box">
-            <!-- Scale 3% to 10% (range 7). Trend band 6.5% to 7.0% => 50% to 57.1%. Current 7.8% => 68.6% -->
             <div class="gauge-track">
-              <div class="gauge-zone" style="left:50%;width:7.1%;background:rgba(79,70,229,0.28);"></div>
-              <div class="gauge-ref" style="left:53.5%;" title="Long-term trend 6.5% to 7.0%"></div>
+              <div class="gauge-zone" style="left:50.0%;width:7.1%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:53.6%;" title="Long-term trend 6.5% to 7.0%"></div>
               <div class="gauge-dot" style="left:68.6%;background:var(--good-solid);"></div>
             </div>
             <div class="gauge-axis tabular-nums">
@@ -1933,8 +1930,6 @@
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
-
-        <!-- Gauge 2: CPI Retail Inflation (links to Indicator #1) -->
         <button type="button" class="gauge-card" data-open-indicator="1">
           <div>
             <div class="gauge-top">
@@ -1947,10 +1942,9 @@
             <div class="gauge-num tabular-nums" style="color:var(--warn-text);">6.09%</div>
           </div>
           <div class="gauge-bar-box">
-            <!-- Scale 0% to 8%. RBI comfort 2% to 6% => 25% to 75%. Current 6.09% => 76.1% -->
             <div class="gauge-track">
-              <div class="gauge-zone" style="left:25%;width:50%;background:rgba(5,150,105,0.2);"></div>
-              <div class="gauge-ref" style="left:75%;background:var(--warn-solid);" title="RBI upper limit 6.0%"></div>
+              <div class="gauge-zone" style="left:25.0%;width:50.0%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:75.0%;" title="RBI upper limit 6.0%"></div>
               <div class="gauge-dot" style="left:76.1%;background:var(--warn-solid);"></div>
             </div>
             <div class="gauge-axis tabular-nums">
@@ -1964,8 +1958,6 @@
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
-
-        <!-- Gauge 3: Bank Credit Growth (links to Indicator #4) -->
         <button type="button" class="gauge-card" data-open-indicator="4">
           <div>
             <div class="gauge-top">
@@ -1978,10 +1970,9 @@
             <div class="gauge-num tabular-nums" style="color:var(--watch-text);">19.54%</div>
           </div>
           <div class="gauge-bar-box">
-            <!-- Scale 5% to 25% (range 20). Healthy 12% to 16% => 35% to 55%. Current 19.54% => 72.7% -->
             <div class="gauge-track">
-              <div class="gauge-zone" style="left:35%;width:20%;background:rgba(5,150,105,0.24);"></div>
-              <div class="gauge-ref" style="left:55%;background:var(--watch-solid);" title="Upper healthy zone 16%"></div>
+              <div class="gauge-zone" style="left:35.0%;width:20.0%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:55.0%;" title="Upper healthy limit 16%"></div>
               <div class="gauge-dot" style="left:72.7%;background:var(--watch-solid);"></div>
             </div>
             <div class="gauge-axis tabular-nums">
@@ -1995,8 +1986,6 @@
             <span aria-hidden="true">&rarr;</span>
           </div>
         </button>
-
-        <!-- Gauge 4: OECD Leading Index (links to Indicator #16) -->
         <button type="button" class="gauge-card" data-open-indicator="16">
           <div>
             <div class="gauge-top">
@@ -2009,11 +1998,10 @@
             <div class="gauge-num tabular-nums" style="color:var(--good-text);">101.45</div>
           </div>
           <div class="gauge-bar-box">
-            <!-- Scale 98 to 103 (range 5). 100.0 => 40%. Current 101.45 => 69% -->
             <div class="gauge-track">
-              <div class="gauge-zone" style="left:40%;width:29%;background:rgba(5,150,105,0.25);"></div>
-              <div class="gauge-ref" style="left:40%;" title="Normal trend line 100.0"></div>
-              <div class="gauge-dot" style="left:69%;background:var(--good-solid);"></div>
+              <div class="gauge-zone" style="left:40.0%;width:60.0%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:40.0%;" title="Normal trend line 100.0"></div>
+              <div class="gauge-dot" style="left:69.0%;background:var(--good-solid);"></div>
             </div>
             <div class="gauge-axis tabular-nums">
               <span>98.0</span>
@@ -2094,38 +2082,35 @@
       <div class="signpost-grid">
         <article class="signpost-card">
           <div class="signpost-top">
-            <span class="signpost-date">Nov 23, 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-11-23" data-end="2026-11-23">Nov 23</span>
-          </div>
-          <h3 class="signpost-title">HSBC Flash India PMI (Nov)</h3>
-          <p class="signpost-desc">Watch if factory new orders keep cooling after October's slight dip, or if strong services activity keeps business momentum high.</p>
-        </article>
-
-        <article class="signpost-card">
-          <div class="signpost-top">
             <span class="signpost-date">Nov 30, 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-11-30" data-end="2026-11-30">Nov 30</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-11-30" data-end="2026-11-30">Nov 30, 2026</span>
           </div>
           <h3 class="signpost-title">MoSPI Q2 FY27 GDP release</h3>
-          <p class="signpost-desc">Check if real GDP growth cools noticeably below Q1's strong 7.8% pace (market expectations sit around 7.5% to 7.6%).</p>
+          <p class="signpost-desc">Shows whether real growth stayed above India&#39;s normal 6.5% to 7.0% pace after the strong first quarter.</p>
         </article>
-
         <article class="signpost-card">
           <div class="signpost-top">
             <span class="signpost-date">Dec 2 to 4, 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-12-02" data-end="2026-12-04">Dec 2 to 4</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-12-02" data-end="2026-12-04">Dec 2 to 4, 2026</span>
           </div>
-          <h3 class="signpost-title">RBI MPC rate decision</h3>
-          <p class="signpost-desc">Watch for another interest rate hike after October retail inflation reached 6.09% and crossed the RBI's 6% comfort ceiling.</p>
+          <h3 class="signpost-title">RBI Monetary Policy Committee decision</h3>
+          <p class="signpost-desc">The repo rate decision. With retail inflation above the 6% upper limit, watch whether RBI changes rates or its stance.</p>
         </article>
-
         <article class="signpost-card">
           <div class="signpost-top">
-            <span class="signpost-date">Mid-Dec 2026</span>
-            <span class="badge badge-accent" data-countdown data-start="2026-12-12" data-end="2026-12-16" data-approx="true">Mid-Dec</span>
+            <span class="signpost-date">Dec 12, 2026</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-12-12" data-end="2026-12-12">Dec 12, 2026</span>
           </div>
-          <h3 class="signpost-title">Nov CPI &amp; factory inventory build</h3>
-          <p class="signpost-desc">Watch if food inflation finally cools down and whether unsold finished goods keep piling up at factories, a classic late-boom warning.</p>
+          <h3 class="signpost-title">CPI retail inflation for November</h3>
+          <p class="signpost-desc">Shows whether retail inflation comes back inside RBI&#39;s 2% to 6% band.</p>
+        </article>
+        <article class="signpost-card">
+          <div class="signpost-top">
+            <span class="signpost-date">Jan 7, 2027</span>
+            <span class="badge badge-accent" data-countdown data-start="2027-01-07" data-end="2027-01-07">Jan 7, 2027</span>
+          </div>
+          <h3 class="signpost-title">First advance estimate of GDP for FY27</h3>
+          <p class="signpost-desc">The government&#39;s first estimate of growth for the full financial year.</p>
         </article>
       </div>
     </section>
@@ -2205,53 +2190,14 @@
           </a>
         </div>
 
-        <!-- Reusable AI Prompt -->
+        <!-- How this page updates -->
         <div class="prompt-card">
           <div class="prompt-head">
             <div>
-              <div style="font-size:0.9375rem;font-weight:600;color:var(--navy-900);">Reusable monthly AI refresh prompt</div>
-              <div style="font-size:0.8125rem;color:var(--text-muted);margin-top:2px;">Paste this into any web-enabled AI on the 8th or 16th of any month to regenerate this entire Indian economic checkup with fresh numbers.</div>
-            </div>
-            <div class="prompt-actions">
-              <button type="button" class="btn btn-outline" id="btnTogglePrompt">Show prompt</button>
-              <button type="button" class="btn btn-accent" id="btnCopyPrompt">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                Copy AI prompt
-              </button>
+              <div style="font-size:0.9375rem;font-weight:600;color:var(--navy-900);">How this page updates</div>
+              <div style="font-size:0.8125rem;color:var(--text-muted);margin-top:4px;">Every 30 minutes on weekdays (10:00 to 18:30 IST), a program reads each official source above. A new number goes live only after automatic checks: it must be a real number in a sane range, not older than the number shown, and not a sudden jump. Every card shows its source and release period. If a source fails, the card keeps its last number and shows a warning when it gets too old. The signals use fixed rules, explained on the methodology page.</div>
             </div>
           </div>
-          <pre class="prompt-pre collapsed" id="aiPromptText">Act as a PhD macroeconomist. Perform a clear, beginner-friendly 3-step business cycle diagnosis for India as of [INSERT TODAY'S DATE] using the growth cycle framework (measuring whether economic activity is above or below its long-term normal trend).
-
-Use live web search to fetch the latest official readings (include the exact release month or quarter, comparison to the prior period, and official source) for all 16 indicators below:
-
-STEP 1: PAST / LAGGING INDICATORS (The Rearview Mirror: confirming what has already happened)
-1. CPI Retail Inflation YoY (MoSPI) vs the RBI's 2% to 6% comfort band, plus food inflation
-2. WPI Wholesale Inflation YoY (DPIIT)
-3. Unemployment Rate (MoSPI PLFS)
-4. Scheduled Commercial Bank Credit Growth YoY, Deposit Growth YoY, and Credit-to-Deposit Ratio (RBI Fortnightly)
-5. RBI Policy Repo Rate, most recent MPC action, and monetary stance
-
-STEP 2: PRESENT / COINCIDENT INDICATORS (The Speedometer: showing how fast the economy is moving right now)
-6. Index of Eight Core Industries YoY (DPIIT)
-7. Index of Industrial Production / IIP YoY (MoSPI)
-8. The Conference Board Coincident Economic Index (CEI) for India (level and month-on-month %)
-9. Gross and Net GST Collections (Ministry of Finance)
-10. Domestic Passenger Vehicle Sales YoY (SIAM)
-11. Latest Quarterly Real GDP Growth YoY (MoSPI) and next release date
-
-STEP 3: FUTURE / LEADING INDICATORS (The Headlights: pointing toward where the economy is heading next)
-12. Indian Stock Markets: BSE Sensex, Nifty 50, and Bank Nifty recent performance
-13. Bond Yield Spreads: India 10-Year G-Sec yield minus RBI Repo Rate, plus 10Y G-Sec minus 364-day T-bill yield (note if flattening or inverted)
-14. HSBC / S&amp;P Global India PMIs (Composite, Services, Manufacturing vs 50.0 expansion threshold; note new orders and finished-goods inventories)
-15. The Conference Board Leading Economic Index (LEI) for India (level and month-on-month %)
-16. OECD Composite Leading Indicator (CLI) for India (level vs 100.0 long-term trend and recent direction)
-
-OUTPUT FORMAT:
-- Keep all language simple, clear, and jargon-free (no em-dashes or en-dashes).
-- Label each indicator as Good, Watch Closely, or Warning Sign, and include a one-line everyday Indian example explaining why it matters.
-- Combine all 3 steps into one clear Business Cycle Verdict: Recovery, Early/Mid Expansion, Late-Stage Expansion (Boom), Slowdown, or Contraction, explaining why it is this phase and not the next one.
-- List the top 4 upcoming Indian macro dates and early warning signposts to watch over the next 30 days.
-- End with a short, emoji-friendly WhatsApp summary I can share with friends.</pre>
         </div>
       </div>
     </section>
@@ -2263,7 +2209,7 @@ OUTPUT FORMAT:
        ======================================================================= -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div>India Economic Health Monitor: Plain-English Business Cycle Dashboard. Data snapshot as of November 22, 2026.</div>
+      <div>India Economic Health Monitor: Plain-English Business Cycle Dashboard. Data checked November 22, 2026.</div>
       <div>Educational &amp; informational use only. Works 100% offline.</div>
     </div>
   </footer>
@@ -2515,6 +2461,7 @@ OUTPUT FORMAT:
       const INDICATORS = [
         {
           "id": 1,
+          "key": "cpi",
           "step": "past",
           "stepLabel": "Step 1: Past / lagging",
           "name": "CPI Retail Inflation",
@@ -2522,15 +2469,20 @@ OUTPUT FORMAT:
           "period": "Oct 2026",
           "signal": "warn",
           "signalLabel": "Warning sign",
-          "summary": "Up from 5.54% in Sep; food inflation jumped to 8.94%, crossing RBI's 6% upper comfort limit.",
+          "summary": "CPI Retail Inflation: 6.09% YoY in Oct 2026, up from 5.54% in Sep 2026.",
           "officialSource": "MoSPI (base 2024=100)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
           "plainEnglishDefinition": "Measures how fast everyday household prices (groceries, rent, fuel, healthcare, and education) are rising compared to one year ago.",
           "whyItMatters": "The Reserve Bank of India aims to keep retail inflation inside a 2% to 6% comfort band (targeting 4%). Because prices usually surge only after strong demand has been running for a while, inflation acts like a rearview mirror confirming an overheating boom.",
-          "everydayIndianExample": "If your monthly family kitchen and household budget in Mumbai or Bengaluru was Rs. 20,000 last October, buying the exact same basket now costs about Rs. 21,218, with vegetables and food items jumping nearly 9%.",
-          "goodOrBadVerdict": "Warning Sign right now: Crossing 6.0% squeezes household budgets and puts pressure on the RBI to keep interest rates high (or hike again), which raises loan EMIs."
+          "everydayIndianExample": "When retail inflation is high, the same monthly basket of groceries, rent, school fees and medicines costs noticeably more than it did a year ago, so household savings shrink unless salaries rise as fast.",
+          "goodOrBadVerdict": "Warning sign right now: RBI target 4%, tolerance band 2% to 6%.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 2,
+          "key": "wpi",
           "step": "past",
           "stepLabel": "Step 1: Past / lagging",
           "name": "WPI Wholesale Inflation",
@@ -2538,15 +2490,20 @@ OUTPUT FORMAT:
           "period": "Oct 2026",
           "signal": "warn",
           "signalLabel": "Warning sign",
-          "summary": "Up from 11.39% in Sep (3rd straight monthly rise); fuel and power surged +32.84%.",
-          "officialSource": "DPIIT",
+          "summary": "WPI Wholesale Inflation: 12.29% YoY in Oct 2026, up from 11.39% in Sep 2026.",
+          "officialSource": "DPIIT via MoSPI (base 2022-23)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
           "plainEnglishDefinition": "Tracks bulk prices paid by factories, distributors, and wholesalers for raw materials, fuel, power, and manufactured goods before items reach retail shops.",
           "whyItMatters": "When factory input and energy costs jump for several months in a row, companies face squeezed profits and eventually pass those higher costs on to regular shoppers.",
-          "everydayIndianExample": "When diesel, electricity, and bulk steel costs jump sharply for an appliance maker in Pune, the price tag on refrigerators and washing machines at local stores usually climbs a few months later.",
-          "goodOrBadVerdict": "Warning Sign right now: Three straight months of double-digit wholesale price rises show strong cost pressures building inside the supply chain."
+          "everydayIndianExample": "Wholesale prices are what shops and factories pay. When diesel, steel or cooking oil gets dearer at the wholesale level, shop prices for those items usually rise a few weeks later.",
+          "goodOrBadVerdict": "Warning sign right now: wholesale inflation above 8% feeds into retail prices.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 3,
+          "key": "unemployment",
           "step": "past",
           "stepLabel": "Step 1: Past / lagging",
           "name": "Unemployment Rate (PLFS)",
@@ -2554,15 +2511,20 @@ OUTPUT FORMAT:
           "period": "Oct 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Down from 5.0% in Sep and 5.5% in Jun 2026, showing a strong and tightening job market.",
-          "officialSource": "MoSPI PLFS",
+          "summary": "Unemployment Rate (PLFS): 4.9% in Oct 2026, down from 5.0% in Sep 2026.",
+          "officialSource": "MoSPI PLFS (monthly, age 15+)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
           "plainEnglishDefinition": "Shows the percentage of people actively looking for work who do not currently have a job.",
           "whyItMatters": "Hiring and training workers is expensive, so companies only expand headcount aggressively once they are confident business growth is real. Falling unemployment confirms a healthy expansion has been underway.",
-          "everydayIndianExample": "When engineering graduates, retail staff, and delivery or logistics workers are getting hired quickly and switching jobs for better pay, the unemployment rate steadily ticks lower.",
-          "goodOrBadVerdict": "Good right now: Dropping from 5.5% in June to 4.9% in October means more Indian households are earning steady incomes, supporting everyday spending."
+          "everydayIndianExample": "A falling unemployment rate means more people looking for work find it, so fresh graduates get offers sooner and workers have more power to ask for a raise.",
+          "goodOrBadVerdict": "Good right now: low and not rising.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 4,
+          "key": "bank_credit",
           "step": "past",
           "stepLabel": "Step 1: Past / lagging",
           "name": "Bank Credit Growth",
@@ -2570,31 +2532,41 @@ OUTPUT FORMAT:
           "period": "Oct 31, 2026",
           "signal": "watch",
           "signalLabel": "Watch closely",
-          "summary": "4th straight month above 19%; Credit-to-Deposit ratio reached 82.1% while deposits grew 16.86%.",
-          "officialSource": "RBI Fortnightly Data",
+          "summary": "Bank Credit Growth: 19.54% YoY on Oct 31, 2026.",
+          "officialSource": "RBI Weekly Statistical Supplement",
+          "sourceUrl": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64013",
           "plainEnglishDefinition": "Measures how fast Indian banks are giving out new loans to families (home, car, personal loans) and businesses compared to a year ago.",
           "whyItMatters": "Healthy loan growth (around 12% to 16%) fuels business expansion. However, when lending grows much faster than bank deposits for months, banks stretch their funding and credit booms can eventually trigger overheating.",
-          "everydayIndianExample": "Think of a bank branch receiving Rs. 100 in fresh fixed deposits but lending out Rs. 82+ rapidly. To attract more deposits, banks may have to offer higher FD rates and charge higher home loan rates.",
-          "goodOrBadVerdict": "Watch Closely right now: Strong loan demand shows high confidence, but growing near 20% with an 82.1% Credit-to-Deposit ratio signals the credit cycle is running hot."
+          "everydayIndianExample": "Fast credit growth means banks are lending freely for homes, cars and businesses. It helps growth, but very fast lending can push up prices and risky loans.",
+          "goodOrBadVerdict": "Watch closely right now: healthy credit growth band 12% to 16%.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 5,
+          "key": "repo_rate",
           "step": "past",
           "stepLabel": "Step 1: Past / lagging",
           "name": "RBI Repo Rate (Policy Rate)",
           "value": "5.50%",
-          "period": "Oct 7, 2026",
+          "period": "Nov 19, 2026",
           "signal": "watch",
           "signalLabel": "Watch closely",
-          "summary": "Hiked +25 bps on Oct 7, 2026 (first hike since Feb 2023); stance shifted to 'calibrated tightening'.",
-          "officialSource": "RBI MPC",
+          "summary": "RBI Repo Rate (Policy Rate): 5.50% on Nov 19, 2026.",
+          "officialSource": "RBI website (Current Rates)",
+          "sourceUrl": "https://www.rbi.org.in/home.aspx",
           "plainEnglishDefinition": "The benchmark interest rate at which the Reserve Bank of India lends short-term money to commercial banks.",
           "whyItMatters": "Central banks raise the repo rate to cool down fast-rising prices and slow excessive borrowing. Starting a rate-hike cycle is a classic late-stage boom signal.",
-          "everydayIndianExample": "When the RBI raised the repo rate by 0.25% in October, floating-rate home loan borrowers immediately started seeing slightly higher EMIs or longer loan tenures, while FD savers benefit from better returns.",
-          "goodOrBadVerdict": "Watch Closely right now: A 5.50% rate is still manageable, but the shift to 'calibrated tightening' means borrowing costs could climb further if inflation stays above 6%."
+          "everydayIndianExample": "The repo rate sets the base for loan rates. When RBI raises it, EMIs on new and floating-rate home and car loans usually go up within a few months; when it cuts, they go down.",
+          "goodOrBadVerdict": "Watch closely right now: real policy rate -0.59 points (repo minus CPI) outside the 0.5 to 2.5 band.",
+          "periodEnd": "2026-11-19",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 6,
+          "key": "core_industries",
           "step": "present",
           "stepLabel": "Step 2: Present / coincident",
           "name": "Index of Core Industries (ICI)",
@@ -2602,15 +2574,20 @@ OUTPUT FORMAT:
           "period": "Oct 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Jumped from upwardly revised +8.2% in Sep, driven by iron ore, coal, electricity, and cement.",
-          "officialSource": "DPIIT (base 2022-23)",
+          "summary": "Index of Core Industries (ICI): +10.9% YoY in Oct 2026, up from 8.2% in Sep 2026.",
+          "officialSource": "Office of the Economic Adviser, DPIIT (via PIB)",
+          "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2339126",
           "plainEnglishDefinition": "Tracks the real-time production of India's 8 backbone industries: electricity, steel, refinery products, crude oil, coal, cement, natural gas, and fertilizers.",
           "whyItMatters": "These 8 sectors make up roughly 40% of India's industrial output. Because you cannot build highways, homes, or power factories without steel, cement, and electricity, this is a reliable live speedometer.",
-          "everydayIndianExample": "Look around any growing Indian city: metro lines, expressways, apartment towers, and busy power grids directly drive surging demand for cement, steel, coal, and electricity.",
-          "goodOrBadVerdict": "Good right now: Double-digit growth (+10.9%) confirms heavy real-world construction and industrial activity is booming right now."
+          "everydayIndianExample": "Coal, electricity, steel, cement and fuel feed almost every other industry. When their output grows, it usually means construction sites, factories and power plants are busy.",
+          "goodOrBadVerdict": "Good right now: growth of 4% or more is healthy; below zero is a contraction.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:04:00+05:30",
+          "stale": ""
         },
         {
           "id": 7,
+          "key": "iip",
           "step": "present",
           "stepLabel": "Step 2: Present / coincident",
           "name": "Index of Industrial Production (IIP)",
@@ -2618,31 +2595,41 @@ OUTPUT FORMAT:
           "period": "Sep 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Strong factory output (manufacturing +7.6%, electricity +11.2%), easing slightly from +7.8% in Aug.",
+          "summary": "Index of Industrial Production (IIP): +6.7% YoY in Sep 2026, down from 7.8% in Aug 2026.",
           "officialSource": "MoSPI (base 2022-23)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
           "plainEnglishDefinition": "Measures total physical production volume across Indian factories, mines, and electricity utilities compared to the same month last year.",
           "whyItMatters": "Factory production rises and falls right in sync with the broader economy, giving a much faster monthly read than quarterly GDP numbers.",
-          "everydayIndianExample": "When electronics plants in Tamil Nadu, textile mills in Gujarat, and power stations nationwide run extra shifts to fill orders, IIP posts strong positive growth.",
-          "goodOrBadVerdict": "Good right now: At +6.7% with manufacturing up +7.6%, India's industrial engine is expanding at a healthy, above-average pace."
+          "everydayIndianExample": "Factory output covers everything from cars to medicines. Rising output means more shifts, more overtime and steadier jobs for factory workers.",
+          "goodOrBadVerdict": "Good right now: growth of 4% or more is healthy; below zero is a contraction.",
+          "periodEnd": "2026-09-30",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 8,
+          "key": "rail_freight",
           "step": "present",
           "stepLabel": "Step 2: Present / coincident",
-          "name": "Conference Board CEI (India)",
-          "value": "192.8",
-          "period": "Sep 2026",
+          "name": "Railway Freight Loading",
+          "value": "+8.32% YoY",
+          "period": "Oct 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Rebounded +3.5% month-on-month after a -2.7% dip in Aug, confirming strong current activity.",
-          "officialSource": "The Conference Board",
-          "plainEnglishDefinition": "A combined monthly score that blends three live Indian activity measures: industrial production, real imports, and vehicle sales.",
-          "whyItMatters": "Single monthly numbers can bounce around due to weather or holidays. Blending three live indicators smooths out noise and shows the true current speed of the economy.",
-          "everydayIndianExample": "Instead of judging a cricket team by one batsman's score, this index checks the combined run rate of factories, imported materials, and showroom sales together.",
-          "goodOrBadVerdict": "Good right now: A sharp +3.5% monthly rebound to 192.8 confirms August's dip was temporary and current business activity remains strong."
+          "summary": "Railway Freight Loading: +8.32% YoY in Oct 2026.",
+          "officialSource": "Ministry of Railways (via PIB)",
+          "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2332375",
+          "plainEnglishDefinition": "The weight of goods that Indian Railways carries in a month, such as coal, iron ore, cement, food grains and containers, compared with the same month one year ago.",
+          "whyItMatters": "Factories, power plants and traders move most bulk goods by rail. When more goods move, more is being produced and sold right now. Freight data comes out within days of the month ending, so it shows current activity sooner than most official statistics.",
+          "everydayIndianExample": "When a steel plant in Odisha gets more orders, it books more rakes of iron ore and coal. That extra loading shows up in the railway freight number weeks before it shows up in factory output data.",
+          "goodOrBadVerdict": "Good right now: freight growth of 3% or more signals active trade.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:04:00+05:30",
+          "stale": ""
         },
         {
           "id": 9,
+          "key": "gst",
           "step": "present",
           "stepLabel": "Step 2: Present / coincident",
           "name": "GST Collections",
@@ -2650,15 +2637,20 @@ OUTPUT FORMAT:
           "period": "Oct 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Gross GST rose +22.9% YoY (net GST +25.6%), reflecting buoyant nationwide spending and billing.",
-          "officialSource": "Ministry of Finance",
+          "summary": "GST Collections: Rs. 2.31 Lakh Cr in Oct 2026, +22.9% from a year earlier.",
+          "officialSource": "GSTN monthly revenue report",
+          "sourceUrl": "https://tutorial.gst.gov.in/downloads/news/gst_revenue_report_final_for_publishing_oct_2026.pdf",
           "plainEnglishDefinition": "The total Goods and Services Tax collected across India each month whenever businesses sell products or services.",
           "whyItMatters": "Because GST is billed on almost every formal sale from restaurant meals to factory shipments, it acts as a live nationwide cash-register reading of consumer and business spending.",
-          "everydayIndianExample": "Every time families shop during the festive season, dine out, book flights, or buy electronics, the GST on those bills flows straight into this monthly tally.",
-          "goodOrBadVerdict": "Good right now: Collecting Rs. 2.31 lakh crore (+22.9% YoY) shows robust nationwide spending and gives the government strong tax revenue."
+          "everydayIndianExample": "GST is paid on most things people buy. Higher collections mean more buying and selling across the country, and more money for the government to spend on roads and schemes.",
+          "goodOrBadVerdict": "Good right now: gross GST growth of 8% or more signals strong spending.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 10,
+          "key": "vehicles",
           "step": "present",
           "stepLabel": "Step 2: Present / coincident",
           "name": "Passenger Vehicle Sales",
@@ -2666,15 +2658,20 @@ OUTPUT FORMAT:
           "period": "Oct 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Record October sales (+12.4% YoY), though growth cooled slightly from Sep's +23.3%.",
-          "officialSource": "SIAM",
+          "summary": "Passenger Vehicle Sales: 5.19 Lakh Units in Oct 2026, +12.4% from a year earlier.",
+          "officialSource": "SIAM (entered by hand from the old dashboard; not yet checked by the fetcher)",
+          "sourceUrl": "https://www.siam.in/",
           "plainEnglishDefinition": "Counts how many new cars, SUVs, and vans automakers shipped to Indian dealerships during the month.",
           "whyItMatters": "Buying a car is one of the biggest discretionary purchases a household makes. Families only commit to multi-year car loans when they feel secure about their jobs and incomes.",
-          "everydayIndianExample": "Long waiting lists for SUVs and crowded car showrooms during Navratri and Diwali show that middle-class families feel confident enough to make big-ticket purchases.",
-          "goodOrBadVerdict": "Good right now: Hitting a record 5.19 lakh units in October (+12.4% YoY) confirms household demand is strong, even if the growth rate eased slightly from September."
+          "everydayIndianExample": "Car and SUV sales show how confident families feel about big purchases. Strong sales usually mean steady incomes and easy loan approvals.",
+          "goodOrBadVerdict": "Good right now: sales growth of 5% or more signals strong demand.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 11,
+          "key": "gdp",
           "step": "present",
           "stepLabel": "Step 2: Present / coincident",
           "name": "Real GDP Growth (Reference)",
@@ -2682,79 +2679,104 @@ OUTPUT FORMAT:
           "period": "Q1 FY27",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Powered by +11.9% fixed investment growth; Q2 FY27 releases Nov 30, 2026 (consensus 7.5% to 7.6%).",
-          "officialSource": "MoSPI",
+          "summary": "Real GDP Growth (Reference): 7.8% YoY in Q1 FY27, down from 8.6% in Q4 FY26.",
+          "officialSource": "MoSPI National Accounts (base 2022-23)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
           "plainEnglishDefinition": "The broadest scorecard of the entire economy, measuring the inflation-adjusted value of all goods and services produced in India over a quarter.",
-          "whyItMatters": "Real GDP is the official benchmark of economic expansion. Since India's long-term normal trend sits near 6.5% to 7.0%, growing at 7.8% confirms the economy is running above normal capacity.",
-          "everydayIndianExample": "If India's economy were a family business, Real GDP growth of 7.8% means the business produced 7.8% more real goods and services this year than last year, even after removing price inflation.",
-          "goodOrBadVerdict": "Good right now: Growing at 7.8% with nearly 12% investment growth puts India firmly in expansion mode. Watch the Nov 30 Q2 release to see if growth stays near 7.5%."
+          "whyItMatters": "Real GDP is the official benchmark of economic expansion. India's long-term normal trend is about 6.5% to 7.0% a year. Growth above that range means the economy is running above normal capacity; growth below it means spare capacity.",
+          "everydayIndianExample": "GDP growth is the total of all incomes earned in the country. Faster growth usually means more jobs, more business for shops and higher tax collections.",
+          "goodOrBadVerdict": "Good right now: real growth of 6.5% or more is India's recent trend pace.",
+          "periodEnd": "2026-06-30",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 12,
+          "key": "nifty",
           "step": "future",
           "stepLabel": "Step 3: Future / leading",
-          "name": "Indian Stock Markets",
-          "value": "Sensex 83,919.71 / Nifty 25,800.60",
-          "period": "Nov 20, 2026 Close",
-          "signal": "good",
-          "signalLabel": "Good",
-          "summary": "Sensex +2.85% weekly, Nifty +2.61%, Bank Nifty hit record 64,635.20 (4-week streak).",
-          "officialSource": "BSE / NSE",
-          "plainEnglishDefinition": "Tracks the combined share prices of India's largest listed companies across banking, IT, energy, autos, and consumer goods.",
-          "whyItMatters": "Stock investors buy shares based on what they expect company profits to look like 3 to 6 months from now, making broad stock rallies an early forward-looking signal.",
-          "everydayIndianExample": "When foreign funds and Indian SIP mutual fund investors keep bidding up major banks and blue-chip companies to record levels, it signals strong expectations for upcoming corporate earnings.",
-          "goodOrBadVerdict": "Good right now: A 4-week rally and record Bank Nifty confirm investor optimism remains strong, though narrower small-cap gains mean investors are getting more selective."
+          "name": "Nifty 50 (Stock Market)",
+          "value": "25,514.30",
+          "period": "Nov 19, 2026",
+          "signal": "watch",
+          "signalLabel": "Watch closely",
+          "summary": "Nifty 50 (Stock Market): 25,514.30 on Nov 19, 2026.",
+          "officialSource": "RBI website (Capital Market; index by NSE)",
+          "sourceUrl": "https://www.rbi.org.in/home.aspx",
+          "plainEnglishDefinition": "The closing value of the Nifty 50, an index of 50 large companies listed on the National Stock Exchange, as republished by the Reserve Bank of India.",
+          "whyItMatters": "Share prices react to what investors expect for company profits in the coming months. A steady rise often comes before stronger business activity; a sharp fall often comes before a slowdown. One day's move means little, so the signal looks at the change over about three months.",
+          "everydayIndianExample": "If you put a fixed amount into an index fund every month through a SIP, your fund tracks this index. A rising Nifty lifts the value of those savings; a falling Nifty lowers it.",
+          "goodOrBadVerdict": "Watch closely right now: not enough history yet to judge the trend; shown as watch closely until it can be judged (kept from the last run: not enough history yet to judge the trend).",
+          "periodEnd": "2026-11-19",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 13,
+          "key": "yield_spread",
           "step": "future",
           "stepLabel": "Step 3: Future / leading",
           "name": "Bond Yield Spread (10Y vs Repo)",
-          "value": "+168 bps",
-          "period": "Nov 20, 2026",
+          "value": "+176 bps",
+          "period": "Nov 19, 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "10Y G-Sec (~7.18% to 7.19%) minus 5.50% Repo stays firmly positive (no inversion), though 364-day T-bill rose to ~6.65% (10Y-1Y spread narrowed to ~55 bps).",
-          "officialSource": "RBI / CCIL",
+          "summary": "Bond Yield Spread (10Y vs Repo): +176 bps on Nov 19, 2026.",
+          "officialSource": "RBI website (Government Securities Market)",
+          "sourceUrl": "https://www.rbi.org.in/home.aspx",
           "plainEnglishDefinition": "The gap between what the Indian government pays to borrow for 10 years versus short-term borrowing rates (100 bps equals 1%).",
           "whyItMatters": "Normally, long-term interest rates sit comfortably above short-term rates. When that gap shrinks to zero or flips negative (called an inversion), bond markets are warning that a slowdown is approaching.",
-          "everydayIndianExample": "Just as a 10-year fixed deposit usually pays more interest than a short-term deposit, a healthy +1.68% gap between 10-year bonds and the repo rate means banks still find lending profitable.",
-          "goodOrBadVerdict": "Good right now (with a small caveat): A +168 bps gap shows no recession warning yet, though the tighter ~55 bps gap against 1-year T-bills reflects expectations of tighter RBI policy."
+          "everydayIndianExample": "When long-term government bonds pay clearly more than the repo rate, lenders expect normal growth ahead. If the gap closes or turns negative, markets expect a slowdown.",
+          "goodOrBadVerdict": "Good right now: a 10-year yield well above the repo rate signals normal growth expectations; below zero (inversion) is a warning.",
+          "periodEnd": "2026-11-19",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         },
         {
           "id": 14,
+          "key": "consumer_confidence",
           "step": "future",
           "stepLabel": "Step 3: Future / leading",
-          "name": "HSBC India PMIs",
-          "value": "Composite 56.2",
-          "period": "Oct 2026",
-          "signal": "watch",
-          "signalLabel": "Watch closely",
-          "summary": "Services hit 4-month high (55.8), but Manufacturing eased to 54.7 (from 55.1) with softer business optimism and rising finished-goods stocks.",
-          "officialSource": "HSBC / S&P Global",
-          "plainEnglishDefinition": "A monthly survey asking purchasing managers at hundreds of Indian factories and service firms whether new orders, hiring, and output are growing or shrinking. Above 50 means growing; below 50 means shrinking.",
-          "whyItMatters": "Managers see new customer orders weeks before factories ship goods or report earnings. Rising unsold finished goods paired with slightly softer optimism is an early yellow flag to watch near a peak.",
-          "everydayIndianExample": "If an IT and hotel services firm sees booming bookings (Services 55.8), while an auto-parts factory sees slightly slower new orders and extra boxes sitting in its warehouse, overall growth is still strong but worth monitoring.",
-          "goodOrBadVerdict": "Watch Closely right now: Scores well above 50 still signal solid expansion, but cooling factory optimism and rising finished-goods inventory are classic late-cycle yellow flags."
-        },
-        {
-          "id": 15,
-          "step": "future",
-          "stepLabel": "Step 3: Future / leading",
-          "name": "Conference Board LEI (India)",
-          "value": "193.9",
+          "name": "Consumer Confidence (RBI)",
+          "value": "113.5",
           "period": "Sep 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Rose +0.6% month-on-month after +0.8% in Aug, confirming expansion momentum remains intact.",
-          "officialSource": "The Conference Board",
-          "plainEnglishDefinition": "A forward-looking composite score combining 8 early-moving Indian indicators: stock prices, interest rate spreads, bank credit, exports, port cargo, capital goods output, exchange rate competitiveness, and Services PMI.",
-          "whyItMatters": "Checking a combined leading index stops us from getting fooled by one noisy headline. When this broad index climbs steadily, economic growth usually continues in the coming months.",
-          "everydayIndianExample": "If port cargo shipments, stock markets, machinery orders, and service business activity are all rising together, it is a strong sign the next few quarters will stay busy.",
-          "goodOrBadVerdict": "Good right now: Back-to-back monthly gains (+0.8% in Aug and +0.6% in Sep) confirm India's near-term expansion trend is still intact."
+          "summary": "Consumer Confidence (RBI): 113.5 in Sep 2026, down from 115.4 in Jul 2026.",
+          "officialSource": "RBI Urban Consumer Confidence Survey",
+          "sourceUrl": "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=24093",
+          "plainEnglishDefinition": "The Reserve Bank of India's Future Expectations Index: how households in 19 cities expect the economy, jobs, prices, their income and their spending to change over the next year. Above 100 means more optimists than pessimists.",
+          "whyItMatters": "Household spending is more than half of India's economy. When families expect better incomes and jobs, they buy more homes, vehicles and appliances in the months that follow. The index is computed as 100 plus the average of five net responses, the formula RBI publishes with the survey.",
+          "everydayIndianExample": "A family in Pune that expects a salary rise next year is more likely to book a new two-wheeler or start home renovation now. Many such decisions together move this index.",
+          "goodOrBadVerdict": "Good right now: index above 100 means more optimists than pessimists; 110 or more is clearly positive.",
+          "periodEnd": "2026-09-30",
+          "lastChecked": "2026-11-22T22:04:00+05:30",
+          "stale": ""
+        },
+        {
+          "id": 15,
+          "key": "industrial_outlook",
+          "step": "future",
+          "stepLabel": "Step 3: Future / leading",
+          "name": "Business Expectations (RBI)",
+          "value": "126.3",
+          "period": "Q3 FY27 (expected)",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Business Expectations (RBI): 126.3 in Q3 FY27 (expected), up from 111.1 in Q2 FY27.",
+          "officialSource": "RBI Industrial Outlook Survey",
+          "sourceUrl": "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=24090",
+          "plainEnglishDefinition": "The Reserve Bank of India's Business Expectations Index: how manufacturing companies expect production, orders, jobs and profits to change in the next quarter. Above 100 means more companies expect improvement than decline.",
+          "whyItMatters": "Companies plan production, hiring and investment on what they expect, not on last month's results. Their expectations often turn before actual output does, which makes this a leading signal.",
+          "everydayIndianExample": "When a textile mill in Tiruppur expects more export orders next quarter, it hires workers and buys yarn now. RBI's survey asks companies like this about their plans.",
+          "goodOrBadVerdict": "Good right now: index above 100 means more optimists than pessimists; 110 or more is clearly positive.",
+          "periodEnd": "2026-12-31",
+          "lastChecked": "2026-11-22T22:04:00+05:30",
+          "stale": ""
         },
         {
           "id": 16,
+          "key": "oecd_cli",
           "step": "future",
           "stepLabel": "Step 3: Future / leading",
           "name": "OECD Leading Index (CLI)",
@@ -2762,12 +2784,16 @@ OUTPUT FORMAT:
           "period": "Oct 2026",
           "signal": "good",
           "signalLabel": "Good",
-          "summary": "Above the 100 long-term trend and still edging higher from 101.39 in Sep (and 100.26 a year ago).",
+          "summary": "OECD Leading Index (CLI): 101.45 in Oct 2026, up from 101.39 in Sep 2026.",
           "officialSource": "OECD Data Explorer",
+          "sourceUrl": "https://www.oecd.org/en/data/indicators/composite-leading-indicator-cli.html",
           "plainEnglishDefinition": "An international forward-looking indicator built to spot economic turning points 6 to 9 months ahead. A reading of 100 represents India's long-term normal trend.",
           "whyItMatters": "When the index sits above 100 and keeps ticking higher, it signals the economy is expanding above its normal pace with no broad downturn in sight yet.",
-          "everydayIndianExample": "Think of 100 as cruising at the normal highway speed limit. At 101.45 and still edging upward, India is cruising comfortably faster than its historical average.",
-          "goodOrBadVerdict": "Good right now: Sitting well above 100 and still rising gently from September confirms expansion momentum has not rolled over yet."
+          "everydayIndianExample": "The OECD's leading index combines several early signals into one number. Above 100 means activity is above its long-term trend; the direction shows where it is heading.",
+          "goodOrBadVerdict": "Good right now: above 100 and rising.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22T22:06:16+05:30",
+          "stale": ""
         }
       ];
 
@@ -2866,34 +2892,7 @@ OUTPUT FORMAT:
       }
 
       function getWhatsappSummaryText() {
-        return [
-          "🇮🇳 *India Economic Health Monitor* (Nov 22, 2026)",
-          "",
-          "📍 *Verdict: Late-Stage Expansion (Boom Phase)*",
-          "India's economy is running strong with booming factory output, record car sales, and rising stock markets. However, inflation has crossed the RBI's 6% comfort limit and bank borrowing is growing very fast, which is why the RBI recently raised interest rates to prevent overheating.",
-          "",
-          "📊 *Scorecard:* 11 Good | 3 Watch Closely | 2 Warning Signs",
-          "",
-          "🔎 *Past / Lagging (Rearview Mirror):*",
-          "- CPI Retail Inflation: 6.09% (Warning: above 6% limit; food 8.94%)",
-          "- WPI Wholesale Inflation: 12.29% (Warning: 3rd straight rise)",
-          "- Unemployment (PLFS): 4.9% (Good: down from 5.5% in Jun)",
-          "- Bank Credit Growth: 19.54% (Watch: CD ratio 82.1%)",
-          "- RBI Repo Rate: 5.50% (Watch: +25 bps hike in Oct)",
-          "",
-          "⚡ *Present / Coincident (Speedometer):*",
-          "- 8 Core Industries: +10.9% | IIP Factory Output: +6.7%",
-          "- GST Collections: Rs. 2.31 Lakh Cr (+22.9%) | Car Sales: 5.19 Lakh (+12.4%)",
-          "- Real GDP (Q1 FY27): 7.8% | Conf. Board CEI: 192.8 (+3.5% MoM)",
-          "",
-          "🔦 *Future / Leading (Headlights):*",
-          "- Sensex: 83,920 | Nifty 50: 25,801 | Bank Nifty: 64,635 (Record)",
-          "- 10Y vs Repo Spread: +168 bps (Healthy, though 10Y-1Y narrowed to ~55 bps)",
-          "- HSBC Composite PMI: 56.2 (Services 55.8, Mfg eased to 54.7)",
-          "- Conf. Board LEI: 193.9 (+0.6%) | OECD CLI: 101.45 (Above 100 & rising)",
-          "",
-          "🗓️ *Watch Next:* Nov 23 Flash PMI | Nov 30 Q2 GDP | Dec 2 to 4 RBI MPC"
-        ].join("\n");
+        return "🇮🇳 *India Economic Health Monitor* (Nov 22, 2026)\n\n📍 *Verdict: Late-stage expansion*\nOECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs.\n\n📊 *Scorecard:* 11 Good | 3 Watch closely | 2 Warning signs\n\n🔎 *Past / lagging:*\n- CPI Retail Inflation: 6.09% YoY (Warning sign)\n- WPI Wholesale Inflation: 12.29% YoY (Warning sign)\n- Unemployment Rate (PLFS): 4.9% (Good)\n- Bank Credit Growth: 19.54% YoY (Watch closely)\n- RBI Repo Rate (Policy Rate): 5.50% (Watch closely)\n\n⚡ *Present / coincident:*\n- Index of Core Industries (ICI): +10.9% YoY (Good)\n- Index of Industrial Production (IIP): +6.7% YoY (Good)\n- Railway Freight Loading: +8.32% YoY (Good)\n- GST Collections: Rs. 2.31 Lakh Cr (Good)\n- Passenger Vehicle Sales: 5.19 Lakh Units (Good)\n- Real GDP Growth (Reference): 7.8% YoY (Good)\n\n🔦 *Future / leading:*\n- Nifty 50 (Stock Market): 25,514.30 (Watch closely)\n- Bond Yield Spread (10Y vs Repo): +176 bps (Good)\n- Consumer Confidence (RBI): 113.5 (Good)\n- Business Expectations (RBI): 126.3 (Good)\n- OECD Leading Index (CLI): 101.45 (Good)\n\n🗓️ *Watch next:* Nov 30, 2026 MoSPI Q2 FY27 GDP release | Dec 2 to 4, 2026 RBI Monetary Policy Committee decision | Dec 12, 2026 CPI retail inflation for November | Jan 7, 2027 First advance estimate of GDP for FY27";
       }
 
       /* ---------------------------------------------------------------------
@@ -3414,16 +3413,6 @@ OUTPUT FORMAT:
             copyToClipboard(getWhatsappSummaryText(), "WhatsApp summary copied! Paste and share.");
           });
 
-          // Reusable AI Prompt Toggle & Copy
-          const promptPre = document.getElementById("aiPromptText");
-          const btnTogglePrompt = document.getElementById("btnTogglePrompt");
-          btnTogglePrompt.addEventListener("click", () => {
-            const collapsed = promptPre.classList.toggle("collapsed");
-            btnTogglePrompt.textContent = collapsed ? "Show prompt" : "Hide prompt";
-          });
-          document.getElementById("btnCopyPrompt").addEventListener("click", () => {
-            copyToClipboard(promptPre.textContent.trim(), "Monthly AI prompt copied to clipboard!");
-          });
 
           // Sticky Mobile Quick-Nav Bar
           const mobileNavBtns = document.querySelectorAll(".mobile-nav-btn");

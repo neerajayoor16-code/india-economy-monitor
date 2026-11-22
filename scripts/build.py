@@ -80,11 +80,29 @@ def js_json(obj) -> Markup:
     return Markup(text)
 
 
+def check_site(site: dict, phases: dict) -> None:
+    need = {"asOf", "phaseKey", "phaseHeadline", "verdictSummary", "counts", "gauges", "signposts", "whatsapp", "marker", "youAreHereBadge"}
+    missing = need - set(site)
+    if missing:
+        raise BuildError(f"site.json is missing {sorted(missing)}")
+    if site["phaseKey"] not in phases:
+        raise BuildError(f"site.json phaseKey {site['phaseKey']!r} is not a phase")
+    c = site["counts"]
+    if c["good"] + c["watch"] + c["warn"] != c["total"]:
+        raise BuildError(f"signal counts do not add up: {c}")
+    if len(site["gauges"]) != 4:
+        raise BuildError("site.json must have 4 gauges")
+
+
 def build(out_dir: Path) -> list[Path]:
     phases = load_json("phases.json")
     indicators = load_json("indicators.json")
     steps = load_json("steps.json")
+    site = load_json("site.json")
     check_data(phases, indicators, steps)
+    check_site(site, phases)
+    phases = {k: dict(v) for k, v in phases.items()}
+    phases[site["phaseKey"]]["badge"] = site["youAreHereBadge"]
 
     env = Environment(
         loader=FileSystemLoader(TEMPLATES),
@@ -96,6 +114,9 @@ def build(out_dir: Path) -> list[Path]:
         phases_json=js_json(phases),
         indicators_json=js_json(indicators),
         step_meta_json=js_json(steps),
+        whatsapp_json=js_json(site["whatsapp"]),
+        phase_key_json=js_json(site["phaseKey"]),
+        site=site,
     )
     out_dir.mkdir(parents=True, exist_ok=True)
     target = out_dir / "index.html"

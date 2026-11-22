@@ -26,7 +26,10 @@ def test_built_page_holds_exact_data(tmp_path):
         check=True, capture_output=True, text=True,
     )
     from_page = json.loads(out.stdout)
-    assert from_page["PHASES"] == json.loads((ROOT / "data/phases.json").read_text("utf8"))
+    phases = json.loads((ROOT / "data/phases.json").read_text("utf8"))
+    site = json.loads((ROOT / "data/site.json").read_text("utf8"))
+    phases[site["phaseKey"]]["badge"] = site["youAreHereBadge"]
+    assert from_page["PHASES"] == phases
     assert from_page["INDICATORS"] == json.loads((ROOT / "data/indicators.json").read_text("utf8"))
     assert from_page["STEP_META"] == json.loads((ROOT / "data/steps.json").read_text("utf8"))
 

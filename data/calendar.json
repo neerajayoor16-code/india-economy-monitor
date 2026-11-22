@@ -1,0 +1,29 @@
+{
+  "_note": "Upcoming official releases shown in 'What to watch next'. Only dates confirmed from the official source. The site shows the next 4 that have not ended; when fewer than 4 remain, the update run raises an alert to add more.",
+  "events": [
+    {
+      "start": "2026-11-30", "end": "2026-11-30",
+      "title": "MoSPI Q2 FY27 GDP release",
+      "desc": "Shows whether real growth stayed above India's normal 6.5% to 7.0% pace after the strong first quarter.",
+      "source": "MoSPI Advance Release Calendar 2026-27"
+    },
+    {
+      "start": "2026-12-02", "end": "2026-12-04",
+      "title": "RBI Monetary Policy Committee decision",
+      "desc": "The repo rate decision. With retail inflation above the 6% upper limit, watch whether RBI changes rates or its stance.",
+      "source": "RBI press release, 23 Mar 2026 (MPC schedule 2026-27)"
+    },
+    {
+      "start": "2026-12-12", "end": "2026-12-12",
+      "title": "CPI retail inflation for November",
+      "desc": "Shows whether retail inflation comes back inside RBI's 2% to 6% band.",
+      "source": "MoSPI Advance Release Calendar 2026-27"
+    },
+    {
+      "start": "2027-01-07", "end": "2027-01-07",
+      "title": "First advance estimate of GDP for FY27",
+      "desc": "The government's first estimate of growth for the full financial year.",
+      "source": "MoSPI Advance Release Calendar 2026-27"
+    }
+  ]
+}
