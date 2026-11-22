@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>India Economic Health Monitor: Business Cycle Dashboard</title>
+  <meta name="description" content="{{ cfg.description }}" />
+  <link rel="canonical" href="{{ cfg.base_url }}/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="India's economy today: {{ site.phaseHeadline }}" />
+  <meta property="og:description" content="{{ site.verdictSummary }}" />
+  <meta property="og:url" content="{{ cfg.base_url }}/" />
+  <meta name="twitter:card" content="summary" />
+  {{ cfg.analytics_html | safe }}
   <style>
     /* =========================================================================
        DESIGN TOKENS: CLEAN LIGHT FINANCIAL EDITORIAL THEME
@@ -2106,7 +2114,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>India Economic Health Monitor: Plain-English Business Cycle Dashboard. Data checked {{ site.asOf }}.</div>
-      <div>Educational &amp; informational use only. Works 100% offline.</div>
+      <div><a href="indicators/">All indicators</a> · <a href="reviews/">Monthly reviews</a> · <a href="methodology/">Methodology</a> · <a href="about/">About</a> · Educational use only; not investment advice.</div>
     </div>
   </footer>
 

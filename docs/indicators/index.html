@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All 16 indicators | India Economic Health Monitor</title>
+  <meta name="description" content="India&#39;s 16 key economic indicators with their latest official values and signals." />
+  <link rel="canonical" href="https://neerajayoor16-code.github.io/india-economy-monitor/indicators/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="India Economic Health Monitor" />
+  <meta property="og:title" content="All 16 indicators" />
+  <meta property="og:description" content="India&#39;s 16 key economic indicators with their latest official values and signals." />
+  <meta property="og:url" content="https://neerajayoor16-code.github.io/india-economy-monitor/indicators/" />
+  <meta name="twitter:card" content="summary" />
+  <style>
+    :root {
+      --bg: #f6f8fb; --card: #ffffff; --ink: #0f172a; --ink-2: #334155; --muted: #64748b; --line: #e2e8f0;
+      --navy: #081121; --good: #047857; --good-bg: #ecfdf5; --watch: #b45309; --watch-bg: #fffbeb;
+      --warn: #be123c; --warn-bg: #fff1f2; --accent: #4f46e5;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.6; }
+    a { color: var(--ink); text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    header { background: var(--navy); color: #fff; padding: 16px 0; }
+    header a { color: #e2e8f0; text-decoration: none; font-size: 0.875rem; }
+    header a:hover { color: #fff; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+    .nav { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+    .brand { font-weight: 600; color: #fff !important; font-size: 0.9375rem; }
+    main { padding: 32px 0 48px; }
+    h1 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 8px; font-weight: 600; }
+    h2 { font-size: 1.25rem; margin: 32px 0 8px; font-weight: 600; }
+    h3 { font-size: 1rem; margin: 20px 0 4px; font-weight: 600; }
+    p { margin: 0 0 12px; color: var(--ink-2); }
+    .muted { color: var(--muted); font-size: 0.875rem; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin: 16px 0; }
+    .value { font-size: 2rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.2; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.8125rem; font-weight: 500; border: 1px solid transparent; }
+    .badge-good { background: var(--good-bg); color: var(--good); border-color: #a7f3d0; }
+    .badge-watch { background: var(--watch-bg); color: var(--watch); border-color: #fde68a; }
+    .badge-warn { background: var(--warn-bg); color: var(--warn); border-color: #fecdd3; }
+    .stale { background: var(--watch-bg); border: 1px solid #fde68a; color: var(--watch); border-radius: 10px; padding: 8px 12px; font-size: 0.875rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-weight: 500; }
+    td.num, th.num { text-align: right; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .tile { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; text-decoration: none; }
+    .tile:hover { border-color: #cbd5e1; }
+    .tile .name { font-weight: 600; font-size: 0.9375rem; }
+    .chart { width: 100%; height: auto; display: block; }
+    footer { border-top: 1px solid var(--line); background: #fff; padding: 20px 0; font-size: 0.8125rem; color: var(--muted); }
+    footer p { color: var(--muted); }
+  </style>
+  
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="../">India Economic Health Monitor</a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="../">Dashboard</a>
+        <a href="../indicators/">Indicators</a>
+        <a href="../reviews/">Monthly reviews</a>
+        <a href="../methodology/">Methodology</a>
+        <a href="../about/">About</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+
+    <h1>All 16 indicators</h1>
+    <p>Each page shows the latest official number, its signal, what it means, and its history.</p>
+    <h2>Step 1: Past / lagging</h2>
+    <div class="grid">
+      <a class="tile" href="../indicators/cpi/">
+        <div class="name">CPI Retail Inflation</div>
+        <div class="muted">6.09% YoY · Oct 2026</div>
+        <span class="badge badge-warn">Warning sign</span>
+      </a>
+      <a class="tile" href="../indicators/wpi/">
+        <div class="name">WPI Wholesale Inflation</div>
+        <div class="muted">12.29% YoY · Oct 2026</div>
+        <span class="badge badge-warn">Warning sign</span>
+      </a>
+      <a class="tile" href="../indicators/unemployment/">
+        <div class="name">Unemployment Rate (PLFS)</div>
+        <div class="muted">4.9% · Oct 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/bank_credit/">
+        <div class="name">Bank Credit Growth</div>
+        <div class="muted">19.54% YoY · Oct 31, 2026</div>
+        <span class="badge badge-watch">Watch closely</span>
+      </a>
+      <a class="tile" href="../indicators/repo_rate/">
+        <div class="name">RBI Repo Rate (Policy Rate)</div>
+        <div class="muted">5.50% · Nov 19, 2026</div>
+        <span class="badge badge-watch">Watch closely</span>
+      </a>
+    </div>
+    <h2>Step 2: Present / coincident</h2>
+    <div class="grid">
+      <a class="tile" href="../indicators/core_industries/">
+        <div class="name">Index of Core Industries (ICI)</div>
+        <div class="muted">+10.9% YoY · Oct 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/iip/">
+        <div class="name">Index of Industrial Production (IIP)</div>
+        <div class="muted">+6.7% YoY · Sep 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/rail_freight/">
+        <div class="name">Railway Freight Loading</div>
+        <div class="muted">+8.32% YoY · Oct 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/gst/">
+        <div class="name">GST Collections</div>
+        <div class="muted">Rs. 2.31 Lakh Cr · Oct 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/vehicles/">
+        <div class="name">Passenger Vehicle Sales</div>
+        <div class="muted">5.19 Lakh Units · Oct 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/gdp/">
+        <div class="name">Real GDP Growth (Reference)</div>
+        <div class="muted">7.8% YoY · Q1 FY27</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+    </div>
+    <h2>Step 3: Future / leading</h2>
+    <div class="grid">
+      <a class="tile" href="../indicators/nifty/">
+        <div class="name">Nifty 50 (Stock Market)</div>
+        <div class="muted">25,514.30 · Nov 19, 2026</div>
+        <span class="badge badge-watch">Watch closely</span>
+      </a>
+      <a class="tile" href="../indicators/yield_spread/">
+        <div class="name">Bond Yield Spread (10Y vs Repo)</div>
+        <div class="muted">+176 bps · Nov 19, 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/consumer_confidence/">
+        <div class="name">Consumer Confidence (RBI)</div>
+        <div class="muted">113.5 · Sep 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/industrial_outlook/">
+        <div class="name">Business Expectations (RBI)</div>
+        <div class="muted">126.3 · Q3 FY27 (expected)</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+      <a class="tile" href="../indicators/oecd_cli/">
+        <div class="name">OECD Leading Index (CLI)</div>
+        <div class="muted">101.45 · Oct 2026</div>
+        <span class="badge badge-good">Good</span>
+      </a>
+    </div>
+
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Data checked November 22, 2026. Numbers come from official sources, linked on each page. Educational and informational use only; not investment advice.</p>
+    </div>
+  </footer>
+</body>
+</html>

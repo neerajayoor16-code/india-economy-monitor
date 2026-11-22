@@ -135,6 +135,26 @@ def apply_readings(state: dict, found: dict, now_iso: str, changes: list, alerts
                         "period": new["period_label"]})
 
 
+def ensure_history(state: dict) -> None:
+    """Every shown reading is in data/history/<key>.csv. Series that a source returns in full
+    (OECD CLI: 12 months; unemployment: 6 months) are added too. Writing is idempotent."""
+    for key, r in state.get("readings", {}).items():
+        append_history(key, r)
+        hist = (r.get("details") or {}).get("history") or []
+        for label, value in hist:
+            try:
+                if key == "oecd_cli":            # "2026-10"
+                    y, m = map(int, label.split("-"))
+                else:                            # "Oct 2026"
+                    d = dt.datetime.strptime(label, "%b %Y")
+                    y, m = d.year, d.month
+            except ValueError:
+                continue
+            end = (dt.date(y + (m == 12), m % 12 + 1, 1) - dt.timedelta(days=1)).isoformat()
+            append_history(key, {"period_end": end, "value": round(float(value), 2),
+                                 "period_label": dt.date(y, m, 1).strftime("%b %Y")})
+
+
 def compute_signals(state: dict) -> dict[str, dict]:
     readings, out = state["readings"], {}
     previous = state.get("signals", {})
@@ -218,7 +238,7 @@ def compose_page_data(state: dict, explainers: dict, signals: dict, stale: dict)
             "summary": t["summary"], "officialSource": r["source_name"], "sourceUrl": r["source_url"],
             "plainEnglishDefinition": ex["plainEnglishDefinition"], "whyItMatters": ex["whyItMatters"],
             "everydayIndianExample": t["everydayIndianExample"], "goodOrBadVerdict": t["goodOrBadVerdict"],
-            "periodEnd": r["period_end"], "lastChecked": state["status"].get(key, {}).get("last_checked", ""),
+            "periodEnd": r["period_end"], "lastChecked": state["status"].get(key, {}).get("last_checked", "")[:10],
             "stale": stale.get(key, ""),
         })
     return out
@@ -332,6 +352,7 @@ def main() -> int:
                 for k in GROUP_INDICATORS[x["group"]]:
                     st = state["status"].setdefault(k, {})
                     st["last_error"], st["last_checked"] = x["message"], now_iso
+    ensure_history(state)
     signals = compute_signals(state)
     state["signals"] = signals
     stale = stale_flags(state, today, alerts)

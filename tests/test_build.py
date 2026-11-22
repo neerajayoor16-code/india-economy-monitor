@@ -20,7 +20,7 @@ import build  # noqa: E402
 def test_built_page_holds_exact_data(tmp_path):
     if not shutil.which("node"):
         pytest.skip("node is not installed")
-    [page] = build.build(tmp_path)
+    page = build.build(tmp_path)[0]  # the dashboard is always first
     out = subprocess.run(
         ["node", str(ROOT / "tests/tools/extract_page_data.js"), str(page)],
         check=True, capture_output=True, text=True,
@@ -66,3 +66,16 @@ def test_bad_data_stops_build(breaker, message):
     breaker(phases, indicators, steps)
     with pytest.raises(build.BuildError, match=message):
         build.check_data(phases, indicators, steps)
+
+
+def test_full_site_is_built(tmp_path):
+    written = build.build(tmp_path)
+    names = {str(p.relative_to(tmp_path)) for p in written}
+    assert "index.html" in names and "sitemap.xml" in names and "robots.txt" in names
+    for key in ("cpi", "rail_freight", "oecd_cli"):
+        assert f"indicators/{key}/index.html" in names
+    assert "methodology/index.html" in names and "about/index.html" in names
+    sitemap = (tmp_path / "sitemap.xml").read_text("utf8")
+    assert sitemap.count("<url>") == len([n for n in names if n.endswith("index.html")])
+    method = (tmp_path / "methodology/index.html").read_text("utf8")
+    assert "RBI target 4%, tolerance band 2% to 6%" in method   # rules text comes from rules.py

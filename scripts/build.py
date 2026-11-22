@@ -99,7 +99,10 @@ def build(out_dir: Path) -> list[Path]:
     indicators = load_json("indicators.json")
     steps = load_json("steps.json")
     site = load_json("site.json")
+    cfg = load_json("site_config.json")
     check_data(phases, indicators, steps)
+    if not str(cfg.get("base_url", "")).startswith("https://") or cfg["base_url"].endswith("/"):
+        raise BuildError("site_config.json base_url must start with https:// and must not end with /")
     check_site(site, phases)
     phases = {k: dict(v) for k, v in phases.items()}
     phases[site["phaseKey"]]["badge"] = site["youAreHereBadge"]
@@ -117,11 +120,21 @@ def build(out_dir: Path) -> list[Path]:
         whatsapp_json=js_json(site["whatsapp"]),
         phase_key_json=js_json(site["phaseKey"]),
         site=site,
+        cfg=cfg,
     )
     out_dir.mkdir(parents=True, exist_ok=True)
     target = out_dir / "index.html"
     target.write_text(html, "utf8")
-    return [target]
+
+    import pages
+    import rules
+    latest = load_json("latest.json")
+    written = pages.build_pages(env, out_dir, DATA, indicators, site, cfg, rules.RULES_DOC, rules.PHASE_DOC,
+                                latest.get("readings", {}))
+    leftover = [p for p in [target, *written] if p.suffix == ".html" and ("{{" in p.read_text("utf8") or "{%" in p.read_text("utf8"))]
+    if leftover:
+        raise BuildError(f"unfilled template code in {leftover}")
+    return [target, *written]
 
 
 def main() -> int:

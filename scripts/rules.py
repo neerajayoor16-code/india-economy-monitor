@@ -152,6 +152,32 @@ def signal_for(key: str, r: dict, latest: dict[str, dict], history: list[tuple[s
     return None, "no rule"
 
 
+# Plain-English version of signal_for(), shown on the methodology page. Keep it next to the code above
+# and change both together.
+RULES_DOC = {
+    "cpi": "Good 2% to 4.5%. Watch closely 4.5% to 6%, or below 2%. Warning sign above 6% (RBI target 4%, tolerance band 2% to 6%).",
+    "wpi": "Good -1% to 4%. Watch closely 4% to 8%, or below -1%. Warning sign above 8%.",
+    "unemployment": "Good when 5.5% or lower and not rising by 0.3 points or more. Watch closely when above 5.5% or rising by 0.3 points or more. Warning sign above 7% or rising by 0.8 points or more.",
+    "bank_credit": "Good 12% to 16%. Watch closely 8% to 12% or 16% to 20%. Warning sign below 8% or above 20%.",
+    "repo_rate": "Judged on the real policy rate (repo rate minus CPI inflation). Good 0.5 to 2.5 points. Watch closely -1 to 0.5 or 2.5 to 4 points. Warning sign outside -1 to 4 points.",
+    "core_industries": "Good at 4% growth or more. Watch closely 0% to 4%. Warning sign below 0%.",
+    "iip": "Good at 4% growth or more. Watch closely 0% to 4%. Warning sign below 0%.",
+    "rail_freight": "Good at 3% growth or more. Watch closely 0% to 3%. Warning sign below 0%.",
+    "gst": "Judged on gross GST growth. Good at 8% or more. Watch closely 0% to 8%. Warning sign below 0%.",
+    "vehicles": "Judged on sales growth. Good at 5% or more. Watch closely 0% to 5%. Warning sign below 0%.",
+    "gdp": "Good at 6.5% real growth or more. Watch closely 5% to 6.5%. Warning sign below 5%.",
+    "nifty": "Judged on the change over about 3 months. Good when down less than 5% (or up). Watch closely when down 5% to 10%. Warning sign when down more than 10%. Needs 3 months of history; until then it shows Watch closely.",
+    "yield_spread": "10-year government bond yield minus the repo rate. Good at 100 basis points or more. Watch closely 0 to 100. Warning sign below 0 (an inverted curve).",
+    "consumer_confidence": "Good at 110 or more. Watch closely 100 to 110. Warning sign below 100 (more pessimists than optimists).",
+    "industrial_outlook": "Good at 110 or more. Watch closely 100 to 110. Warning sign below 100.",
+    "oecd_cli": "Good when above 100 and rising. Watch closely when above 100 but falling, or below 100 but rising. Warning sign when below 100 and falling.",
+}
+PHASE_DOC = ("The phase follows the OECD's rule on its composite leading indicator (CLI) for India: above 100 and rising means "
+             "expansion; above 100 and falling means slowdown; below 100 and falling means contraction; below 100 and rising "
+             "means recovery. During an expansion, if retail inflation, wholesale inflation or bank credit shows Watch closely or "
+             "a Warning sign, the site calls it a late-stage expansion.")
+
+
 # --------------------------------------------------------------------------- phase
 def phase_for(cli: dict | None, signals: dict[str, str]) -> tuple[str, str, str]:
     """Return (phase key, headline, reason). OECD rule on the CLI level (vs 100) and direction."""

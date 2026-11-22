@@ -1,0 +1,10 @@
+{
+  "_note": "Site settings. base_url: change it when you connect your own domain (no trailing slash). owner_name / owner_bio: shown on the About page only when filled in; Google weighs who runs a finance site. analytics_html: paste your analytics snippet here (for example GoatCounter or Google Analytics); it is added to every page.",
+  "site_name": "India Economic Health Monitor",
+  "base_url": "https://neerajayoor16-code.github.io/india-economy-monitor",
+  "description": "A plain-English dashboard of India's business cycle: 16 official indicators, updated automatically from MoSPI, RBI, OECD, PIB and GSTN, with clear Good, Watch and Warning signals.",
+  "owner_name": "",
+  "owner_bio": "",
+  "contact_email": "",
+  "analytics_html": ""
+}

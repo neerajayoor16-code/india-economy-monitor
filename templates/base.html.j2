@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }} | {{ cfg.site_name }}</title>
+  <meta name="description" content="{{ description }}" />
+  <link rel="canonical" href="{{ cfg.base_url }}/{{ path }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ cfg.site_name }}" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:url" content="{{ cfg.base_url }}/{{ path }}" />
+  <meta name="twitter:card" content="summary" />
+  <style>
+    :root {
+      --bg: #f6f8fb; --card: #ffffff; --ink: #0f172a; --ink-2: #334155; --muted: #64748b; --line: #e2e8f0;
+      --navy: #081121; --good: #047857; --good-bg: #ecfdf5; --watch: #b45309; --watch-bg: #fffbeb;
+      --warn: #be123c; --warn-bg: #fff1f2; --accent: #4f46e5;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.6; }
+    a { color: var(--ink); text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    header { background: var(--navy); color: #fff; padding: 16px 0; }
+    header a { color: #e2e8f0; text-decoration: none; font-size: 0.875rem; }
+    header a:hover { color: #fff; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+    .nav { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+    .brand { font-weight: 600; color: #fff !important; font-size: 0.9375rem; }
+    main { padding: 32px 0 48px; }
+    h1 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 8px; font-weight: 600; }
+    h2 { font-size: 1.25rem; margin: 32px 0 8px; font-weight: 600; }
+    h3 { font-size: 1rem; margin: 20px 0 4px; font-weight: 600; }
+    p { margin: 0 0 12px; color: var(--ink-2); }
+    .muted { color: var(--muted); font-size: 0.875rem; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin: 16px 0; }
+    .value { font-size: 2rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.2; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.8125rem; font-weight: 500; border: 1px solid transparent; }
+    .badge-good { background: var(--good-bg); color: var(--good); border-color: #a7f3d0; }
+    .badge-watch { background: var(--watch-bg); color: var(--watch); border-color: #fde68a; }
+    .badge-warn { background: var(--warn-bg); color: var(--warn); border-color: #fecdd3; }
+    .stale { background: var(--watch-bg); border: 1px solid #fde68a; color: var(--watch); border-radius: 10px; padding: 8px 12px; font-size: 0.875rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-weight: 500; }
+    td.num, th.num { text-align: right; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .tile { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; text-decoration: none; }
+    .tile:hover { border-color: #cbd5e1; }
+    .tile .name { font-weight: 600; font-size: 0.9375rem; }
+    .chart { width: 100%; height: auto; display: block; }
+    footer { border-top: 1px solid var(--line); background: #fff; padding: 20px 0; font-size: 0.8125rem; color: var(--muted); }
+    footer p { color: var(--muted); }
+  </style>
+  {{ cfg.analytics_html | safe }}
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="{{ root }}">{{ cfg.site_name }}</a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="{{ root }}">Dashboard</a>
+        <a href="{{ root }}indicators/">Indicators</a>
+        <a href="{{ root }}reviews/">Monthly reviews</a>
+        <a href="{{ root }}methodology/">Methodology</a>
+        <a href="{{ root }}about/">About</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+{% block content %}{% endblock %}
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Data checked {{ site.asOf }}. Numbers come from official sources, linked on each page. Educational and informational use only; not investment advice.</p>
+    </div>
+  </footer>
+</body>
+</html>
