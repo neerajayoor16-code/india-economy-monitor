@@ -1,0 +1,107 @@
+{% extends "base.html.j2" %}
+{% block content %}
+{%- if kind == "indicator" %}
+    <p class="muted">{{ ind.stepLabel }}</p>
+    <h1>{{ ind.name }}</h1>
+    <div class="card">
+      <div class="value">{{ ind.value }}</div>
+      <p class="muted">{{ ind.period }} · <a href="{{ ind.sourceUrl }}" rel="nofollow">{{ ind.officialSource }}</a></p>
+      <span class="badge badge-{{ ind.signal }}">{{ ind.signalLabel }}</span>
+      {%- if ind.stale %}
+      <p class="stale" style="margin-top:12px;">This number is {{ ind.stale }}. The site keeps the last official value until a new one passes its checks.</p>
+      {%- endif %}
+      <p style="margin-top:12px;">{{ ind.summary }}</p>
+      <p>{{ ind.goodOrBadVerdict }}</p>
+    </div>
+    <h2>What it is</h2>
+    <p>{{ ind.plainEnglishDefinition }}</p>
+    <h2>Why it matters</h2>
+    <p>{{ ind.whyItMatters }}</p>
+    <h2>What it means for a household</h2>
+    <p>{{ ind.everydayIndianExample }}</p>
+    <h2>History</h2>
+    {%- if chart %}
+    <div class="card">{{ chart | safe }}</div>
+    {%- else %}
+    <p class="muted">History builds up as new official releases come in.</p>
+    {%- endif %}
+    <table>
+      <thead><tr><th>Period</th><th class="num">Value</th></tr></thead>
+      <tbody>
+      {%- for row in history %}
+        <tr><td>{{ row.period_label }}</td><td class="num">{{ row.value }}</td></tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+    <h2>How the signal is decided</h2>
+    <p>{{ rule }}</p>
+    <p class="muted">Last checked {{ ind.lastChecked }}.</p>
+{%- elif kind == "indicators" %}
+    <h1>All 16 indicators</h1>
+    <p>Each page shows the latest official number, its signal, what it means, and its history.</p>
+    {%- for step, label in steps %}
+    <h2>{{ label }}</h2>
+    <div class="grid">
+      {%- for i in indicators if i.step == step %}
+      <a class="tile" href="{{ root }}indicators/{{ i.key }}/">
+        <div class="name">{{ i.name }}</div>
+        <div class="muted">{{ i.value }} · {{ i.period }}</div>
+        <span class="badge badge-{{ i.signal }}">{{ i.signalLabel }}</span>
+      </a>
+      {%- endfor %}
+    </div>
+    {%- endfor %}
+{%- elif kind == "review" %}
+    <p class="muted">Monthly review · {{ month_label }}</p>
+    <h1>India's economy in {{ month_label }}: {{ site.phaseHeadline }}</h1>
+    <p>{{ site.verdictSummary }}</p>
+    <p class="muted">This page is rebuilt from the official numbers until the month ends, then it stays as the record for {{ month_label }}. Last rebuilt {{ site.asOf }}.</p>
+    {%- for step, label in steps %}
+    <h2>{{ label }}</h2>
+    {%- for i in indicators if i.step == step %}
+    <h3><a href="{{ root }}indicators/{{ i.key }}/">{{ i.name }}</a> <span class="badge badge-{{ i.signal }}">{{ i.signalLabel }}</span></h3>
+    <p>{{ i.summary }} {{ i.goodOrBadVerdict }}</p>
+    {%- endfor %}
+    {%- endfor %}
+{%- elif kind == "reviews" %}
+    <h1>Monthly reviews</h1>
+    <p>One page per month: the phase of the business cycle and what each indicator showed.</p>
+    <ul>
+    {%- for r in reviews %}
+      <li><a href="{{ root }}reviews/{{ r.slug }}/">{{ r.label }}</a></li>
+    {%- endfor %}
+    </ul>
+{%- elif kind == "methodology" %}
+    <h1>Methodology</h1>
+    <p>This page explains where every number comes from, how it is checked, and how the signals are decided. The rules below are the same rules the code uses.</p>
+    <h2>How numbers are collected</h2>
+    <p>A program checks every official source every 30 minutes on weekdays from 09:30 to 18:30 IST, and runs a full check once a day. Sources: MoSPI (CPI, WPI, factory output, unemployment, GDP), the Reserve Bank of India (repo rate, bond yields, Nifty 50 as republished by RBI, bank credit, consumer and business surveys), OECD (leading indicator), PIB (core industries, railway freight), GSTN (GST revenue) and SIAM (vehicle sales).</p>
+    <h2>How numbers are checked</h2>
+    <p>A new number goes live only if it is a real number inside a sane range for that indicator, its period is not older than the number already shown, and it did not jump more than a set limit since the last value. If a check fails, the old number stays and the owner gets an alert. Where a source states its own growth rate, the program computes the rate itself and the two must match.</p>
+    <h2>How the phase is decided</h2>
+    <p>{{ phase_doc }}</p>
+    <h2>How each signal is decided</h2>
+    {%- for i in indicators %}
+    <h3>{{ i.name }}</h3>
+    <p>{{ rules_doc[i.key] }}</p>
+    {%- endfor %}
+    <h2>How the text is written</h2>
+    <p>The short texts on each card are written from the numbers. When AI writing is on, an AI model drafts the text, and it goes live only if every number in it is in the official data, it gives no investment advice and no certain predictions, it describes the direction of change correctly, and a second independent check confirms it matches the data. Otherwise the card uses plain fill-in sentences.</p>
+    <h2>Limits</h2>
+    <p>Signals are simple rules, not forecasts. Official numbers are often revised; the site shows the latest published value. Nothing on this site is investment advice.</p>
+{%- elif kind == "about" %}
+    <h1>About this site</h1>
+    <p>{{ cfg.site_name }} explains where India's economy stands in the business cycle, in plain English. It tracks 16 official indicators in three steps: what already happened (lagging), what is happening now (coincident), and what may come next (leading).</p>
+    <p>Every number is taken from an official source and linked on its page. Numbers update automatically after each official release and pass automatic checks first. See the <a href="{{ root }}methodology/">methodology</a> for the exact rules.</p>
+    {%- if cfg.owner_name %}
+    <h2>Who runs it</h2>
+    <p><strong>{{ cfg.owner_name }}</strong>. {{ cfg.owner_bio }}</p>
+    {%- endif %}
+    {%- if cfg.contact_email %}
+    <h2>Contact</h2>
+    <p>Corrections and questions: <a href="mailto:{{ cfg.contact_email }}">{{ cfg.contact_email }}</a></p>
+    {%- endif %}
+    <h2>Disclaimer</h2>
+    <p>This site is for education and information only. It is not investment, tax or financial advice. Check the official source before you act on any number.</p>
+{%- endif %}
+{% endblock %}

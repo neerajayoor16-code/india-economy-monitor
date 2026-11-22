@@ -1,0 +1,115 @@
+# Fetches new official numbers, checks them, rebuilds the site and publishes it.
+#
+# Schedule (GitHub uses UTC; IST = UTC + 5:30). GitHub may start scheduled runs late at busy times.
+#   - every 30 minutes, 09:30 to 18:30 IST, Monday to Friday  -> light run (feeds only)
+#   - once a day at 18:45 IST                                  -> full run (also searches for new RBI surveys)
+# Scheduled runs only happen on the default branch (main).
+name: Update data
+
+on:
+  schedule:
+    - cron: "*/30 4-12 * * 1-5"
+    - cron: "0 13 * * 1-5"
+    - cron: "15 13 * * *"
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Full run (also search for new RBI surveys)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Tests (stop here if the code is broken)
+        run: python -m pytest -q
+
+      - name: Run the update
+        id: run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set +e
+          MODE="--light"
+          if [ "${{ github.event.schedule }}" = "15 13 * * *" ] || [ "${{ inputs.full }}" = "true" ]; then MODE=""; fi
+          python scripts/update.py $MODE
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          if [ $code -eq 1 ]; then echo "::error::The update crashed. The site was not changed."; exit 1; fi
+          exit 0
+
+      - name: Keep the run log for 30 days
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-log-${{ github.run_id }}
+          path: logs/
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Publish (commit) if anything changed
+        id: commit
+        run: |
+          git config user.name "india-economy-monitor bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs reports
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Nothing changed."
+          else
+            git commit -q -m "Data update $(TZ=Asia/Kolkata date '+%d %b %Y %H:%M IST')" -m "$(sed -n '/## Changes/,/## Alerts/p' reports/last-run.md | head -40)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Post the change report to the "Update log" issue
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create update-log --color 0e8a16 --description "Automatic site update reports" --force
+          num=$(gh issue list --label update-log --state open --json number -q '.[0].number')
+          if [ -z "$num" ]; then
+            num=$(gh issue create --title "Update log" --label update-log --body "Each automatic site update adds a comment here." | grep -o '[0-9]*$')
+          fi
+          {
+            cat reports/last-run.md
+            echo
+            echo "Commit: ${{ github.server_url }}/${{ github.repository }}/commit/${{ steps.commit.outputs.sha }}"
+            echo "To undo: Actions → 'Revert an update' → Run workflow → paste ${{ steps.commit.outputs.sha }}"
+          } > comment.md
+          gh issue comment "$num" --body-file comment.md
+
+      - name: Raise alerts in the "Data alerts" issue
+        if: steps.run.outputs.code == '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create data-alert --color d93f0b --description "Something needs a human look" --force
+          num=$(gh issue list --label data-alert --state open --json number -q '.[0].number')
+          if [ -z "$num" ]; then
+            gh issue create --title "Data alerts" --label data-alert --body-file reports/last-run.md
+          else
+            gh issue comment "$num" --body-file reports/last-run.md
+          fi

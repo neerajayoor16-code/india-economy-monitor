@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>India Economic Health Monitor: Business Cycle Dashboard</title>
+  <meta name="description" content="A plain-English dashboard of India&#39;s business cycle: 16 official indicators, updated automatically from MoSPI, RBI, OECD, PIB and GSTN, with clear Good, Watch and Warning signals." />
+  <link rel="canonical" href="https://neerajayoor16-code.github.io/india-economy-monitor/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="India's economy today: Late-stage expansion" />
+  <meta property="og:description" content="OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs. 11 of 16 indicators are in good shape. Warning signs: CPI Retail Inflation, WPI Wholesale Inflation. Watch closely: Bank Credit Growth, RBI Repo Rate (Policy Rate), Nifty 50 (Stock Market)." />
+  <meta property="og:url" content="https://neerajayoor16-code.github.io/india-economy-monitor/" />
+  <meta name="twitter:card" content="summary" />
+  
+  <style>
+    /* =========================================================================
+       DESIGN TOKENS: CLEAN LIGHT FINANCIAL EDITORIAL THEME
+       Zero external dependencies for 100% offline and mobile reliability.
+       ========================================================================= */
+    :root {
+      --bg-page: #f6f8fb;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-soft: #f8fafc;
+
+      --navy-950: #081121;
+      --navy-900: #0f172a;
+      --navy-800: #1e293b;
+      --navy-700: #334155;
+
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-inverse: #f8fafc;
+
+      --border-light: #e2e8f0;
+      --border-strong: #cbd5e1;
+
+      /* Semantic Status Colors */
+      --good-bg: #ecfdf5;
+      --good-border: #a7f3d0;
+      --good-text: #047857;
+      --good-solid: #059669;
+
+      --watch-bg: #fffbeb;
+      --watch-border: #fde68a;
+      --watch-text: #b45309;
+      --watch-solid: #d97706;
+
+      --warn-bg: #fff1f2;
+      --warn-border: #fecdd3;
+      --warn-text: #be123c;
+      --warn-solid: #e11d48;
+
+      --accent-bg: #eef2ff;
+      --accent-border: #c7d2fe;
+      --accent-text: #3730a3;
+      --accent-solid: #4f46e5;
+
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --radius-pill: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.16), 0 4px 12px rgba(15, 23, 42, 0.08);
+
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    /* =========================================================================
+       BASE RESET & MOBILE-FIRST SAFEGUARDS
+       ========================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.55;
+      touch-action: manipulation;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Ensure sticky nav does not cover anchor targets */
+    section[id] {
+      scroll-margin-top: 20px;
+    }
+
+    /* =========================================================================
+       TOP HEADER & HERO VERDICT BANNER
+       ========================================================================= */
+    .hero-header {
+      background: var(--navy-950);
+      color: var(--text-inverse);
+      padding: 24px 0 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      display: none;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: #94a3b8;
+    }
+
+    .date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #cbd5e1;
+      font-size: 0.8125rem;
+      font-weight: 500;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(1.5rem, 4.6vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.18;
+      color: #ffffff;
+    }
+
+    .verdict-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .verdict-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .verdict-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .verdict-heading {
+      margin: 0;
+      font-size: clamp(1.12rem, 3.2vw, 1.42rem);
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0;
+    }
+
+    .verdict-summary {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: #e2e8f0;
+      line-height: 1.58;
+      max-width: 860px;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    /* Buttons with minimum 46px-48px tap height */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.12s ease, background-color 0.16s ease, border-color 0.16s ease;
+      touch-action: manipulation;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid #818cf8;
+      outline-offset: 2px;
+    }
+
+    .btn-white {
+      background: #ffffff;
+      color: var(--navy-900);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-white:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-accent {
+      background: var(--navy-900);
+      color: #ffffff;
+    }
+
+    .btn-accent:hover {
+      background: var(--navy-800);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-subtle);
+      border-color: var(--navy-700);
+    }
+
+    /* Clickable Scorecard Bar */
+    .scorecard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .score-tile {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      min-height: 68px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: #ffffff;
+      font-family: inherit;
+      transition: transform 0.12s ease, background-color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .score-tile:active {
+      transform: scale(0.97);
+    }
+
+    .score-tile:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .score-tile.good { border-left: 4px solid #34d399; }
+    .score-tile.watch { border-left: 4px solid #fbbf24; }
+    .score-tile.warn { border-left: 4px solid #fb7185; }
+    .score-tile.all { border-left: 4px solid #94a3b8; }
+
+    .score-num {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.05;
+    }
+
+    .score-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-top: 2px;
+    }
+
+    .score-arrow {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    /* =========================================================================
+       MAIN CONTENT LAYOUT & SHARED CARD STYLES
+       ========================================================================= */
+    main {
+      padding: 20px 0 calc(96px + env(safe-area-inset-bottom));
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: 20px 16px;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.15rem, 3vw, 1.38rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--navy-900);
+    }
+
+    .section-sub {
+      margin: 4px 0 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* Semantic Status Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1.2;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .badge-good {
+      background: var(--good-bg);
+      color: var(--good-text);
+      border-color: var(--good-border);
+    }
+
+    .badge-watch {
+      background: var(--watch-bg);
+      color: var(--watch-text);
+      border-color: var(--watch-border);
+    }
+
+    .badge-warn {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+      border-color: var(--warn-border);
+    }
+
+    .badge-accent {
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border-color: var(--border-light);
+    }
+
+    /* =========================================================================
+       SECTION 1: INTERACTIVE 4-PHASE ECONOMIC CYCLE WAVE
+       ========================================================================= */
+    .wave-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .svg-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 8px 8px;
+    }
+
+    .cycle-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+    }
+
+    .svg-zone {
+      cursor: pointer;
+      transition: opacity 0.16s ease;
+    }
+
+    .here-pulse {
+      display: none;
+    }
+
+    .phase-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .phase-tab {
+      min-height: 46px;
+      padding: 12px 12px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-light);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .phase-tab:active {
+      transform: scale(0.98);
+    }
+
+    .phase-tab.active {
+      background: var(--navy-900);
+      color: #ffffff;
+      border-color: var(--navy-900);
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.2);
+    }
+
+    .phase-detail-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .phase-detail-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .phase-detail-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .phase-facts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .phase-fact {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 12px;
+    }
+
+    .phase-fact-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .phase-fact-text {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+
+    /* =========================================================================
+       SECTION 2: 4 KEY HEALTH GAUGES (TAPPABLE CARDS)
+       ========================================================================= */
+    .gauge-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .gauge-card {
+      appearance: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.14s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .gauge-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-md);
+    }
+
+    .gauge-card:active {
+      transform: scale(0.985);
+      background: var(--bg-soft);
+    }
+
+    .gauge-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .gauge-name {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--navy-900);
+      line-height: 1.25;
+    }
+
+    .gauge-period {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .gauge-num {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.08;
+      margin-top: 8px;
+    }
+
+    .gauge-bar-box {
+      padding: 8px 0 4px;
+    }
+
+    .gauge-track {
+      height: 10px;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-pill);
+      position: relative;
+      overflow: visible;
+    }
+
+    .gauge-zone {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: var(--radius-pill);
+    }
+
+    .gauge-ref {
+      position: absolute;
+      top: -4px;
+      bottom: -4px;
+      width: 2px;
+      background: var(--navy-900);
+      z-index: 2;
+    }
+
+    .gauge-dot {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      box-shadow: 0 1px 5px rgba(15, 23, 42, 0.38);
+      z-index: 3;
+    }
+
+    .gauge-axis {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .gauge-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-light);
+    }
+
+    /* =========================================================================
+       SECTION 3: 3-STEP INDICATOR TRIANGULATION (16 INDICATORS)
+       ========================================================================= */
+    .controls-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    /* Horizontally scrollable pill bars on mobile */
+    .pill-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 2px 0 4px;
+    }
+
+    .pill-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-pill {
+      flex: 0 0 auto;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border-light);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .filter-pill:active {
+      transform: scale(0.97);
+    }
+
+    .filter-pill.active {
+      background: var(--navy-900);
+      color: #ffffff;
+      border-color: var(--navy-900);
+    }
+
+    .filter-pill.sig-good.active {
+      background: var(--good-solid);
+      border-color: var(--good-solid);
+    }
+
+    .filter-pill.sig-watch.active {
+      background: var(--watch-solid);
+      border-color: var(--watch-solid);
+    }
+
+    .filter-pill.sig-warn.active {
+      background: var(--warn-solid);
+      border-color: var(--warn-solid);
+    }
+
+    /* Search input: 16px font prevents iOS Safari zoom on focus */
+    .search-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-muted);
+      pointer-events: none;
+      display: flex;
+    }
+
+    .search-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 48px 12px 44px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-strong);
+      background: #ffffff;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-solid);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 4px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-clear.visible {
+      display: inline-flex;
+    }
+
+    .search-clear:active {
+      background: var(--bg-subtle);
+    }
+
+    .results-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .reset-link {
+      background: none;
+      border: none;
+      color: var(--accent-solid);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 8px 8px;
+      min-height: 36px;
+      border-radius: 8px;
+    }
+
+    .reset-link:active {
+      background: var(--accent-bg);
+    }
+
+    .step-group {
+      margin-bottom: 20px;
+    }
+
+    .step-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-header {
+      background: var(--navy-900);
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+
+    .step-header-title {
+      margin: 0;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    .step-header-sub {
+      font-size: 0.8125rem;
+      color: #cbd5e1;
+      margin-top: 2px;
+    }
+
+    .indicator-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      border-top: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+
+    .ind-card {
+      appearance: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      background: #ffffff;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.13s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .ind-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ind-card:active {
+      transform: scale(0.985);
+      background: var(--bg-soft);
+    }
+
+    .ind-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .ind-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      line-height: 1.25;
+    }
+
+    .ind-period {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .ind-value {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      letter-spacing: 0;
+    }
+
+    .ind-summary {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.48;
+    }
+
+    .ind-card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--bg-subtle);
+      font-size: 0.75rem;
+    }
+
+    .ind-source {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .ind-learn {
+      color: var(--text-secondary);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 36px 16px;
+      background: var(--bg-soft);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================================
+       SECTION 4: 4 EARLY WARNING SIGNPOSTS & UPCOMING DATES
+       ========================================================================= */
+    .signpost-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .signpost-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--watch-solid);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .signpost-card.soon { border-left-color: var(--warn-solid); }
+    .signpost-card.later { border-left-color: var(--border-strong); }
+
+    .signpost-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .signpost-date {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .signpost-title {
+      margin: 0;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .signpost-desc {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* =========================================================================
+       SECTION 5: REFRESH CALENDAR, OFFICIAL PORTALS & AI PROMPT
+       ========================================================================= */
+    .cadence-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .cadence-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cadence-card h4 {
+      margin: 2px 0 0;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .cadence-card p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .portal-link {
+      min-height: 46px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      color: var(--navy-900);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .portal-link:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-soft);
+    }
+
+    .portal-link:active {
+      transform: scale(0.985);
+    }
+
+    .portal-title {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--navy-900);
+    }
+
+    .portal-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .portal-ext {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .prompt-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .prompt-head {
+      background: #ffffff;
+      padding: 16px 16px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .prompt-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .prompt-pre {
+      margin: 0;
+      padding: 16px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: var(--navy-900);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .prompt-pre.collapsed {
+      display: none;
+    }
+
+    /* =========================================================================
+       FOOTER
+       ========================================================================= */
+    .site-footer {
+      border-top: 1px solid var(--border-light);
+      background: #ffffff;
+      padding: 20px 0 calc(84px + env(safe-area-inset-bottom));
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* =========================================================================
+       STICKY MOBILE QUICK-NAV BAR (< 768px)
+       ========================================================================= */
+    .mobile-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 90;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-light);
+      box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.08);
+      padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .mobile-nav-btn {
+      appearance: none;
+      border: none;
+      background: transparent;
+      min-height: 50px;
+      padding: 8px 4px;
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: background-color 0.14s ease, color 0.14s ease, transform 0.1s ease;
+    }
+
+    .mobile-nav-btn:active {
+      transform: scale(0.95);
+      background: var(--bg-subtle);
+    }
+
+    .mobile-nav-btn.active {
+      color: var(--accent-solid);
+      background: var(--accent-bg);
+    }
+
+    /* =========================================================================
+       MODALS: BOTTOM SHEETS ON MOBILE (< 768px), CENTERED DIALOGS ON DESKTOP
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(15, 23, 42, 0.54);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 100%;
+      max-height: 88dvh;
+      background: #ffffff;
+      border-radius: 24px 24px 0 0;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(100%);
+      transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .modal-backdrop.open .modal-sheet {
+      transform: translateY(0);
+    }
+
+    .sheet-drag-zone {
+      padding: 12px 20px 12px;
+      border-bottom: 1px solid var(--border-light);
+      background: #ffffff;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .sheet-handle {
+      width: 44px;
+      height: 5px;
+      border-radius: var(--radius-pill);
+      background: #cbd5e1;
+      margin: 0 auto 12px;
+    }
+
+    .sheet-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .sheet-title {
+      margin: 4px 0 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      line-height: 1.25;
+    }
+
+    .sheet-close {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      background: var(--bg-soft);
+      color: var(--navy-900);
+      font-size: 1.25rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sheet-close:active {
+      transform: scale(0.94);
+      background: var(--bg-subtle);
+    }
+
+    .sheet-body {
+      padding: 16px 20px 20px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      flex: 1 1 auto;
+      overscroll-behavior: contain;
+    }
+
+    .swipe-hint-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Horizontal slide animations when swiping / stepping between indicators */
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(36px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-36px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .anim-next {
+      animation: slideInFromRight 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .anim-prev {
+      animation: slideInFromLeft 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-reading-banner {
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-reading-val {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      line-height: 1.15;
+    }
+
+    .modal-reading-period {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .explainer-block {
+      margin-bottom: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+    }
+
+    .explainer-block.example-block {
+      background: var(--bg-soft);
+      border-color: var(--border-light);
+    }
+
+    .explainer-block.verdict-good {
+      background: var(--good-bg);
+      border-color: var(--good-border);
+    }
+
+    .explainer-block.verdict-watch {
+      background: var(--watch-bg);
+      border-color: var(--watch-border);
+    }
+
+    .explainer-block.verdict-warn {
+      background: var(--warn-bg);
+      border-color: var(--warn-border);
+    }
+
+    .explainer-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .example-block .explainer-label { color: var(--text-secondary); }
+    .verdict-good .explainer-label { color: var(--good-text); }
+    .verdict-watch .explainer-label { color: var(--watch-text); }
+    .verdict-warn .explainer-label { color: var(--warn-text); }
+
+    .explainer-text {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      line-height: 1.52;
+    }
+
+    /* Sticky bottom bar inside Explainer Modal */
+    .sheet-footer {
+      flex-shrink: 0;
+      padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+      background: #ffffff;
+      border-top: 1px solid var(--border-light);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sheet-nav-btn {
+      min-height: 48px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-strong);
+      background: var(--bg-soft);
+      color: var(--navy-900);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .sheet-nav-btn:active {
+      transform: scale(0.97);
+      background: var(--bg-subtle);
+    }
+
+    .sheet-nav-btn.primary-next {
+      background: var(--navy-900);
+      border-color: var(--navy-900);
+      color: #ffffff;
+    }
+
+    .sheet-counter {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: center;
+      white-space: nowrap;
+      padding: 0 4px;
+    }
+
+    /* Guide Modal Items */
+    .guide-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .guide-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+    }
+
+    .guide-icon {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--navy-900);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    /* =========================================================================
+       TOAST NOTIFICATION
+       ========================================================================= */
+    .toast {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: calc(74px + env(safe-area-inset-bottom));
+      z-index: 300;
+      background: var(--navy-950);
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(18px);
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================================
+       TABLET & DESKTOP ENHANCEMENTS (>= 768px)
+       ========================================================================= */
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      .hero-actions {
+        grid-template-columns: auto auto;
+        justify-content: start;
+      }
+
+      .scorecard-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      main {
+        padding: 28px 0 calc(36px + env(safe-area-inset-bottom));
+        gap: 28px;
+      }
+
+      .card-body {
+        padding: 24px;
+      }
+
+      .wave-layout {
+        gap: 24px;
+      }
+
+      .phase-facts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .phase-btn-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .gauge-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .indicator-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .signpost-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cadence-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .portal-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .prompt-head {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .prompt-actions {
+        grid-template-columns: auto auto;
+      }
+
+      /* Hide sticky mobile nav on desktop */
+      .mobile-nav {
+        display: none;
+      }
+
+      .site-footer {
+        padding: 20px 0 28px;
+      }
+
+      /* Centered Dialog Cards on Desktop */
+      .modal-backdrop {
+        align-items: center;
+        padding: 24px;
+      }
+
+      .modal-sheet {
+        max-width: 620px;
+        max-height: 86vh;
+        border-radius: 20px;
+        transform: translateY(20px) scale(0.97);
+      }
+
+      .modal-backdrop.open .modal-sheet {
+        transform: translateY(0) scale(1);
+      }
+
+      .sheet-handle {
+        display: none;
+      }
+
+      .sheet-drag-zone {
+        cursor: default;
+        padding: 20px 24px 16px;
+      }
+
+      .sheet-body {
+        padding: 20px 24px 24px;
+      }
+
+      .sheet-footer {
+        padding: 16px 24px;
+      }
+
+      .swipe-hint-pill {
+        display: none;
+      }
+
+      .toast {
+        left: auto;
+        right: 24px;
+        bottom: 24px;
+        max-width: 420px;
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .gauge-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .signpost-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       TOP HEADER & VERDICT BANNER
+       ======================================================================= -->
+  <header class="hero-header" id="secOverview">
+    <div class="container hero-inner">
+      <div class="hero-top-row">
+        <span class="brand-kicker">India Economic Health Monitor</span>
+        <span class="date-pill">
+          Data checked November 22, 2026
+        </span>
+      </div>
+
+      <h1 class="hero-title">Business cycle dashboard</h1>
+
+      <div class="verdict-box">
+        <div class="verdict-row">
+          <span class="verdict-tag">Current phase</span>
+          <h2 class="verdict-heading">Late-stage expansion</h2>
+        </div>
+        <p class="verdict-summary">
+          OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs. 11 of 16 indicators are in good shape. Warning signs: CPI Retail Inflation, WPI Wholesale Inflation. Watch closely: Bank Credit Growth, RBI Repo Rate (Policy Rate), Nifty 50 (Stock Market).
+        </p>
+
+        <div class="hero-actions">
+          <button type="button" class="btn btn-white" id="btnOpenGuide">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            How to read this (30s guide)
+          </button>
+          <button type="button" class="btn btn-glass" id="btnCopyWhatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy WhatsApp summary
+          </button>
+        </div>
+      </div>
+
+      <!-- Clickable Scorecard Bar -->
+      <div class="scorecard-grid" aria-label="Indicator Health Scorecard">
+        <button type="button" class="score-tile good" data-score-filter="good">
+          <div>
+            <div class="score-num tabular-nums">11</div>
+            <div class="score-label">Good</div>
+          </div>
+          <span class="score-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="score-tile watch" data-score-filter="watch">
+          <div>
+            <div class="score-num tabular-nums">3</div>
+            <div class="score-label">Watch closely</div>
+          </div>
+          <span class="score-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="score-tile warn" data-score-filter="warn">
+          <div>
+            <div class="score-num tabular-nums">2</div>
+            <div class="score-label">Warning signs</div>
+          </div>
+          <span class="score-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="score-tile all" data-score-filter="all">
+          <div>
+            <div class="score-num tabular-nums">16</div>
+            <div class="score-label">All indicators</div>
+          </div>
+          <span class="score-arrow" aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- =====================================================================
+         SECTION 1: INTERACTIVE 4-PHASE ECONOMIC CYCLE WAVE
+         ===================================================================== -->
+    <section class="card" aria-label="Interactive 4-Phase Economic Cycle Wave">
+      <div class="card-body">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Big picture</div>
+            <h2 class="section-title">Where India sits in the economic cycle</h2>
+            <p class="section-sub">Select a phase or a shaded zone on the wave to see how growth, jobs, prices, and everyday life behave.</p>
+          </div>
+        </div>
+
+        <div class="wave-layout">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="svg-box">
+              <svg class="cycle-svg" viewBox="0 0 820 290" role="img" aria-label="Economic cycle wave showing India in Late-Stage Expansion near the peak">
+                <defs>
+                  <linearGradient id="waveStroke" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#4f46e5" />
+                    <stop offset="38%" stop-color="#059669" />
+                    <stop offset="56%" stop-color="#d97706" />
+                    <stop offset="82%" stop-color="#e11d48" />
+                    <stop offset="100%" stop-color="#4f46e5" />
+                  </linearGradient>
+                  <filter id="pillShadow" x="-15%" y="-15%" width="130%" height="145%">
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.18" />
+                  </filter>
+                </defs>
+
+                <!-- 4 Clickable Phase Zones -->
+                <rect id="svgZone-recovery" class="svg-zone" data-phase="recovery" x="72" y="24" width="175" height="218" rx="6" fill="#eef2ff" opacity="0.45" />
+                <rect id="svgZone-expansion" class="svg-zone" data-phase="expansion" x="247" y="24" width="175" height="218" rx="6" fill="#ecfdf5" opacity="0.95" stroke="#059669" stroke-width="1.8" />
+                <rect id="svgZone-slowdown" class="svg-zone" data-phase="slowdown" x="422" y="24" width="175" height="218" rx="6" fill="#fffbeb" opacity="0.45" />
+                <rect id="svgZone-contraction" class="svg-zone" data-phase="contraction" x="597" y="24" width="175" height="218" rx="6" fill="#fff1f2" opacity="0.45" />
+
+                <!-- Vertical Phase Dividers -->
+                <line x1="247" y1="24" x2="247" y2="242" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 4" />
+                <line x1="422" y1="24" x2="422" y2="242" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 4" />
+                <line x1="597" y1="24" x2="597" y2="242" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 4" />
+
+                <!-- Y-Axis & Long-Term Normal Trend Dashed Line -->
+                <line x1="56" y1="20" x2="56" y2="246" stroke="#475569" stroke-width="1.5" />
+                <line x1="56" y1="138" x2="796" y2="138" stroke="#0f172a" stroke-width="1.8" stroke-dasharray="6 5" />
+
+                <!-- Left Axis Hints -->
+                <text x="10" y="42" font-size="11" font-weight="500" fill="#047857">Above</text>
+                <text x="10" y="55" font-size="11" font-weight="500" fill="#047857">normal</text>
+                <text x="10" y="218" font-size="11" font-weight="500" fill="#be123c">Below</text>
+                <text x="10" y="231" font-size="11" font-weight="500" fill="#be123c">normal</text>
+
+                <!-- Trend Line Pill -->
+                <rect x="606" y="125" width="176" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+                <text x="694" y="141" text-anchor="middle" font-size="10.5" font-weight="500" fill="#0f172a">Long-term normal trend</text>
+
+                <!-- Growth Cycle Sinusoidal Wave -->
+                <path
+                  d="M 56 212
+                     C 62 216, 66 218, 72 218
+                     C 138 218, 182 184, 247 138
+                     C 312 92, 356 58, 422 58
+                     C 488 58, 532 92, 597 138
+                     C 662 184, 706 218, 772 218
+                     C 782 218, 790 214, 798 208"
+                  fill="none"
+                  stroke="url(#waveStroke)"
+                  stroke-width="4.5"
+                  stroke-linecap="round"
+                />
+
+                <!-- Turning Points -->
+                <circle cx="72" cy="218" r="4.5" fill="#4f46e5" />
+                <text x="86" y="236" font-size="10.5" font-weight="500" fill="#334155">Bottom</text>
+
+                <circle cx="422" cy="58" r="4.5" fill="#d97706" />
+                <text x="422" y="45" text-anchor="middle" font-size="11" font-weight="600" fill="#b45309">Peak</text>
+
+                <circle cx="772" cy="218" r="4.5" fill="#e11d48" />
+                <text x="760" y="236" text-anchor="middle" font-size="10.5" font-weight="500" fill="#334155">Bottom</text>
+
+                <!-- YOU ARE HERE Marker (position comes from the phase rule) -->
+                <g class="svg-zone" data-phase="expansion" role="button" aria-label="You are here: Late-stage expansion">
+                  <circle cx="386" cy="68" r="8.5" fill="#d97706" stroke="#ffffff" stroke-width="2.5" />
+                  <line x1="386" y1="68" x2="386" y2="52" stroke="#0f172a" stroke-width="1.4" />
+                  <g filter="url(#pillShadow)">
+                    <rect x="315" y="22" width="142" height="30" rx="15" fill="#0f172a" />
+                    <circle cx="332" cy="37" r="4.5" fill="#34d399" />
+                    <text x="343" y="41" font-size="11.5" font-weight="600" fill="#ffffff">You are here</text>
+                  </g>
+                </g>
+
+                <!-- Phase Labels Underneath -->
+                <g font-size="12" font-weight="600" text-anchor="middle">
+                  <text x="159" y="268" fill="#4338ca" class="svg-zone" data-phase="recovery">1. Recovery</text>
+                  <text x="334" y="268" fill="#047857" class="svg-zone" data-phase="expansion">2. Expansion / Boom</text>
+                  <text x="509" y="268" fill="#b45309" class="svg-zone" data-phase="slowdown">3. Slowdown</text>
+                  <text x="684" y="268" fill="#be123c" class="svg-zone" data-phase="contraction">4. Contraction</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- 4 Large Tappable Phase Buttons -->
+            <div class="phase-btn-grid" role="tablist" aria-label="Choose an economic phase">
+              <button type="button" class="phase-tab" data-phase="recovery" role="tab" aria-selected="false">1. Recovery</button>
+              <button type="button" class="phase-tab active" data-phase="expansion" role="tab" aria-selected="true">2. Expansion / Boom</button>
+              <button type="button" class="phase-tab" data-phase="slowdown" role="tab" aria-selected="false">3. Slowdown</button>
+              <button type="button" class="phase-tab" data-phase="contraction" role="tab" aria-selected="false">4. Contraction</button>
+            </div>
+          </div>
+
+          <!-- Dynamic Plain-English Phase Explainer Panel -->
+          <div class="phase-detail-card" id="phaseDetailCard" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 2: 4 KEY HEALTH GAUGES (TAPPABLE)
+         ===================================================================== -->
+    <section aria-label="4 Key Health Gauges">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow">Vital signs</div>
+          <h2 class="section-title">4 key health gauges</h2>
+          <p class="section-sub">Select a gauge to open its plain-English explainer with an everyday Indian example.</p>
+        </div>
+      </div>
+
+      <div class="gauge-grid">
+        <button type="button" class="gauge-card" data-open-indicator="11">
+          <div>
+            <div class="gauge-top">
+              <div>
+                <div class="gauge-name">Real GDP Growth (Reference)</div>
+                <div class="gauge-period">Q1 FY27 (MoSPI)</div>
+              </div>
+              <span class="badge badge-good">Good</span>
+            </div>
+            <div class="gauge-num tabular-nums" style="color:var(--good-text);">7.8%</div>
+          </div>
+          <div class="gauge-bar-box">
+            <div class="gauge-track">
+              <div class="gauge-zone" style="left:50.0%;width:7.1%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:53.6%;" title="Long-term trend 6.5% to 7.0%"></div>
+              <div class="gauge-dot" style="left:68.6%;background:var(--good-solid);"></div>
+            </div>
+            <div class="gauge-axis tabular-nums">
+              <span>3%</span>
+              <span>Trend: 6.5% to 7.0%</span>
+              <span>10%</span>
+            </div>
+          </div>
+          <div class="gauge-cta">
+            <span>What this means</span>
+            <span aria-hidden="true">&rarr;</span>
+          </div>
+        </button>
+        <button type="button" class="gauge-card" data-open-indicator="1">
+          <div>
+            <div class="gauge-top">
+              <div>
+                <div class="gauge-name">CPI Retail Inflation</div>
+                <div class="gauge-period">Oct 2026 (MoSPI)</div>
+              </div>
+              <span class="badge badge-warn">Warning sign</span>
+            </div>
+            <div class="gauge-num tabular-nums" style="color:var(--warn-text);">6.09%</div>
+          </div>
+          <div class="gauge-bar-box">
+            <div class="gauge-track">
+              <div class="gauge-zone" style="left:25.0%;width:50.0%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:75.0%;" title="RBI upper limit 6.0%"></div>
+              <div class="gauge-dot" style="left:76.1%;background:var(--warn-solid);"></div>
+            </div>
+            <div class="gauge-axis tabular-nums">
+              <span>0%</span>
+              <span>RBI limit: 6.0%</span>
+              <span>8%</span>
+            </div>
+          </div>
+          <div class="gauge-cta">
+            <span>What this means</span>
+            <span aria-hidden="true">&rarr;</span>
+          </div>
+        </button>
+        <button type="button" class="gauge-card" data-open-indicator="4">
+          <div>
+            <div class="gauge-top">
+              <div>
+                <div class="gauge-name">Bank Credit Growth</div>
+                <div class="gauge-period">Oct 31, 2026 (RBI)</div>
+              </div>
+              <span class="badge badge-watch">Watch closely</span>
+            </div>
+            <div class="gauge-num tabular-nums" style="color:var(--watch-text);">19.54%</div>
+          </div>
+          <div class="gauge-bar-box">
+            <div class="gauge-track">
+              <div class="gauge-zone" style="left:35.0%;width:20.0%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:55.0%;" title="Upper healthy limit 16%"></div>
+              <div class="gauge-dot" style="left:72.7%;background:var(--watch-solid);"></div>
+            </div>
+            <div class="gauge-axis tabular-nums">
+              <span>5%</span>
+              <span>Healthy: 12% to 16%</span>
+              <span>25%</span>
+            </div>
+          </div>
+          <div class="gauge-cta">
+            <span>What this means</span>
+            <span aria-hidden="true">&rarr;</span>
+          </div>
+        </button>
+        <button type="button" class="gauge-card" data-open-indicator="16">
+          <div>
+            <div class="gauge-top">
+              <div>
+                <div class="gauge-name">OECD Leading Index (CLI)</div>
+                <div class="gauge-period">Oct 2026 (OECD)</div>
+              </div>
+              <span class="badge badge-good">Good</span>
+            </div>
+            <div class="gauge-num tabular-nums" style="color:var(--good-text);">101.45</div>
+          </div>
+          <div class="gauge-bar-box">
+            <div class="gauge-track">
+              <div class="gauge-zone" style="left:40.0%;width:60.0%;background:rgba(5,150,105,0.22);"></div>
+              <div class="gauge-ref" style="left:40.0%;" title="Normal trend line 100.0"></div>
+              <div class="gauge-dot" style="left:69.0%;background:var(--good-solid);"></div>
+            </div>
+            <div class="gauge-axis tabular-nums">
+              <span>98.0</span>
+              <span>Normal line: 100.0</span>
+              <span>103.0</span>
+            </div>
+          </div>
+          <div class="gauge-cta">
+            <span>What this means</span>
+            <span aria-hidden="true">&rarr;</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 3: 3-STEP INDICATOR TRIANGULATION (ALL 16 INDICATORS)
+         ===================================================================== -->
+    <section class="card" id="secIndicators" aria-label="3-Step Indicator Triangulation">
+      <div class="card-body">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Complete scorecard</div>
+            <h2 class="section-title">3-step economic checkup (16 indicators)</h2>
+            <p class="section-sub">Select an indicator to see what it means and an everyday Indian example. Use the arrows or swipe to browse.</p>
+          </div>
+        </div>
+
+        <div class="controls-stack">
+          <!-- Step Filter Bar -->
+          <div class="pill-scroll" role="tablist" aria-label="Filter by economic step">
+            <button type="button" class="filter-pill active" data-step-filter="all" role="tab" aria-selected="true">All (16)</button>
+            <button type="button" class="filter-pill" data-step-filter="past" role="tab" aria-selected="false">Step 1: Past / lagging (5)</button>
+            <button type="button" class="filter-pill" data-step-filter="present" role="tab" aria-selected="false">Step 2: Present / coincident (6)</button>
+            <button type="button" class="filter-pill" data-step-filter="future" role="tab" aria-selected="false">Step 3: Future / leading (5)</button>
+          </div>
+
+          <!-- Signal Filter Bar -->
+          <div class="pill-scroll" role="tablist" aria-label="Filter by health signal">
+            <button type="button" class="filter-pill active" data-signal-filter="all" role="tab" aria-selected="true">All signals</button>
+            <button type="button" class="filter-pill sig-good" data-signal-filter="good" role="tab" aria-selected="false">Good (11)</button>
+            <button type="button" class="filter-pill sig-watch" data-signal-filter="watch" role="tab" aria-selected="false">Watch closely (3)</button>
+            <button type="button" class="filter-pill sig-warn" data-signal-filter="warn" role="tab" aria-selected="false">Warning signs (2)</button>
+          </div>
+
+          <!-- Search Input (16px font to prevent iOS zoom) -->
+          <div class="search-wrap">
+            <span class="search-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input type="search" id="indicatorSearch" class="search-input" placeholder="Search indicator (e.g., inflation, GST, PMI, Sensex)..." autocomplete="off" aria-label="Search indicators" />
+            <button type="button" id="btnClearSearch" class="search-clear" aria-label="Clear search">&times;</button>
+          </div>
+        </div>
+
+        <div class="results-meta">
+          <span id="resultsCount">Showing 16 of 16 indicators</span>
+          <button type="button" class="reset-link" id="btnResetFilters" style="display:none;">Reset filters</button>
+        </div>
+
+        <!-- Rendered Indicator Groups -->
+        <div id="indicatorGroupsContainer"></div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 4: 4 EARLY WARNING SIGNPOSTS & UPCOMING DATES
+         ===================================================================== -->
+    <section aria-label="Early Warning Signposts and Upcoming Dates">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow">What to watch next</div>
+          <h2 class="section-title">4 early warning signposts &amp; upcoming dates</h2>
+          <p class="section-sub">Key upcoming releases that will tell us whether India stays in a boom or starts cooling into a slowdown.</p>
+        </div>
+      </div>
+
+      <div class="signpost-grid">
+        <article class="signpost-card">
+          <div class="signpost-top">
+            <span class="signpost-date">Nov 30, 2026</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-11-30" data-end="2026-11-30">Nov 30, 2026</span>
+          </div>
+          <h3 class="signpost-title">MoSPI Q2 FY27 GDP release</h3>
+          <p class="signpost-desc">Shows whether real growth stayed above India&#39;s normal 6.5% to 7.0% pace after the strong first quarter.</p>
+        </article>
+        <article class="signpost-card">
+          <div class="signpost-top">
+            <span class="signpost-date">Dec 2 to 4, 2026</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-12-02" data-end="2026-12-04">Dec 2 to 4, 2026</span>
+          </div>
+          <h3 class="signpost-title">RBI Monetary Policy Committee decision</h3>
+          <p class="signpost-desc">The repo rate decision. With retail inflation above the 6% upper limit, watch whether RBI changes rates or its stance.</p>
+        </article>
+        <article class="signpost-card">
+          <div class="signpost-top">
+            <span class="signpost-date">Dec 12, 2026</span>
+            <span class="badge badge-accent" data-countdown data-start="2026-12-12" data-end="2026-12-12">Dec 12, 2026</span>
+          </div>
+          <h3 class="signpost-title">CPI retail inflation for November</h3>
+          <p class="signpost-desc">Shows whether retail inflation comes back inside RBI&#39;s 2% to 6% band.</p>
+        </article>
+        <article class="signpost-card">
+          <div class="signpost-top">
+            <span class="signpost-date">Jan 7, 2027</span>
+            <span class="badge badge-accent" data-countdown data-start="2027-01-07" data-end="2027-01-07">Jan 7, 2027</span>
+          </div>
+          <h3 class="signpost-title">First advance estimate of GDP for FY27</h3>
+          <p class="signpost-desc">The government&#39;s first estimate of growth for the full financial year.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 5: WHEN TO REFRESH, OFFICIAL PORTALS & REUSABLE AI PROMPT
+         ===================================================================== -->
+    <section class="card" id="secCalendar" aria-label="Refresh Calendar and Official Data Portals">
+      <div class="card-body">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Keep it fresh</div>
+            <h2 class="section-title">When to refresh &amp; official data portals</h2>
+            <p class="section-sub">Most Indian economic reports arrive in two monthly waves rather than on the 1st of the month.</p>
+          </div>
+        </div>
+
+        <!-- 3 Refresh Schedule Cards -->
+        <div class="cadence-grid">
+          <div class="cadence-card">
+            <span class="badge badge-good" style="align-self:flex-start;">6th to 8th of every month</span>
+            <h4>Primary monthly refresh</h4>
+            <p>Best main check-in. Captures GST collections (1st), HSBC PMIs (1st to 3rd), auto sales (1st to 3rd), Core Industries, and OECD CLI (around the 8th).</p>
+          </div>
+
+          <div class="cadence-card">
+            <span class="badge badge-watch" style="align-self:flex-start;">16th of every month</span>
+            <h4>Mid-month check</h4>
+            <p>Captures CPI retail inflation (12th), IIP factory output (12th), WPI wholesale inflation (14th), PLFS jobs data (around the 15th), and RBI credit data.</p>
+          </div>
+
+          <div class="cadence-card">
+            <span class="badge badge-accent" style="align-self:flex-start;">1st week of Mar, Jun, Sep, Dec</span>
+            <h4>Quarterly anchor</h4>
+            <p>Captures MoSPI's quarterly Real GDP report (released on the last working day of Feb, May, Aug, Nov) alongside bi-monthly RBI rate decisions.</p>
+          </div>
+        </div>
+
+        <!-- Official Source Links -->
+        <h3 style="margin:0 0 12px;font-size:0.9375rem;font-weight:600;color:var(--navy-900);">Official public data portals</h3>
+        <div class="portal-grid">
+          <a class="portal-link" href="https://data.rbi.org.in" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">RBI DBIE</div><div class="portal-sub">Bank credit, yields, money supply</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://www.rbi.org.in" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">RBI Bulletin &amp; MPC</div><div class="portal-sub">Repo rate &amp; monthly state of economy</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://esankhyiki.mospi.gov.in" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">MoSPI e-Sankhyiki</div><div class="portal-sub">GDP, CPI inflation, IIP, PLFS jobs</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://eaindustry.nic.in" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">DPIIT (OEA)</div><div class="portal-sub">WPI inflation &amp; 8 Core Industries</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://dea.gov.in" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">Ministry of Finance MER</div><div class="portal-sub">Monthly Economic Review &amp; GST</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://www.conference-board.org/topics/business-cycle-indicators/india/" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">The Conference Board</div><div class="portal-sub">India LEI &amp; CEI composite indexes</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://data-explorer.oecd.org" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">OECD Data Explorer</div><div class="portal-sub">India Composite Leading Indicator</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://www.pmi.spglobal.com" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">S&amp;P Global PMI</div><div class="portal-sub">HSBC India Mfg &amp; Services PMIs</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+          <a class="portal-link" href="https://www.siam.in" target="_blank" rel="noopener noreferrer">
+            <div><div class="portal-title">SIAM</div><div class="portal-sub">Monthly passenger vehicle sales</div></div>
+            <span class="portal-ext">Open &nearr;</span>
+          </a>
+        </div>
+
+        <!-- How this page updates -->
+        <div class="prompt-card">
+          <div class="prompt-head">
+            <div>
+              <div style="font-size:0.9375rem;font-weight:600;color:var(--navy-900);">How this page updates</div>
+              <div style="font-size:0.8125rem;color:var(--text-muted);margin-top:4px;">Every 30 minutes on weekdays (10:00 to 18:30 IST), a program reads each official source above. A new number goes live only after automatic checks: it must be a real number in a sane range, not older than the number shown, and not a sudden jump. Every card shows its source and release period. If a source fails, the card keeps its last number and shows a warning when it gets too old. The signals use fixed rules, explained on the methodology page.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =======================================================================
+       FOOTER
+       ======================================================================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>India Economic Health Monitor: Plain-English Business Cycle Dashboard. Data checked November 22, 2026.</div>
+      <div><a href="indicators/">All indicators</a> · <a href="reviews/">Monthly reviews</a> · <a href="methodology/">Methodology</a> · <a href="about/">About</a> · Educational use only; not investment advice.</div>
+    </div>
+  </footer>
+
+  <!-- =======================================================================
+       STICKY MOBILE QUICK-NAV BAR (VISIBLE < 768px)
+       ======================================================================= -->
+  <nav class="mobile-nav" aria-label="Quick section navigation">
+    <button type="button" class="mobile-nav-btn active" data-nav="secOverview">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Overview</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-nav="secIndicators">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Indicators</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-nav="secCalendar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Calendar</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-nav="share">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      <span>Share</span>
+    </button>
+  </nav>
+
+  <!-- =======================================================================
+       MODAL 1: INDICATOR EXPLAINER (BOTTOM SHEET ON MOBILE / DIALOG ON DESKTOP)
+       ======================================================================= -->
+  <div class="modal-backdrop" id="indicatorModal" role="dialog" aria-modal="true" aria-labelledby="indModalTitle" aria-hidden="true">
+    <div class="modal-sheet" id="indicatorSheet">
+      <div class="sheet-drag-zone" id="indicatorDragZone">
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="sheet-header-row">
+          <div>
+            <span class="badge badge-accent" id="indModalStepBadge">Step 1: Past / lagging</span>
+            <h3 class="sheet-title" id="indModalTitle">Indicator Name</h3>
+          </div>
+          <button type="button" class="sheet-close" id="btnCloseIndModal" aria-label="Close indicator details">&times;</button>
+        </div>
+      </div>
+
+      <div class="sheet-body" id="indicatorSheetBody">
+        <div class="swipe-hint-pill" aria-hidden="true">
+          <span>&larr;</span>
+          <span>Swipe left or right to switch indicators</span>
+          <span>&rarr;</span>
+        </div>
+        <div id="indModalContent"></div>
+      </div>
+
+      <div class="sheet-footer">
+        <button type="button" class="sheet-nav-btn" id="btnPrevIndicator">
+          <span aria-hidden="true">&larr;</span> Prev
+        </button>
+        <div class="sheet-counter tabular-nums" id="indModalCounter">1 of 16</div>
+        <button type="button" class="sheet-nav-btn primary-next" id="btnNextIndicator">
+          Next <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       MODAL 2: HOW TO READ THIS 30-SECOND GUIDE (BOTTOM SHEET / DIALOG)
+       ======================================================================= -->
+  <div class="modal-backdrop" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="guideModalTitle" aria-hidden="true">
+    <div class="modal-sheet" id="guideSheet">
+      <div class="sheet-drag-zone" id="guideDragZone">
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="sheet-header-row">
+          <div>
+            <span class="badge badge-accent">30-Second Guide</span>
+            <h3 class="sheet-title" id="guideModalTitle">How to read this dashboard</h3>
+          </div>
+          <button type="button" class="sheet-close" id="btnCloseGuide" aria-label="Close guide">&times;</button>
+        </div>
+      </div>
+
+      <div class="sheet-body">
+        <p style="margin:0 0 16px;font-size:0.9375rem;color:var(--text-secondary);">
+          Think of India's economy like driving a car on a highway. Economists look at three types of clues together to know where we are:
+        </p>
+
+        <div class="guide-grid">
+          <div class="guide-step">
+            <div class="guide-icon">1</div>
+            <div>
+              <div style="font-weight:600;color:var(--navy-900);font-size:0.9375rem;">Past / Lagging Indicators = The Rearview Mirror</div>
+              <div style="font-size:0.875rem;color:var(--text-secondary);margin-top:2px;">Inflation, unemployment, and central bank rates change after a trend is already underway. They confirm what the economy has been doing.</div>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="guide-icon" style="background:#1d4ed8;">2</div>
+            <div>
+              <div style="font-weight:600;color:var(--navy-900);font-size:0.9375rem;">Present / Coincident Indicators = The Speedometer</div>
+              <div style="font-size:0.875rem;color:var(--text-secondary);margin-top:2px;">Factory output, GST collections, car sales, and GDP show how fast the economy is moving right now.</div>
+            </div>
+          </div>
+
+          <div class="guide-step">
+            <div class="guide-icon" style="background:#4f46e5;">3</div>
+            <div>
+              <div style="font-weight:600;color:var(--navy-900);font-size:0.9375rem;">Future / Leading Indicators = The Headlights</div>
+              <div style="font-size:0.875rem;color:var(--text-secondary);margin-top:2px;">Stock markets, bond yield spreads, business surveys (PMIs), and composite leading indexes point to where the road is turning next.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explainer-block" style="background:var(--bg-soft);">
+          <div class="explainer-label">Color Legend</div>
+          <div class="legend-row">
+            <span class="badge badge-good">Green = Good (Healthy growth)</span>
+            <span class="badge badge-watch">Amber = Watch Closely (Heating up or cooling)</span>
+            <span class="badge badge-warn">Red = Warning Sign (Needs attention)</span>
+          </div>
+        </div>
+
+        <div class="explainer-block example-block" style="margin-bottom:0;">
+          <div class="explainer-label">Pro Tip</div>
+          <p class="explainer-text">Select any indicator card or gauge on this page to get a plain-English explanation with an everyday Indian example, then swipe left or right to flip through all 16 indicators like flashcards.</p>
+        </div>
+      </div>
+
+      <div class="sheet-footer" style="grid-template-columns:1fr;">
+        <button type="button" class="sheet-nav-btn primary-next" id="btnGotItGuide">Got It, Explore Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       TOAST NOTIFICATION
+       ======================================================================= -->
+  <div class="toast" id="toastEl" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastText">Copied to clipboard</span>
+  </div>
+
+  <!-- =======================================================================
+       VANILLA JAVASCRIPT: DATA, FILTERING, BOTTOM SHEETS & SWIPE GESTURES
+       ======================================================================= -->
+  <script>
+
+    /* =========================================================================
+       COUNTDOWN BADGES: calculated from today's date on every page load.
+       Each badge carries data-start / data-end (YYYY-MM-DD, local date).
+       A bad date fails loudly: console error plus "Date error" on the badge.
+       ========================================================================= */
+    function parseLocalDate(text) {
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text || "");
+      if (!m) return null;
+      const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+      return d.getMonth() === Number(m[2]) - 1 ? d : null;
+    }
+
+    function countdownLabel(daysToStart, daysToEnd, approx) {
+      if (daysToEnd < 0) return { text: "Done", tone: "accent" };
+      if (daysToStart <= 0) return { text: approx ? "Due now" : "Today", tone: "warn" };
+      if (daysToStart === 1 && !approx) return { text: "Tomorrow", tone: "warn" };
+      if (approx && daysToStart >= 14) return { text: `In about ${Math.round(daysToStart / 7)} weeks`, tone: "accent" };
+      if (approx) return { text: `In about ${daysToStart} days`, tone: daysToStart <= 7 ? "watch" : "accent" };
+      return { text: `In ${daysToStart} days`, tone: daysToStart <= 7 ? "watch" : "accent" };
+    }
+
+    function updateCountdowns(today) {
+      const base = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const DAY = 86400000;
+      const results = [];
+      document.querySelectorAll("[data-countdown]").forEach((badge) => {
+        const start = parseLocalDate(badge.dataset.start);
+        const end = parseLocalDate(badge.dataset.end);
+        const card = badge.closest(".signpost-card");
+        if (!start || !end || end < start) {
+          console.error("Countdown badge has a bad date:", badge.dataset.start, badge.dataset.end, badge);
+          badge.textContent = "Date error";
+          badge.className = "badge badge-warn";
+          results.push("ERROR");
+          return;
+        }
+        const daysToStart = Math.round((start - base) / DAY);
+        const daysToEnd = Math.round((end - base) / DAY);
+        const label = countdownLabel(daysToStart, daysToEnd, badge.dataset.approx === "true");
+        badge.textContent = label.text;
+        badge.className = `badge badge-${label.tone}`;
+        if (card) {
+          card.classList.toggle("soon", label.tone === "warn");
+          card.classList.toggle("later", label.tone === "accent");
+        }
+        results.push(`${badge.dataset.start}: ${label.text}`);
+      });
+      return results;
+    }
+
+    window.updateCountdowns = updateCountdowns;
+    console.info("Countdowns:", updateCountdowns(new Date()).join(" | "));
+    (function () {
+      "use strict";
+
+      /* ---------------------------------------------------------------------
+         1. FOUR PHASES OF THE ECONOMIC CYCLE (PLAIN ENGLISH)
+         --------------------------------------------------------------------- */
+      const PHASES = {
+        "recovery": {
+          "title": "1. Recovery (bouncing back)",
+          "badge": "Below trend, heading up",
+          "badgeClass": "badge-accent",
+          "growth": "The economy has passed its lowest point and starts growing again, though activity is still below its normal long-term level.",
+          "jobs": "Layoffs slow down. Companies first ask existing staff to work overtime before opening large new hiring drives.",
+          "prices": "Inflation stays calm and comfortable because factories and workers still have plenty of spare capacity.",
+          "borrowing": "Interest rates are usually low to encourage families and businesses to borrow and spend again.",
+          "everyday": "Stores offer good deals, EMIs feel lighter, and stock markets often start rising months before daily news feels cheerful."
+        },
+        "expansion": {
+          "title": "2. Expansion / boom (India today)",
+          "badge": "You are here (Nov 2026)",
+          "badgeClass": "badge-good",
+          "growth": "Business activity climbs above its long-term normal trend. Factories run near full speed and companies build new plants.",
+          "jobs": "Hiring is strong across sectors and unemployment drops. Late in a boom, skilled workers become harder to find.",
+          "prices": "Prices start rising faster as strong demand meets limited supply, pushing inflation above central bank comfort zones.",
+          "borrowing": "Loan demand surges for homes, cars, and business expansion. Central banks begin nudging interest rates up to prevent overheating.",
+          "everyday": "Showrooms and malls are packed, salaries and stock portfolios look healthy, but grocery bills and new loan EMIs start creeping higher."
+        },
+        "slowdown": {
+          "title": "3. Slowdown (easing off the gas)",
+          "badge": "Past peak, cooling down",
+          "badgeClass": "badge-watch",
+          "growth": "The economy is still growing above normal, but the speed starts slowing down after passing its peak.",
+          "jobs": "Companies keep hiring, but much more selectively and at a slower pace than during the boom.",
+          "prices": "Inflation stays stubborn near the peak before slowly cooling off after higher interest rates bite.",
+          "borrowing": "Higher interest rates make home, car, and business loans costlier, so credit growth gradually moderates.",
+          "everyday": "Sales slow slightly before factories cut output, so unsold stock builds up. Investors begin preferring steady, defensive businesses."
+        },
+        "contraction": {
+          "title": "4. Contraction (downturn)",
+          "badge": "Below normal trend",
+          "badgeClass": "badge-warn",
+          "growth": "Economic activity drops below its normal trend. If the drop is broad and lasts long enough, it becomes a recession.",
+          "jobs": "Companies first cut overtime and freeze new hiring, and may later trim staff if sales stay weak. Unemployment rises.",
+          "prices": "Price rises slow down noticeably (disinflation) as families hold back on non-essential spending.",
+          "borrowing": "Banks get cautious about lending, while the central bank cuts interest rates to support the economy.",
+          "everyday": "Families delay big purchases like cars or holidays, focus on essentials, and favor safer savings like government bonds and fixed deposits."
+        }
+      };
+
+      /* ---------------------------------------------------------------------
+         2. ALL 16 INDICATORS (EXACT DATA AS OF NOVEMBER 22, 2026)
+         --------------------------------------------------------------------- */
+      const INDICATORS = [
+        {
+          "id": 1,
+          "key": "cpi",
+          "step": "past",
+          "stepLabel": "Step 1: Past / lagging",
+          "name": "CPI Retail Inflation",
+          "value": "6.09% YoY",
+          "period": "Oct 2026",
+          "signal": "warn",
+          "signalLabel": "Warning sign",
+          "summary": "CPI Retail Inflation: 6.09% YoY in Oct 2026, up from 5.54% in Sep 2026.",
+          "officialSource": "MoSPI (base 2024=100)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
+          "plainEnglishDefinition": "Measures how fast everyday household prices (groceries, rent, fuel, healthcare, and education) are rising compared to one year ago.",
+          "whyItMatters": "The Reserve Bank of India aims to keep retail inflation inside a 2% to 6% comfort band (targeting 4%). Because prices usually surge only after strong demand has been running for a while, inflation acts like a rearview mirror confirming an overheating boom.",
+          "everydayIndianExample": "When retail inflation is high, the same monthly basket of groceries, rent, school fees and medicines costs noticeably more than it did a year ago, so household savings shrink unless salaries rise as fast.",
+          "goodOrBadVerdict": "Warning sign right now: RBI target 4%, tolerance band 2% to 6%.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 2,
+          "key": "wpi",
+          "step": "past",
+          "stepLabel": "Step 1: Past / lagging",
+          "name": "WPI Wholesale Inflation",
+          "value": "12.29% YoY",
+          "period": "Oct 2026",
+          "signal": "warn",
+          "signalLabel": "Warning sign",
+          "summary": "WPI Wholesale Inflation: 12.29% YoY in Oct 2026, up from 11.39% in Sep 2026.",
+          "officialSource": "DPIIT via MoSPI (base 2022-23)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
+          "plainEnglishDefinition": "Tracks bulk prices paid by factories, distributors, and wholesalers for raw materials, fuel, power, and manufactured goods before items reach retail shops.",
+          "whyItMatters": "When factory input and energy costs jump for several months in a row, companies face squeezed profits and eventually pass those higher costs on to regular shoppers.",
+          "everydayIndianExample": "Wholesale prices are what shops and factories pay. When diesel, steel or cooking oil gets dearer at the wholesale level, shop prices for those items usually rise a few weeks later.",
+          "goodOrBadVerdict": "Warning sign right now: wholesale inflation above 8% feeds into retail prices.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 3,
+          "key": "unemployment",
+          "step": "past",
+          "stepLabel": "Step 1: Past / lagging",
+          "name": "Unemployment Rate (PLFS)",
+          "value": "4.9%",
+          "period": "Oct 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Unemployment Rate (PLFS): 4.9% in Oct 2026, down from 5.0% in Sep 2026.",
+          "officialSource": "MoSPI PLFS (monthly, age 15+)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
+          "plainEnglishDefinition": "Shows the percentage of people actively looking for work who do not currently have a job.",
+          "whyItMatters": "Hiring and training workers is expensive, so companies only expand headcount aggressively once they are confident business growth is real. Falling unemployment confirms a healthy expansion has been underway.",
+          "everydayIndianExample": "A falling unemployment rate means more people looking for work find it, so fresh graduates get offers sooner and workers have more power to ask for a raise.",
+          "goodOrBadVerdict": "Good right now: low and not rising.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 4,
+          "key": "bank_credit",
+          "step": "past",
+          "stepLabel": "Step 1: Past / lagging",
+          "name": "Bank Credit Growth",
+          "value": "19.54% YoY",
+          "period": "Oct 31, 2026",
+          "signal": "watch",
+          "signalLabel": "Watch closely",
+          "summary": "Bank Credit Growth: 19.54% YoY on Oct 31, 2026.",
+          "officialSource": "RBI Weekly Statistical Supplement",
+          "sourceUrl": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64013",
+          "plainEnglishDefinition": "Measures how fast Indian banks are giving out new loans to families (home, car, personal loans) and businesses compared to a year ago.",
+          "whyItMatters": "Healthy loan growth (around 12% to 16%) fuels business expansion. However, when lending grows much faster than bank deposits for months, banks stretch their funding and credit booms can eventually trigger overheating.",
+          "everydayIndianExample": "Fast credit growth means banks are lending freely for homes, cars and businesses. It helps growth, but very fast lending can push up prices and risky loans.",
+          "goodOrBadVerdict": "Watch closely right now: healthy credit growth band 12% to 16%.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 5,
+          "key": "repo_rate",
+          "step": "past",
+          "stepLabel": "Step 1: Past / lagging",
+          "name": "RBI Repo Rate (Policy Rate)",
+          "value": "5.50%",
+          "period": "Nov 19, 2026",
+          "signal": "watch",
+          "signalLabel": "Watch closely",
+          "summary": "RBI Repo Rate (Policy Rate): 5.50% on Nov 19, 2026.",
+          "officialSource": "RBI website (Current Rates)",
+          "sourceUrl": "https://www.rbi.org.in/home.aspx",
+          "plainEnglishDefinition": "The benchmark interest rate at which the Reserve Bank of India lends short-term money to commercial banks.",
+          "whyItMatters": "Central banks raise the repo rate to cool down fast-rising prices and slow excessive borrowing. Starting a rate-hike cycle is a classic late-stage boom signal.",
+          "everydayIndianExample": "The repo rate sets the base for loan rates. When RBI raises it, EMIs on new and floating-rate home and car loans usually go up within a few months; when it cuts, they go down.",
+          "goodOrBadVerdict": "Watch closely right now: real policy rate -0.59 points (repo minus CPI) outside the 0.5 to 2.5 band.",
+          "periodEnd": "2026-11-19",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 6,
+          "key": "core_industries",
+          "step": "present",
+          "stepLabel": "Step 2: Present / coincident",
+          "name": "Index of Core Industries (ICI)",
+          "value": "+10.9% YoY",
+          "period": "Oct 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Index of Core Industries (ICI): +10.9% YoY in Oct 2026, up from 8.2% in Sep 2026.",
+          "officialSource": "Office of the Economic Adviser, DPIIT (via PIB)",
+          "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2339126",
+          "plainEnglishDefinition": "Tracks the real-time production of India's 8 backbone industries: electricity, steel, refinery products, crude oil, coal, cement, natural gas, and fertilizers.",
+          "whyItMatters": "These 8 sectors make up roughly 40% of India's industrial output. Because you cannot build highways, homes, or power factories without steel, cement, and electricity, this is a reliable live speedometer.",
+          "everydayIndianExample": "Coal, electricity, steel, cement and fuel feed almost every other industry. When their output grows, it usually means construction sites, factories and power plants are busy.",
+          "goodOrBadVerdict": "Good right now: growth of 4% or more is healthy; below zero is a contraction.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 7,
+          "key": "iip",
+          "step": "present",
+          "stepLabel": "Step 2: Present / coincident",
+          "name": "Index of Industrial Production (IIP)",
+          "value": "+6.7% YoY",
+          "period": "Sep 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Index of Industrial Production (IIP): +6.7% YoY in Sep 2026, down from 7.8% in Aug 2026.",
+          "officialSource": "MoSPI (base 2022-23)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
+          "plainEnglishDefinition": "Measures total physical production volume across Indian factories, mines, and electricity utilities compared to the same month last year.",
+          "whyItMatters": "Factory production rises and falls right in sync with the broader economy, giving a much faster monthly read than quarterly GDP numbers.",
+          "everydayIndianExample": "Factory output covers everything from cars to medicines. Rising output means more shifts, more overtime and steadier jobs for factory workers.",
+          "goodOrBadVerdict": "Good right now: growth of 4% or more is healthy; below zero is a contraction.",
+          "periodEnd": "2026-09-30",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 8,
+          "key": "rail_freight",
+          "step": "present",
+          "stepLabel": "Step 2: Present / coincident",
+          "name": "Railway Freight Loading",
+          "value": "+8.32% YoY",
+          "period": "Oct 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Railway Freight Loading: +8.32% YoY in Oct 2026.",
+          "officialSource": "Ministry of Railways (via PIB)",
+          "sourceUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2332375",
+          "plainEnglishDefinition": "The weight of goods that Indian Railways carries in a month, such as coal, iron ore, cement, food grains and containers, compared with the same month one year ago.",
+          "whyItMatters": "Factories, power plants and traders move most bulk goods by rail. When more goods move, more is being produced and sold right now. Freight data comes out within days of the month ending, so it shows current activity sooner than most official statistics.",
+          "everydayIndianExample": "When a steel plant in Odisha gets more orders, it books more rakes of iron ore and coal. That extra loading shows up in the railway freight number weeks before it shows up in factory output data.",
+          "goodOrBadVerdict": "Good right now: freight growth of 3% or more signals active trade.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 9,
+          "key": "gst",
+          "step": "present",
+          "stepLabel": "Step 2: Present / coincident",
+          "name": "GST Collections",
+          "value": "Rs. 2.31 Lakh Cr",
+          "period": "Oct 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "GST Collections: Rs. 2.31 Lakh Cr in Oct 2026, +22.9% from a year earlier.",
+          "officialSource": "GSTN monthly revenue report",
+          "sourceUrl": "https://tutorial.gst.gov.in/downloads/news/gst_revenue_report_final_for_publishing_oct_2026.pdf",
+          "plainEnglishDefinition": "The total Goods and Services Tax collected across India each month whenever businesses sell products or services.",
+          "whyItMatters": "Because GST is billed on almost every formal sale from restaurant meals to factory shipments, it acts as a live nationwide cash-register reading of consumer and business spending.",
+          "everydayIndianExample": "GST is paid on most things people buy. Higher collections mean more buying and selling across the country, and more money for the government to spend on roads and schemes.",
+          "goodOrBadVerdict": "Good right now: gross GST growth of 8% or more signals strong spending.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 10,
+          "key": "vehicles",
+          "step": "present",
+          "stepLabel": "Step 2: Present / coincident",
+          "name": "Passenger Vehicle Sales",
+          "value": "5.19 Lakh Units",
+          "period": "Oct 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Passenger Vehicle Sales: 5.19 Lakh Units in Oct 2026, +12.4% from a year earlier.",
+          "officialSource": "SIAM (entered by hand from the old dashboard; not yet checked by the fetcher)",
+          "sourceUrl": "https://www.siam.in/",
+          "plainEnglishDefinition": "Counts how many new cars, SUVs, and vans automakers shipped to Indian dealerships during the month.",
+          "whyItMatters": "Buying a car is one of the biggest discretionary purchases a household makes. Families only commit to multi-year car loans when they feel secure about their jobs and incomes.",
+          "everydayIndianExample": "Car and SUV sales show how confident families feel about big purchases. Strong sales usually mean steady incomes and easy loan approvals.",
+          "goodOrBadVerdict": "Good right now: sales growth of 5% or more signals strong demand.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 11,
+          "key": "gdp",
+          "step": "present",
+          "stepLabel": "Step 2: Present / coincident",
+          "name": "Real GDP Growth (Reference)",
+          "value": "7.8% YoY",
+          "period": "Q1 FY27",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Real GDP Growth (Reference): 7.8% YoY in Q1 FY27, down from 8.6% in Q4 FY26.",
+          "officialSource": "MoSPI National Accounts (base 2022-23)",
+          "sourceUrl": "https://esankhyiki.mospi.gov.in/",
+          "plainEnglishDefinition": "The broadest scorecard of the entire economy, measuring the inflation-adjusted value of all goods and services produced in India over a quarter.",
+          "whyItMatters": "Real GDP is the official benchmark of economic expansion. India's long-term normal trend is about 6.5% to 7.0% a year. Growth above that range means the economy is running above normal capacity; growth below it means spare capacity.",
+          "everydayIndianExample": "GDP growth is the total of all incomes earned in the country. Faster growth usually means more jobs, more business for shops and higher tax collections.",
+          "goodOrBadVerdict": "Good right now: real growth of 6.5% or more is India's recent trend pace.",
+          "periodEnd": "2026-06-30",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 12,
+          "key": "nifty",
+          "step": "future",
+          "stepLabel": "Step 3: Future / leading",
+          "name": "Nifty 50 (Stock Market)",
+          "value": "25,514.30",
+          "period": "Nov 19, 2026",
+          "signal": "watch",
+          "signalLabel": "Watch closely",
+          "summary": "Nifty 50 (Stock Market): 25,514.30 on Nov 19, 2026.",
+          "officialSource": "RBI website (Capital Market; index by NSE)",
+          "sourceUrl": "https://www.rbi.org.in/home.aspx",
+          "plainEnglishDefinition": "The closing value of the Nifty 50, an index of 50 large companies listed on the National Stock Exchange, as republished by the Reserve Bank of India.",
+          "whyItMatters": "Share prices react to what investors expect for company profits in the coming months. A steady rise often comes before stronger business activity; a sharp fall often comes before a slowdown. One day's move means little, so the signal looks at the change over about three months.",
+          "everydayIndianExample": "If you put a fixed amount into an index fund every month through a SIP, your fund tracks this index. A rising Nifty lifts the value of those savings; a falling Nifty lowers it.",
+          "goodOrBadVerdict": "Watch closely right now: not enough history yet to judge the trend; shown as watch closely until it can be judged (kept from the last run: not enough history yet to judge the trend).",
+          "periodEnd": "2026-11-19",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 13,
+          "key": "yield_spread",
+          "step": "future",
+          "stepLabel": "Step 3: Future / leading",
+          "name": "Bond Yield Spread (10Y vs Repo)",
+          "value": "+176 bps",
+          "period": "Nov 19, 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Bond Yield Spread (10Y vs Repo): +176 bps on Nov 19, 2026.",
+          "officialSource": "RBI website (Government Securities Market)",
+          "sourceUrl": "https://www.rbi.org.in/home.aspx",
+          "plainEnglishDefinition": "The gap between what the Indian government pays to borrow for 10 years versus short-term borrowing rates (100 bps equals 1%).",
+          "whyItMatters": "Normally, long-term interest rates sit comfortably above short-term rates. When that gap shrinks to zero or flips negative (called an inversion), bond markets are warning that a slowdown is approaching.",
+          "everydayIndianExample": "When long-term government bonds pay clearly more than the repo rate, lenders expect normal growth ahead. If the gap closes or turns negative, markets expect a slowdown.",
+          "goodOrBadVerdict": "Good right now: a 10-year yield well above the repo rate signals normal growth expectations; below zero (inversion) is a warning.",
+          "periodEnd": "2026-11-19",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 14,
+          "key": "consumer_confidence",
+          "step": "future",
+          "stepLabel": "Step 3: Future / leading",
+          "name": "Consumer Confidence (RBI)",
+          "value": "113.5",
+          "period": "Sep 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Consumer Confidence (RBI): 113.5 in Sep 2026, down from 115.4 in Jul 2026.",
+          "officialSource": "RBI Urban Consumer Confidence Survey",
+          "sourceUrl": "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=24093",
+          "plainEnglishDefinition": "The Reserve Bank of India's Future Expectations Index: how households in 19 cities expect the economy, jobs, prices, their income and their spending to change over the next year. Above 100 means more optimists than pessimists.",
+          "whyItMatters": "Household spending is more than half of India's economy. When families expect better incomes and jobs, they buy more homes, vehicles and appliances in the months that follow. The index is computed as 100 plus the average of five net responses, the formula RBI publishes with the survey.",
+          "everydayIndianExample": "A family in Pune that expects a salary rise next year is more likely to book a new two-wheeler or start home renovation now. Many such decisions together move this index.",
+          "goodOrBadVerdict": "Good right now: index above 100 means more optimists than pessimists; 110 or more is clearly positive.",
+          "periodEnd": "2026-09-30",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 15,
+          "key": "industrial_outlook",
+          "step": "future",
+          "stepLabel": "Step 3: Future / leading",
+          "name": "Business Expectations (RBI)",
+          "value": "126.3",
+          "period": "Q3 FY27 (expected)",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "Business Expectations (RBI): 126.3 in Q3 FY27 (expected), up from 111.1 in Q2 FY27.",
+          "officialSource": "RBI Industrial Outlook Survey",
+          "sourceUrl": "https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=24090",
+          "plainEnglishDefinition": "The Reserve Bank of India's Business Expectations Index: how manufacturing companies expect production, orders, jobs and profits to change in the next quarter. Above 100 means more companies expect improvement than decline.",
+          "whyItMatters": "Companies plan production, hiring and investment on what they expect, not on last month's results. Their expectations often turn before actual output does, which makes this a leading signal.",
+          "everydayIndianExample": "When a textile mill in Tiruppur expects more export orders next quarter, it hires workers and buys yarn now. RBI's survey asks companies like this about their plans.",
+          "goodOrBadVerdict": "Good right now: index above 100 means more optimists than pessimists; 110 or more is clearly positive.",
+          "periodEnd": "2026-12-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        },
+        {
+          "id": 16,
+          "key": "oecd_cli",
+          "step": "future",
+          "stepLabel": "Step 3: Future / leading",
+          "name": "OECD Leading Index (CLI)",
+          "value": "101.45",
+          "period": "Oct 2026",
+          "signal": "good",
+          "signalLabel": "Good",
+          "summary": "OECD Leading Index (CLI): 101.45 in Oct 2026, up from 101.39 in Sep 2026.",
+          "officialSource": "OECD Data Explorer",
+          "sourceUrl": "https://www.oecd.org/en/data/indicators/composite-leading-indicator-cli.html",
+          "plainEnglishDefinition": "An international forward-looking indicator built to spot economic turning points 6 to 9 months ahead. A reading of 100 represents India's long-term normal trend.",
+          "whyItMatters": "When the index sits above 100 and keeps ticking higher, it signals the economy is expanding above its normal pace with no broad downturn in sight yet.",
+          "everydayIndianExample": "The OECD's leading index combines several early signals into one number. Above 100 means activity is above its long-term trend; the direction shows where it is heading.",
+          "goodOrBadVerdict": "Good right now: above 100 and rising.",
+          "periodEnd": "2026-10-31",
+          "lastChecked": "2026-11-22",
+          "stale": ""
+        }
+      ];
+
+      /* ---------------------------------------------------------------------
+         3. APPLICATION STATE
+         --------------------------------------------------------------------- */
+      const state = {
+        activePhase: "expansion",
+        stepFilter: "all",
+        signalFilter: "all",
+        searchQuery: "",
+        filteredIds: INDICATORS.map((i) => i.id),
+        modalListIds: INDICATORS.map((i) => i.id),
+        modalIndex: 0
+      };
+
+      /* ---------------------------------------------------------------------
+         4. HELPER FUNCTIONS: BADGES, TOAST & CLIPBOARD
+         --------------------------------------------------------------------- */
+      function getSignalClass(signal) {
+        if (signal === "good") return "badge-good";
+        if (signal === "watch") return "badge-watch";
+        return "badge-warn";
+      }
+
+      let toastTimer = null;
+      function showToast(msg) {
+        const el = document.getElementById("toastEl");
+        const txt = document.getElementById("toastText");
+        if (!el || !txt) return;
+        txt.textContent = msg;
+        el.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          el.classList.remove("show");
+        }, 2800);
+      }
+
+      function fallbackCopy(text, successMsg) {
+        try {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.top = "-9999px";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          ta.setSelectionRange(0, text.length);
+          const ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          if (ok) {
+            showToast(successMsg);
+          } else {
+            showToast("Could not auto-copy. Please select and copy the text.");
+          }
+        } catch (err) {
+          showToast("Copy unavailable in this browser.");
+        }
+      }
+
+      function copyToClipboard(text, successMsg) {
+        try {
+          // Try execCommand first for iframe compatibility, fallback to navigator.clipboard
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.top = "-9999px";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          ta.setSelectionRange(0, text.length);
+          const ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          if (ok) {
+            showToast(successMsg);
+            return;
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
+              .then(() => showToast(successMsg))
+              .catch(() => fallbackCopy(text, successMsg));
+          } else {
+            showToast("Could not auto-copy. Please copy manually.");
+          }
+        } catch (err) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
+              .then(() => showToast(successMsg))
+              .catch(() => showToast("Copy unavailable in this browser."));
+          } else {
+            showToast("Copy unavailable in this browser.");
+          }
+        }
+      }
+
+      function getWhatsappSummaryText() {
+        return "🇮🇳 *India Economic Health Monitor* (Nov 22, 2026)\n\n📍 *Verdict: Late-stage expansion*\nOECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs.\n\n📊 *Scorecard:* 11 Good | 3 Watch closely | 2 Warning signs\n\n🔎 *Past / lagging:*\n- CPI Retail Inflation: 6.09% YoY (Warning sign)\n- WPI Wholesale Inflation: 12.29% YoY (Warning sign)\n- Unemployment Rate (PLFS): 4.9% (Good)\n- Bank Credit Growth: 19.54% YoY (Watch closely)\n- RBI Repo Rate (Policy Rate): 5.50% (Watch closely)\n\n⚡ *Present / coincident:*\n- Index of Core Industries (ICI): +10.9% YoY (Good)\n- Index of Industrial Production (IIP): +6.7% YoY (Good)\n- Railway Freight Loading: +8.32% YoY (Good)\n- GST Collections: Rs. 2.31 Lakh Cr (Good)\n- Passenger Vehicle Sales: 5.19 Lakh Units (Good)\n- Real GDP Growth (Reference): 7.8% YoY (Good)\n\n🔦 *Future / leading:*\n- Nifty 50 (Stock Market): 25,514.30 (Watch closely)\n- Bond Yield Spread (10Y vs Repo): +176 bps (Good)\n- Consumer Confidence (RBI): 113.5 (Good)\n- Business Expectations (RBI): 126.3 (Good)\n- OECD Leading Index (CLI): 101.45 (Good)\n\n🗓️ *Watch next:* Nov 30, 2026 MoSPI Q2 FY27 GDP release | Dec 2 to 4, 2026 RBI Monetary Policy Committee decision | Dec 12, 2026 CPI retail inflation for November | Jan 7, 2027 First advance estimate of GDP for FY27";
+      }
+
+      /* ---------------------------------------------------------------------
+         5. RENDER SECTION 1: INTERACTIVE PHASE PANEL & SVG HIGHLIGHTS
+         --------------------------------------------------------------------- */
+      function renderPhase(phaseKey) {
+        const data = PHASES[phaseKey];
+        if (!data) return;
+        state.activePhase = phaseKey;
+
+        const panel = document.getElementById("phaseDetailCard");
+        panel.innerHTML = `
+          <div class="phase-detail-head">
+            <h3 class="phase-detail-title">${data.title}</h3>
+            <span class="badge ${data.badgeClass}">${data.badge}</span>
+          </div>
+          <div class="phase-facts">
+            <div class="phase-fact">
+              <div class="phase-fact-label">Growth</div>
+              <div class="phase-fact-text">${data.growth}</div>
+            </div>
+            <div class="phase-fact">
+              <div class="phase-fact-label">Jobs</div>
+              <div class="phase-fact-text">${data.jobs}</div>
+            </div>
+            <div class="phase-fact">
+              <div class="phase-fact-label">Prices &amp; inflation</div>
+              <div class="phase-fact-text">${data.prices}</div>
+            </div>
+            <div class="phase-fact">
+              <div class="phase-fact-label">Borrowing &amp; rates</div>
+              <div class="phase-fact-text">${data.borrowing}</div>
+            </div>
+            <div class="phase-fact">
+              <div class="phase-fact-label">Everyday life in India</div>
+              <div class="phase-fact-text">${data.everyday}</div>
+            </div>
+          </div>
+        `;
+
+        document.querySelectorAll(".phase-tab").forEach((btn) => {
+          const match = btn.dataset.phase === phaseKey;
+          btn.classList.toggle("active", match);
+          btn.setAttribute("aria-selected", String(match));
+        });
+
+        const zoneStrokes = {
+          recovery: "#4f46e5",
+          expansion: "#059669",
+          slowdown: "#d97706",
+          contraction: "#e11d48"
+        };
+
+        ["recovery", "expansion", "slowdown", "contraction"].forEach((key) => {
+          const rect = document.getElementById("svgZone-" + key);
+          if (!rect) return;
+          if (key === phaseKey) {
+            rect.setAttribute("opacity", "0.96");
+            rect.setAttribute("stroke", zoneStrokes[key]);
+            rect.setAttribute("stroke-width", "1.8");
+          } else {
+            rect.setAttribute("opacity", "0.4");
+            rect.removeAttribute("stroke");
+            rect.removeAttribute("stroke-width");
+          }
+        });
+      }
+
+      /* ---------------------------------------------------------------------
+         6. RENDER SECTION 3: 3-STEP INDICATORS WITH LIVE FILTERS & SEARCH
+         --------------------------------------------------------------------- */
+      const STEP_META = [
+        {
+          "key": "past",
+          "headerClass": "",
+          "title": "Step 1: Past / lagging indicators (5)",
+          "sub": "The Rearview Mirror: confirms what the economy has been doing"
+        },
+        {
+          "key": "present",
+          "headerClass": "step-present",
+          "title": "Step 2: Present / coincident indicators (6)",
+          "sub": "The Speedometer: measures how fast the economy is moving right now"
+        },
+        {
+          "key": "future",
+          "headerClass": "step-future",
+          "title": "Step 3: Future / leading indicators (5)",
+          "sub": "The Headlights: signals where the economy is likely heading next"
+        }
+      ];
+
+      function getFilteredIndicators() {
+        const q = state.searchQuery.trim().toLowerCase();
+        return INDICATORS.filter((item) => {
+          if (state.stepFilter !== "all" && item.step !== state.stepFilter) return false;
+          if (state.signalFilter !== "all" && item.signal !== state.signalFilter) return false;
+          if (q) {
+            const haystack = [
+              item.name,
+              item.value,
+              item.period,
+              item.summary,
+              item.officialSource,
+              item.signalLabel,
+              item.plainEnglishDefinition
+            ].join(" ").toLowerCase();
+            if (!haystack.includes(q)) return false;
+          }
+          return true;
+        });
+      }
+
+      function renderIndicatorList() {
+        const container = document.getElementById("indicatorGroupsContainer");
+        const countEl = document.getElementById("resultsCount");
+        const resetBtn = document.getElementById("btnResetFilters");
+
+        const filtered = getFilteredIndicators();
+        state.filteredIds = filtered.map((i) => i.id);
+
+        const hasActiveFilters = state.stepFilter !== "all" || state.signalFilter !== "all" || state.searchQuery.trim() !== "";
+        countEl.textContent = `Showing ${filtered.length} of ${INDICATORS.length} indicators`;
+        resetBtn.style.display = hasActiveFilters ? "inline-block" : "none";
+
+        if (filtered.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div style="font-weight:600;font-size:1rem;color:var(--navy-900);margin-bottom:8px;">No matching indicators found</div>
+              <div style="font-size:0.875rem;margin-bottom:16px;">Try clearing your search or switching back to All Indicators.</div>
+              <button type="button" class="btn btn-accent" id="btnEmptyReset">Show all 16 indicators</button>
+            </div>
+          `;
+          const emptyBtn = document.getElementById("btnEmptyReset");
+          if (emptyBtn) emptyBtn.addEventListener("click", resetAllFilters);
+          return;
+        }
+
+        const htmlParts = [];
+        STEP_META.forEach((meta) => {
+          const items = filtered.filter((i) => i.step === meta.key);
+          if (items.length === 0) return;
+
+          const cardsHtml = items.map((item) => `
+            <button type="button" class="ind-card" data-open-card="${item.id}">
+              <div class="ind-card-top">
+                <div>
+                  <div class="ind-name">${item.name}</div>
+                  <div class="ind-period">${item.period}</div>
+                </div>
+                <span class="badge ${getSignalClass(item.signal)}">${item.signalLabel}</span>
+              </div>
+              <div class="ind-value tabular-nums">${item.value}</div>
+              <div class="ind-summary">${item.summary}</div>
+              <div class="ind-card-foot">
+                <span class="ind-source">${item.officialSource}</span>
+                <span class="ind-learn">Details <span aria-hidden="true">&rarr;</span></span>
+              </div>
+            </button>
+          `).join("");
+
+          htmlParts.push(`
+            <div class="step-group">
+              <div class="step-header ${meta.headerClass}">
+                <div>
+                  <h3 class="step-header-title">${meta.title}</h3>
+                  <div class="step-header-sub">${meta.sub}</div>
+                </div>
+                <span class="badge" style="background:rgba(255,255,255,0.16);color:#ffffff;border-color:rgba(255,255,255,0.25);">${items.length} shown</span>
+              </div>
+              <div class="indicator-grid">${cardsHtml}</div>
+            </div>
+          `);
+        });
+
+        container.innerHTML = htmlParts.join("");
+      }
+
+      function syncFilterPills() {
+        document.querySelectorAll("[data-step-filter]").forEach((btn) => {
+          const active = btn.dataset.stepFilter === state.stepFilter;
+          btn.classList.toggle("active", active);
+          btn.setAttribute("aria-selected", String(active));
+        });
+        document.querySelectorAll("[data-signal-filter]").forEach((btn) => {
+          const active = btn.dataset.signalFilter === state.signalFilter;
+          btn.classList.toggle("active", active);
+          btn.setAttribute("aria-selected", String(active));
+        });
+      }
+
+      function resetAllFilters() {
+        state.stepFilter = "all";
+        state.signalFilter = "all";
+        state.searchQuery = "";
+        const searchInput = document.getElementById("indicatorSearch");
+        const clearBtn = document.getElementById("btnClearSearch");
+        if (searchInput) searchInput.value = "";
+        if (clearBtn) clearBtn.classList.remove("visible");
+        syncFilterPills();
+        renderIndicatorList();
+      }
+
+      /* ---------------------------------------------------------------------
+         7. BOTTOM-SHEET MODAL ENGINE (SWIPE DOWN TO DISMISS + SWIPE L/R)
+         --------------------------------------------------------------------- */
+      let openModalId = null;
+
+      function openBackdrop(backdropEl, sheetEl) {
+        if (!backdropEl || !sheetEl) return;
+        sheetEl.style.transition = "";
+        sheetEl.style.transform = "";
+        backdropEl.classList.add("open");
+        backdropEl.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        openModalId = backdropEl.id;
+      }
+
+      function closeBackdrop(backdropEl, sheetEl) {
+        if (!backdropEl || !sheetEl) return;
+        sheetEl.style.transition = "";
+        sheetEl.style.transform = "";
+        backdropEl.classList.remove("open");
+        backdropEl.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+        openModalId = null;
+      }
+
+      function renderIndicatorModal(direction) {
+        const id = state.modalListIds[state.modalIndex];
+        const item = INDICATORS.find((x) => x.id === id);
+        if (!item) return;
+
+        document.getElementById("indModalStepBadge").textContent = item.stepLabel;
+        document.getElementById("indModalTitle").textContent = item.name;
+        document.getElementById("indModalCounter").textContent = `${state.modalIndex + 1} of ${state.modalListIds.length}`;
+
+        const verdictBoxClass = item.signal === "good"
+          ? "verdict-good"
+          : item.signal === "watch"
+            ? "verdict-watch"
+            : "verdict-warn";
+
+        const contentEl = document.getElementById("indModalContent");
+        contentEl.classList.remove("anim-next", "anim-prev");
+        void contentEl.offsetWidth; // trigger reflow for animation
+        if (direction === "next") contentEl.classList.add("anim-next");
+        if (direction === "prev") contentEl.classList.add("anim-prev");
+
+        contentEl.innerHTML = `
+          <div class="modal-reading-banner">
+            <div>
+              <div class="modal-reading-val tabular-nums">${item.value}</div>
+              <div class="modal-reading-period">${item.period} | Source: ${item.officialSource}</div>
+            </div>
+            <span class="badge ${getSignalClass(item.signal)}" style="font-size:0.8125rem;padding:8px 12px;">${item.signalLabel}</span>
+          </div>
+
+          <div class="explainer-block">
+            <div class="explainer-label">Latest Update</div>
+            <p class="explainer-text">${item.summary}</p>
+          </div>
+
+          <div class="explainer-block">
+            <div class="explainer-label">What Is It? (Plain English)</div>
+            <p class="explainer-text">${item.plainEnglishDefinition}</p>
+          </div>
+
+          <div class="explainer-block">
+            <div class="explainer-label">What It Tells Us About the Economy</div>
+            <p class="explainer-text">${item.whyItMatters}</p>
+          </div>
+
+          <div class="explainer-block example-block">
+            <div class="explainer-label">Everyday Indian Example</div>
+            <p class="explainer-text">${item.everydayIndianExample}</p>
+          </div>
+
+          <div class="explainer-block ${verdictBoxClass}" style="margin-bottom:0;">
+            <div class="explainer-label">Is Today's Situation Good or Bad?</div>
+            <p class="explainer-text">${item.goodOrBadVerdict}</p>
+          </div>
+        `;
+
+        // Scroll sheet body back to top smoothly on switch
+        const bodyEl = document.getElementById("indicatorSheetBody");
+        if (bodyEl) bodyEl.scrollTop = 0;
+      }
+
+      function openIndicatorModal(indicatorId, useAllList) {
+        const list = useAllList || !state.filteredIds.includes(indicatorId)
+          ? INDICATORS.map((i) => i.id)
+          : state.filteredIds.slice();
+        state.modalListIds = list;
+        state.modalIndex = Math.max(0, list.indexOf(indicatorId));
+        renderIndicatorModal(null);
+        openBackdrop(
+          document.getElementById("indicatorModal"),
+          document.getElementById("indicatorSheet")
+        );
+      }
+
+      function stepIndicatorModal(delta) {
+        if (!state.modalListIds.length) return;
+        const len = state.modalListIds.length;
+        state.modalIndex = (state.modalIndex + delta + len) % len;
+        renderIndicatorModal(delta > 0 ? "next" : "prev");
+      }
+
+      /* Touch Swipe-Down-to-Dismiss on Sheet Drag Zone */
+      function attachSwipeDownDismiss(dragZoneEl, backdropEl, sheetEl) {
+        if (!dragZoneEl || !backdropEl || !sheetEl) return;
+        let startY = 0;
+        let currentY = 0;
+        let dragging = false;
+
+        dragZoneEl.addEventListener("touchstart", (e) => {
+          if (window.innerWidth >= 768) return;
+          if (e.target.closest(".sheet-close")) return;
+          startY = e.touches[0].clientY;
+          currentY = startY;
+          dragging = true;
+          sheetEl.style.transition = "none";
+        }, { passive: true });
+
+        dragZoneEl.addEventListener("touchmove", (e) => {
+          if (!dragging) return;
+          currentY = e.touches[0].clientY;
+          const dy = currentY - startY;
+          if (dy > 0) {
+            e.preventDefault();
+            sheetEl.style.transform = `translateY(${dy}px)`;
+          }
+        }, { passive: false });
+
+        dragZoneEl.addEventListener("touchend", () => {
+          if (!dragging) return;
+          dragging = false;
+          const dy = currentY - startY;
+          sheetEl.style.transition = "transform 0.28s cubic-bezier(0.22, 1, 0.36, 1)";
+          if (dy > 85) {
+            sheetEl.style.transform = "translateY(100%)";
+            setTimeout(() => {
+              closeBackdrop(backdropEl, sheetEl);
+            }, 220);
+          } else {
+            sheetEl.style.transform = "translateY(0)";
+          }
+        });
+      }
+
+      /* Touch Swipe Left / Right Between Indicators Inside Explainer Sheet Body */
+      function attachHorizontalIndicatorSwipe(sheetBodyEl) {
+        if (!sheetBodyEl) return;
+        let startX = 0;
+        let startY = 0;
+        let endX = 0;
+        let endY = 0;
+        let tracking = false;
+
+        sheetBodyEl.addEventListener("touchstart", (e) => {
+          if (e.touches.length !== 1) return;
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          endX = startX;
+          endY = startY;
+          tracking = true;
+        }, { passive: true });
+
+        sheetBodyEl.addEventListener("touchmove", (e) => {
+          if (!tracking) return;
+          endX = e.touches[0].clientX;
+          endY = e.touches[0].clientY;
+        }, { passive: true });
+
+        sheetBodyEl.addEventListener("touchend", () => {
+          if (!tracking) return;
+          tracking = false;
+          const dx = endX - startX;
+          const dy = endY - startY;
+          // Trigger only on deliberate horizontal swipe (not vertical reading scroll)
+          if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+            if (dx < 0) {
+              stepIndicatorModal(1);  // Swipe left -> Next
+            } else {
+              stepIndicatorModal(-1); // Swipe right -> Previous
+            }
+          }
+        });
+      }
+
+      /* ---------------------------------------------------------------------
+         8. INITIALIZATION & EVENT WIRING
+         --------------------------------------------------------------------- */
+      function init() {
+        try {
+          renderPhase("expansion");
+          renderIndicatorList();
+
+          // Phase tabs & SVG zones
+          document.querySelectorAll("[data-phase]").forEach((el) => {
+            el.addEventListener("click", () => {
+              renderPhase(el.getAttribute("data-phase"));
+            });
+          });
+
+          // Scorecard tiles -> filter & scroll to indicators
+          document.querySelectorAll("[data-score-filter]").forEach((tile) => {
+            tile.addEventListener("click", () => {
+              const sig = tile.getAttribute("data-score-filter");
+              state.stepFilter = "all";
+              state.signalFilter = sig;
+              syncFilterPills();
+              renderIndicatorList();
+              const sec = document.getElementById("secIndicators");
+              if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+          });
+
+          // 4 Key Health Gauges -> open Indicator Explainer Modal
+          document.querySelectorAll("[data-open-indicator]").forEach((gauge) => {
+            gauge.addEventListener("click", () => {
+              const id = Number(gauge.getAttribute("data-open-indicator"));
+              openIndicatorModal(id, true);
+            });
+          });
+
+          // Step filter pills
+          document.querySelectorAll("[data-step-filter]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              state.stepFilter = btn.dataset.stepFilter;
+              syncFilterPills();
+              renderIndicatorList();
+            });
+          });
+
+          // Signal filter pills
+          document.querySelectorAll("[data-signal-filter]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              state.signalFilter = btn.dataset.signalFilter;
+              syncFilterPills();
+              renderIndicatorList();
+            });
+          });
+
+          // Search input & clear button
+          const searchInput = document.getElementById("indicatorSearch");
+          const clearBtn = document.getElementById("btnClearSearch");
+          if (searchInput) {
+            searchInput.addEventListener("input", () => {
+              state.searchQuery = searchInput.value;
+              if (clearBtn) clearBtn.classList.toggle("visible", searchInput.value.length > 0);
+              renderIndicatorList();
+            });
+          }
+          if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+              searchInput.value = "";
+              state.searchQuery = "";
+              clearBtn.classList.remove("visible");
+              renderIndicatorList();
+              searchInput.focus();
+            });
+          }
+
+          const resetBtn = document.getElementById("btnResetFilters");
+          if (resetBtn) resetBtn.addEventListener("click", resetAllFilters);
+
+          // Indicator Card clicks (event delegation)
+          const groupsContainer = document.getElementById("indicatorGroupsContainer");
+          if (groupsContainer) {
+            groupsContainer.addEventListener("click", (e) => {
+              const card = e.target.closest("[data-open-card]");
+              if (!card) return;
+              const id = Number(card.getAttribute("data-open-card"));
+              openIndicatorModal(id, false);
+            });
+          }
+
+          // Indicator Explainer Modal Controls
+          const indModal = document.getElementById("indicatorModal");
+          const indSheet = document.getElementById("indicatorSheet");
+          document.getElementById("btnCloseIndModal").addEventListener("click", () => closeBackdrop(indModal, indSheet));
+          indModal.addEventListener("click", (e) => {
+            if (e.target === indModal) closeBackdrop(indModal, indSheet);
+          });
+          document.getElementById("btnPrevIndicator").addEventListener("click", () => stepIndicatorModal(-1));
+          document.getElementById("btnNextIndicator").addEventListener("click", () => stepIndicatorModal(1));
+
+          attachSwipeDownDismiss(document.getElementById("indicatorDragZone"), indModal, indSheet);
+          attachHorizontalIndicatorSwipe(document.getElementById("indicatorSheetBody"));
+
+          // 30-Second Guide Modal Controls
+          const guideModal = document.getElementById("guideModal");
+          const guideSheet = document.getElementById("guideSheet");
+          document.getElementById("btnOpenGuide").addEventListener("click", () => openBackdrop(guideModal, guideSheet));
+          document.getElementById("btnCloseGuide").addEventListener("click", () => closeBackdrop(guideModal, guideSheet));
+          document.getElementById("btnGotItGuide").addEventListener("click", () => closeBackdrop(guideModal, guideSheet));
+          guideModal.addEventListener("click", (e) => {
+            if (e.target === guideModal) closeBackdrop(guideModal, guideSheet);
+          });
+          attachSwipeDownDismiss(document.getElementById("guideDragZone"), guideModal, guideSheet);
+
+          // Desktop Keyboard Support (ArrowLeft, ArrowRight, Escape)
+          document.addEventListener("keydown", (e) => {
+            if (!openModalId) return;
+            if (e.key === "Escape") {
+              if (openModalId === "indicatorModal") closeBackdrop(indModal, indSheet);
+              if (openModalId === "guideModal") closeBackdrop(guideModal, guideSheet);
+            } else if (openModalId === "indicatorModal") {
+              if (e.key === "ArrowRight") stepIndicatorModal(1);
+              if (e.key === "ArrowLeft") stepIndicatorModal(-1);
+            }
+          });
+
+          // Copy WhatsApp Summary
+          document.getElementById("btnCopyWhatsapp").addEventListener("click", () => {
+            copyToClipboard(getWhatsappSummaryText(), "WhatsApp summary copied! Paste and share.");
+          });
+
+
+          // Sticky Mobile Quick-Nav Bar
+          const mobileNavBtns = document.querySelectorAll(".mobile-nav-btn");
+          mobileNavBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const target = btn.dataset.nav;
+              if (target === "share") {
+                copyToClipboard(getWhatsappSummaryText(), "WhatsApp summary copied! Paste and share.");
+                return;
+              }
+              mobileNavBtns.forEach((b) => b.classList.toggle("active", b === btn));
+              const sec = document.getElementById(target);
+              if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+          });
+
+          // Update active mobile nav tab while scrolling
+          const observedIds = ["secOverview", "secIndicators", "secCalendar"];
+          if ("IntersectionObserver" in window) {
+            const io = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  mobileNavBtns.forEach((b) => {
+                    if (b.dataset.nav !== "share") {
+                      b.classList.toggle("active", b.dataset.nav === entry.target.id);
+                    }
+                  });
+                }
+              });
+            }, { rootMargin: "-30% 0px -55% 0px", threshold: 0.01 });
+
+            observedIds.forEach((id) => {
+              const el = document.getElementById(id);
+              if (el) io.observe(el);
+            });
+          }
+        } catch (err) {
+          console.error("Dashboard initialization error:", err);
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "recovery": {
+    "title": "1. Recovery (bouncing back)",
+    "badge": "Below trend, heading up",
+    "badgeClass": "badge-accent",
+    "growth": "The economy has passed its lowest point and starts growing again, though activity is still below its normal long-term level.",
+    "jobs": "Layoffs slow down. Companies first ask existing staff to work overtime before opening large new hiring drives.",
+    "prices": "Inflation stays calm and comfortable because factories and workers still have plenty of spare capacity.",
+    "borrowing": "Interest rates are usually low to encourage families and businesses to borrow and spend again.",
+    "everyday": "Stores offer good deals, EMIs feel lighter, and stock markets often start rising months before daily news feels cheerful."
+  },
+  "expansion": {
+    "title": "2. Expansion / boom (India today)",
+    "badge": "Above trend, still rising",
+    "badgeClass": "badge-good",
+    "growth": "Business activity climbs above its long-term normal trend. Factories run near full speed and companies build new plants.",
+    "jobs": "Hiring is strong across sectors and unemployment drops. Late in a boom, skilled workers become harder to find.",
+    "prices": "Prices start rising faster as strong demand meets limited supply, pushing inflation above central bank comfort zones.",
+    "borrowing": "Loan demand surges for homes, cars, and business expansion. Central banks begin nudging interest rates up to prevent overheating.",
+    "everyday": "Showrooms and malls are packed, salaries and stock portfolios look healthy, but grocery bills and new loan EMIs start creeping higher."
+  },
+  "slowdown": {
+    "title": "3. Slowdown (easing off the gas)",
+    "badge": "Past peak, cooling down",
+    "badgeClass": "badge-watch",
+    "growth": "The economy is still growing above normal, but the speed starts slowing down after passing its peak.",
+    "jobs": "Companies keep hiring, but much more selectively and at a slower pace than during the boom.",
+    "prices": "Inflation stays stubborn near the peak before slowly cooling off after higher interest rates bite.",
+    "borrowing": "Higher interest rates make home, car, and business loans costlier, so credit growth gradually moderates.",
+    "everyday": "Sales slow slightly before factories cut output, so unsold stock builds up. Investors begin preferring steady, defensive businesses."
+  },
+  "contraction": {
+    "title": "4. Contraction (downturn)",
+    "badge": "Below normal trend",
+    "badgeClass": "badge-warn",
+    "growth": "Economic activity drops below its normal trend. If the drop is broad and lasts long enough, it becomes a recession.",
+    "jobs": "Companies first cut overtime and freeze new hiring, and may later trim staff if sales stay weak. Unemployment rises.",
+    "prices": "Price rises slow down noticeably (disinflation) as families hold back on non-essential spending.",
+    "borrowing": "Banks get cautious about lending, while the central bank cuts interest rates to support the economy.",
+    "everyday": "Families delay big purchases like cars or holidays, focus on essentials, and favor safer savings like government bonds and fixed deposits."
+  }
+}
