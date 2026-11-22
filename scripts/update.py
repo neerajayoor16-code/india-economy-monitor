@@ -33,6 +33,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
+import cyclecurve  # noqa: E402
 import rules  # noqa: E402
 import textgen  # noqa: E402
 from fetchers import GROUP_INDICATORS, GROUPS, INDICATOR_IDS, FetchError, NoNewRelease  # noqa: E402
@@ -254,10 +255,14 @@ GAUGES = [  # the four "key health gauges": scale, healthy zone, reference line
     {"key": "oecd_cli", "min": 98, "max": 103, "zone": [100, 103], "ref": 100, "refTitle": "Normal trend line 100.0",
      "axis": ["98.0", "Normal line: 100.0", "103.0"]},
 ]
-# "You are here" marker: a point on the wave drawing for each phase (midpoints of each curve segment;
-# late expansion sits near the peak).
-MARKER = {"recovery": (160, 195), "expansion": (334, 81), "late_expansion": (386, 68), "slowdown": (510, 81),
-          "contraction": (684, 195)}
+# "You are here" marker: only the x position of each phase is chosen here (middle of the phase zone;
+# late expansion sits just before the peak). The height always comes from the curve itself.
+MARKER_X = {"recovery": 160, "expansion": 334, "late_expansion": 386, "slowdown": 510, "contraction": 684}
+
+
+def marker_xy(phase: str) -> tuple[int, float]:
+    x = MARKER_X[phase]
+    return x, round(cyclecurve.curve_y(x), 2)
 STEP_HEAD = {"past": "🔎 *Past / lagging:*", "present": "⚡ *Present / coincident:*", "future": "🔦 *Future / leading:*"}
 
 
@@ -292,7 +297,7 @@ def compose_site(state: dict, explainers: dict, signals: dict, calendar: dict, t
         signposts.append({**e, "dateLabel": label})
 
     mk = "late_expansion" if phase["headline"] == "Late-stage expansion" else phase["key"]
-    mx, my = MARKER[mk]
+    mx, my = marker_xy(mk)
     pill_x = min(max(mx - 71, 60), 640)
     as_of = today.strftime("%B %-d, %Y")
     wa = [f"🇮🇳 *India Economic Health Monitor* ({today.strftime('%b %-d, %Y')})", "",
@@ -307,6 +312,7 @@ def compose_site(state: dict, explainers: dict, signals: dict, calendar: dict, t
     return {
         "asOf": as_of, "phaseKey": phase["key"], "phaseHeadline": phase["headline"], "verdictSummary": summary,
         "counts": counts, "gauges": gauges, "signposts": signposts, "whatsapp": "\n".join(wa),
+        "wave": {"d": cyclecurve.path_d()},
         "marker": {"x": mx, "y": my, "pillX": pill_x, "lineX": pill_x + 71, "label": f"You are here: {phase['headline']}"},
         "youAreHereBadge": f"You are here ({today.strftime('%b %Y')})",
     }

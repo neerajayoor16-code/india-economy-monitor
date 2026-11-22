@@ -81,7 +81,7 @@ def js_json(obj) -> Markup:
 
 
 def check_site(site: dict, phases: dict) -> None:
-    need = {"asOf", "phaseKey", "phaseHeadline", "verdictSummary", "counts", "gauges", "signposts", "whatsapp", "marker", "youAreHereBadge"}
+    need = {"asOf", "phaseKey", "phaseHeadline", "verdictSummary", "counts", "gauges", "signposts", "whatsapp", "marker", "youAreHereBadge", "wave"}
     missing = need - set(site)
     if missing:
         raise BuildError(f"site.json is missing {sorted(missing)}")
@@ -90,6 +90,8 @@ def check_site(site: dict, phases: dict) -> None:
     c = site["counts"]
     if c["good"] + c["watch"] + c["warn"] != c["total"]:
         raise BuildError(f"signal counts do not add up: {c}")
+    if not str(site["wave"].get("d", "")).startswith("M "):
+        raise BuildError("site.json wave.d must be an SVG path text")
     if len(site["gauges"]) != 4:
         raise BuildError("site.json must have 4 gauges")
 
