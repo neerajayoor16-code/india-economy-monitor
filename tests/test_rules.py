@@ -113,3 +113,9 @@ def test_phase_four_quadrants(value, rising, expected):
 def test_phase_without_cli_fails_loudly():
     with pytest.raises(ValueError):
         rules.phase_for(None, {})
+
+
+# --------------------------------------------------------------------- number reader (textgen)
+def test_numbers_in_reads_whole_numbers():
+    import textgen
+    assert textgen.numbers_in("Rs. 10,000 and 10000 and 2,31,290 and 6.09% and -1.5") == [10000, 10000, 231290, 6.09, 1.5]

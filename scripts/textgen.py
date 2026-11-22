@@ -36,7 +36,8 @@ DOWN_WORDS = r"\b(fell|falls|fallen|down|decreased?|lower|dropped|declined|slowe
 def numbers_in(text: str) -> list[float]:
     """All numbers in a text. Indian grouping (2,31,290) and signs are handled; years are kept."""
     out = []
-    for m in re.finditer(r"(?<![\w.])[-+]?\d{1,3}(?:,\d{2,3})*(?:\.\d+)?|(?<![\w.])[-+]?\d+(?:\.\d+)?", text):
+    # Either a comma-grouped number (10,000 or 2,31,290) or a plain run of digits (10000), with optional decimals.
+    for m in re.finditer(r"(?<![\w.])[-+]?(?:\d{1,3}(?:,\d{2,3})+|\d+)(?:\.\d+)?", text):
         tok = m.group(0).replace(",", "")
         try:
             out.append(abs(float(tok)))
