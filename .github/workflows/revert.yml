@@ -1,0 +1,38 @@
+# Undo one automatic update. Actions -> "Revert an update" -> Run workflow -> paste the commit ID
+# from the "Update log" issue. It makes a new commit that reverses that update; nothing is deleted.
+name: Revert an update
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: "Commit ID of the update to undo"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  revert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check the commit is an automatic data update
+        run: |
+          msg=$(git log -1 --format=%s "${{ inputs.sha }}")
+          echo "Commit message: $msg"
+          case "$msg" in
+            "Data update "*) ;;
+            *) echo "::error::This commit is not an automatic data update. Refusing to revert it."; exit 1 ;;
+          esac
+
+      - name: Revert and publish
+        run: |
+          git config user.name "india-economy-monitor bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git revert --no-edit "${{ inputs.sha }}"
+          git push

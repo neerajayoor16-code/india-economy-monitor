@@ -313,7 +313,10 @@ def main() -> int:
     args = ap.parse_args()
 
     now = dt.datetime.now(IST)
-    today, now_iso = now.date(), now.isoformat(timespec="seconds")
+    # Saved check times are dates only, so a run that finds nothing new changes no committed file
+    # (exact times are in the run log).
+    today = now.date()
+    now_iso = today.isoformat()
     state = load("latest.json", {"readings": {}, "status": {}, "texts": {}, "signals": {}})
     explainers = load("explainers.json", None)
     if not explainers or set(explainers) != set(INDICATOR_IDS):
