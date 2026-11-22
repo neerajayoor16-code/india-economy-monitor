@@ -1,0 +1,20 @@
+[
+  {
+    "key": "past",
+    "headerClass": "",
+    "title": "Step 1: Past / lagging indicators (5)",
+    "sub": "The Rearview Mirror: confirms what the economy has been doing"
+  },
+  {
+    "key": "present",
+    "headerClass": "step-present",
+    "title": "Step 2: Present / coincident indicators (6)",
+    "sub": "The Speedometer: measures how fast the economy is moving right now"
+  },
+  {
+    "key": "future",
+    "headerClass": "step-future",
+    "title": "Step 3: Future / leading indicators (5)",
+    "sub": "The Headlights: signals where the economy is likely heading next"
+  }
+]
