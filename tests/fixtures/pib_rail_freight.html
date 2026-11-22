@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head id="Head1"><title>
+	Press Release Page | Press Information Bureau
+</title><link href="css/style.css?v=1" rel="stylesheet" type="text/css" /><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="alternate stylesheet" href="css/change.css?v=1" media="screen" title="change" /><link rel="alternate stylesheet" href="css/green.css?v=1" media="screen" title="green" /><link rel="alternate stylesheet" href="css/yellow.css" media="screen" title="yellow" /><link rel="stylesheet" type="text/css" href="css/prtint.css" media="print" /><link rel="stylesheet" href="css/style3.1.css" type="text/css" /><link id="pibA11yCss" rel="stylesheet" href="/css/accessibility.css?v=7" type="text/css" />
+    <script type="text/javascript">
+        (function (d) {
+            var t = "";
+            try {
+                t = window.localStorage.getItem("pibStyle") || "";
+            } catch (e) {
+                t = "";
+            }
+            if (t === "orange") {
+                t = "yellow";
+            }
+            var c = t === "change" ? " pib-hc"
+                : t === "green" ? " pib-theme-green"
+                : t === "yellow" ? " pib-theme-yellow" : "";
+            d.documentElement.className += c + " pib-a11y-content";
+        }(document));
+    </script>
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/accessibility.js?v=7"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                  function getParameterByName(name) {
+                        var url = window.location.href;
+                        name = name.replace(/[\[\]]/g, '\\$&');
+                        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                              results = regex.exec(url);
+                        if (!results) return null;
+                        if (!results[2]) return '';
+                        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                  }
+                  let prid = parseInt(getParameterByName('PRID'), 10);
+
+                  if (!isNaN(prid) && prid > 0) {
+                        $.ajax({
+                              type: "POST",
+                              url: "AjaxMethod.aspx/UpdatePRHitCount",
+                              async: false,
+                              data: JSON.stringify({ 'PermId': prid }),
+                              contentType: "application/json; charset=utf-8",
+                              dataType: "json",
+                              success: function (response) {
+                                    console.log(response);
+                              },
+                              error: function (error) {
+                                    console.log("Error in AJAX request", error);
+                              }
+                        });
+                  } else {
+                        console.log("Invalid parameters:", prid);
+                  }
+            });
+    </script>
+    <style type="text/css">
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+
+        full-width {
+            width: 100%;
+        }
+
+        .logo-left, .logo-center, .countdown {
+            display: flex;
+            align-items: center;
+        }
+
+            .logo-left img, .logo-center img {
+                height: 70px;
+            }
+
+        .countdown {
+            text-align: center;
+            background-color: var(--dbim-text, #150202);
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid grey;
+        }
+
+        .firstnumber {
+            color: #000000;
+            position: absolute;
+            top: 50px;
+            right: 90px;
+            font-size: 30px;
+        }
+
+        .secondnumber {
+            position: absolute;
+            color: #000000;
+            right: 45px;
+            top: 50px;
+            font-size: 30px;
+        }
+
+        .countdown .days {
+            font-size: 35px;
+            color: gold;
+        }
+
+        .countdown p {
+            margin: 0;
+        }
+
+        .countdown .text {
+            font-size: 16px;
+        }
+
+        a {
+            word-break: break-all;
+        }
+
+        iframe, img {
+            max-width: 100%;
+        }
+        .innner-page-main-about-us-content-right-part ul > li, .content-area ul > li {
+  /*list-style: none !important;*/
+}
+        /* === DBIM 3.0 Option 4 Separator Line & Reading Meta Styling === */
+        .pr-share--footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-top: 1px solid var(--dbim-border, #d1d5db);
+            padding-top: 16px;
+            margin-top: 24px;
+        }
+
+        .pr-share__left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .pr-reading-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--dbim-text-secondary, #475569);
+            font-weight: 500;
+            white-space: nowrap;
+            margin-left: auto;
+        }
+
+        .pr-reading-meta__item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pr-reading-meta__divider {
+            color: var(--dbim-border, #cbd5e1);
+            font-weight: 300;
+        }
+
+        .pib-hc .pr-reading-meta,
+        .pib-hc .pr-reading-meta svg {
+            color: currentColor !important;
+        }
+
+        @media (max-width: 680px) {
+            .pr-share--footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pr-reading-meta {
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        @media(max-width:1199px) {
+            .firstnumber {
+                top: 40px;
+                right: 72px;
+                font-size: 30px;
+            }
+
+            .secondnumber {
+                right: 35px;
+                top: 40px;
+                font-size: 30px;
+            }
+        }
+
+        @media(max-width:990px) {
+            .firstnumber {
+                top: 25px;
+                right: 54px;
+                font-size: 30px;
+            }
+
+            .secondnumber {
+                right: 25px;
+                top: 25px;
+                font-size: 30px;
+            }
+        }
+
+        @media(max-width:768px) {
+            .countdown, .days {
+                font-size: 12px !important;
+            }
+
+            .firstnumber {
+                top: 25%;
+                right: 8%;
+                font-size: 30px;
+            }
+
+            .secondnumber {
+                right: 4.5%;
+                top: 25%;
+                font-size: 30px;
+            }
+        }
+
+        @media(max-width:475px) {
+            .countdown, .days {
+                font-size: 10px !important;
+                top: 20%;
+            }
+
+            .bannerimgdiv {
+                padding: 0 !important;
+            }
+
+            .bannerimg {
+                width: 108% !important;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+$(function () {
+    $("[id*=printPDF]").click(function () {
+        $("[id*=hfGridHtml]").val($("#PdfDiv").html());
+    });
+});
+$(function () {
+    $("[id*=printPDFEvent]").click(function () {
+        $("[id*=hfGridHtml]").val($("#PdfDiv").html());
+    });
+});
+</script>
+
+    <link id="pibConsentCss" href="/css/consent.css?v=8" rel="stylesheet" type="text/css" /><link id="pibFontsCss" href="/css/fonts-noto.css?v=6" rel="stylesheet" type="text/css" /><link id="pibDbimCss" href="/css/dbim.css?v=1120" rel="stylesheet" type="text/css" /><meta property="og:title" content="Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026" /><meta property="og:url" content="https://pib.gov.in/PressReleasePage.aspx?PRID=2332375" /><meta property="og:description" content="Indian Railways continued its strong operational performance during October 2026, registering robust growth in freight transportation. Higher freight loading and increased freight earnings reflect Ind" /><meta property="og:image" content="https://static.pib.gov.in/WriteReadData/specificdocs/photo/2026/sep/ph_9780_20260902_18024501.png" /><meta property="og:type" content="article" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:image" content="https://static.pib.gov.in/WriteReadData/specificdocs/photo/2026/sep/ph_9780_20260902_18024501.png" />
+                                <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="C4E7H-KSCMC-422L4-W3EM5-U36MF",function(){function e(){if(!i){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,o.parentNode.appendChild(e),i=!0}}function t(e){i=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(o.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",o.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"C4E7H-KSCMC-422L4-W3EM5-U36MF";var o=document.currentScript||document.getElementsByTagName("script")[0],i=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!i)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),o.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="ubhwv5ixibyjq2ydc2pa-f-1f08a95cc-clientnsv4-s.akamaihd.net",o="false"=="true"?2:1,i={"ak.v":"41","ak.cp":"1825201","ak.ai":parseInt("1215205",10),"ak.ol":"0","ak.cr":18,"ak.ipv":4,"ak.proto":"h2","ak.rid":"1b459765","ak.r":41993,"ak.a2":n,"ak.m":"dscb","ak.n":"ff","ak.cport":32768,"ak.gh":"23.52.43.188","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"","ak.t":"1795364510","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==l4eFadTvHTazWKA8oWTlHrz2RQmt0xGlC4FSt7svcDILC3nhV3CPcBTq1xBZS4CXR1yEV99ixpbP0ovgh1JA37D+3h2Zm8csnWYlp8lRAcnTnSU7yZ0x5A0afkZwN4j1/oaMjiJbcYQVGcPikxOmLb8+DyzkXC7Stu5u6gvDdF0CQHfyIL1OeJmPRFJ2+qFG7e4deS4mR6PsATI39hwrvECbo3Z2pzwWWrwSaLyToyfSHG7sjNQbg3Jgo28AfVDEB1wcImK9wrMKvIxiNxhkkIEnAyUjXyzds++6sQdMzo/r+wvDvt9buHNp/oLXtKA9IXHiWw+PMeI2vZaw942ARBHMJKkzibEpbqppcOOsKiuvPnvptykAnFgdCrf+a63GLbXNHTFnse+LFKPmodODR9ksLzIoFQAUwx9psdxfE0E=","ak.pv":"9","ak.dpoabenc":"","ak.tf":o};if(""!==t)i["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))i["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(i)},rv:function(){var e=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:i,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
+     style="position:absolute;width:0;height:0;overflow:hidden" id="dbim-icon-sprite">
+    <defs>
+        <symbol id="icon-angle-double-left" viewBox="0 0 24 24"><path d="M11.6 4.6 4.2 12l7.4 7.4 2.2-2.2L8.6 12l5.2-5.2z"/><path d="M19 4.6 11.6 12 19 19.4l2.2-2.2L16 12l5.2-5.2z"/></symbol>
+        <symbol id="icon-angle-double-right" viewBox="0 0 24 24"><path d="M12.4 4.6 10.2 6.8 15.4 12l-5.2 5.2 2.2 2.2L19.8 12z"/><path d="M5 4.6 2.8 6.8 8 12l-5.2 5.2L5 19.4 12.4 12z"/></symbol>
+        <symbol id="icon-arrow-left" viewBox="0 0 24 24"><path d="M20.8 10.6H9.6v2.8h11.2z"/><path d="M10.8 5.6 3.2 12l7.6 6.4z"/></symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M3.2 10.6h11.2v2.8H3.2z"/><path d="M13.2 5.6 20.8 12l-7.6 6.4z"/></symbol>
+        <symbol id="icon-blogger" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6.4 2.4h11.2a4 4 0 0 1 4 4v11.2a4 4 0 0 1-4 4H6.4a4 4 0 0 1-4-4V6.4a4 4 0 0 1 4-4zm2.8 5.2a2 2 0 0 0 0 4h2.4a2 2 0 0 0 0-4zm0 5.6a2 2 0 0 0 0 4h5.6a2 2 0 0 0 0-4z"/></symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24"><path d="M7.6 2.4H10v2.4H7.6z"/><path d="M14 2.4h2.4v2.4H14z"/><path fill-rule="evenodd" d="M4 4.8h16a1.6 1.6 0 0 1 1.6 1.6v13.2a1.6 1.6 0 0 1-1.6 1.6H4a1.6 1.6 0 0 1-1.6-1.6V6.4A1.6 1.6 0 0 1 4 4.8zm.4 5.6v8.4h15.2v-8.4z"/><path d="M6.4 12.4h3.2v3.2H6.4z"/></symbol>
+        <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M15.4 4.6 8 12l7.4 7.4 2.2-2.2L12.4 12l5.2-5.2z"/></symbol>
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M8.6 4.6 6.4 6.8 11.6 12l-5.2 5.2 2.2 2.2L16 12z"/></symbol>
+        <symbol id="icon-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24"><path d="M10.8 3h2.4v7.6h3.4L12 16.6l-4.6-6h3.4z"/><path d="M4 17.2h2.4v2.4h11.2v-2.4H20v3.2a1.4 1.4 0 0 1-1.4 1.4H5.4A1.4 1.4 0 0 1 4 20.4z"/></symbol>
+        <symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M13.6 21.6v-8.4h2.8l.42-3.3h-3.22V7.8c0-.95.27-1.6 1.64-1.6h1.74V3.26a23 23 0 0 0-2.54-.13c-2.5 0-4.22 1.53-4.22 4.34v2.43H7.4v3.3h2.82v8.4z"/></symbol>
+        <symbol id="icon-fact-check" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.4 3.6 5.6v6.2c0 4.6 3.4 8.6 8.4 9.8 5-1.2 8.4-5.2 8.4-9.8V5.6zm-1 13.2-3.6-3.6 1.7-1.7 1.9 1.9 4.5-4.5 1.7 1.7z"/></symbol>
+        <symbol id="icon-hashtag" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.8 3h2.4l-1 6h3.2l1-6h2.4l-1 6h3.4v2.4h-3.8l-.6 3.2h3.6V17h-4l-1 5h-2.4l1-5h-3.2l-1 5H5.4l1-5H3V14.6h3.8l.6-3.2H3.8V9h4zm.6 8.4-.6 3.2h3.2l.6-3.2z"/></symbol>
+        <symbol id="icon-home" viewBox="0 0 24 24"><path d="M12 3.4 2.8 11.6h2.4v8.4a1 1 0 0 0 1 1h3.3v-5.4h5v5.4h3.3a1 1 0 0 0 1-1v-8.4h2.4z"/></symbol>
+        <symbol id="icon-instagram" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M7.6 2.4h8.8a5.2 5.2 0 0 1 5.2 5.2v8.8a5.2 5.2 0 0 1-5.2 5.2H7.6a5.2 5.2 0 0 1-5.2-5.2V7.6a5.2 5.2 0 0 1 5.2-5.2zm0 2.4a2.8 2.8 0 0 0-2.8 2.8v8.8a2.8 2.8 0 0 0 2.8 2.8h8.8a2.8 2.8 0 0 0 2.8-2.8V7.6a2.8 2.8 0 0 0-2.8-2.8z"/><path fill-rule="evenodd" d="M12 6.8a5.2 5.2 0 1 0 0 10.4 5.2 5.2 0 0 0 0-10.4zm0 2.4a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/><circle cx="17.3" cy="6.7" r="1.3"/></symbol>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24"><path d="M4.8 8.8h3.6v12H4.8z"/><circle cx="6.6" cy="5.4" r="2.1"/><path d="M10.8 8.8h3.45v1.65h.05c.48-.9 1.65-1.85 3.4-1.85 3.63 0 4.3 2.35 4.3 5.4v6.6h-3.6v-5.85c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1v5.95h-3.6z"/></symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24"><path d="M2.4 7.6v9.2a1.6 1.6 0 0 0 1.6 1.6h16a1.6 1.6 0 0 0 1.6-1.6V7.6L12 14z"/><path d="M21.2 5.4H2.8L12 11.8z"/></symbol>
+        <symbol id="icon-mail-open" viewBox="0 0 24 24"><path d="M2.4 9.8h19.2v9.6A1.6 1.6 0 0 1 20 21H4a1.6 1.6 0 0 1-1.6-1.6z"/><path d="M12 2.6 21.6 9.2h-3.8L12 5.3 6.2 9.2H2.4z"/><path d="m3.9 11.2 8.1 5.4 8.1-5.4 1.5 1.3-9.6 6.4-9.6-6.4z"/></symbol>
+        <symbol id="icon-map-marker" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.4a7 7 0 0 0-7 7c0 5.2 7 12.2 7 12.2s7-7 7-12.2a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z"/></symbol>
+        <symbol id="icon-newspaper" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2.8 4.4h14.8v15.2H2.8zm2 2v11.2h10.8V6.4z"/><path d="M6 7.6h8.4v1.6H6z"/><path d="M6 10.8h8.4v1.6H6z"/><path d="M6 14h5.2v1.6H6z"/><path d="M18.4 8.4h2.8v9.6a1.4 1.4 0 0 1-2.8 0z"/></symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24"><rect x="7.4" y="4" width="3.6" height="16" rx="0.9"/><rect x="13" y="4" width="3.6" height="16" rx="0.9"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 4.5v15l12-7.5z"/></symbol>
+        <symbol id="icon-picture" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2.4 5.2h19.2v13.6H2.4zm2 2v9.6h15.2V7.2z"/><path d="M5.6 16.4 10 11l2.6 3 2-2.2 4 4.6z"/><circle cx="8" cy="10.4" r="1.5"/></symbol>
+        <symbol id="icon-press-conference" viewBox="0 0 24 24"><circle cx="12" cy="5.2" r="2.6"/><path d="M7.6 12.2a4.4 4.4 0 0 1 8.8 0z"/><circle cx="4.9" cy="9.6" r="2.2"/><path d="M1.8 15.2a3.1 3.1 0 0 1 6.2 0z"/><circle cx="19.1" cy="9.6" r="2.2"/><path d="M16 15.2a3.1 3.1 0 0 1 6.2 0z"/><path d="M6.6 13.6h10.8l2.2 7.8H4.4z"/></symbol>
+        <symbol id="icon-print" viewBox="0 0 24 24"><path d="M6.4 2.8h11.2v4.4H6.4z"/><path d="M4 8.4h16a1.6 1.6 0 0 1 1.6 1.6v5.6a1.6 1.6 0 0 1-1.6 1.6h-1.6v-2.8H6v2.8H4a1.6 1.6 0 0 1-1.6-1.6V10A1.6 1.6 0 0 1 4 8.4z"/><path d="M7.2 15.6h9.6v5.6H7.2z"/></symbol>
+        <symbol id="icon-rss" viewBox="0 0 24 24"><circle cx="4.8" cy="19.2" r="2.4"/><path d="M2.4 11.2v3.2a6.4 6.4 0 0 1 6.4 6.4H12A9.6 9.6 0 0 0 2.4 11.2z"/><path d="M2.4 4.8V8A13.6 13.6 0 0 1 16 21.6h3.2A16.8 16.8 0 0 0 2.4 4.8z"/></symbol>
+        <symbol id="icon-search-plus" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M10 2.8a7.2 7.2 0 1 0 0 14.4 7.2 7.2 0 0 0 0-14.4zm0 2.4a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6z"/><path d="M15.3 14.6 21.2 20.5l-1.5 1.5-5.9-5.9z"/><path d="M9.2 6.8h1.6v2.4h2.4v1.6h-2.4v2.4H9.2v-2.4H6.8V9.2h2.4z"/></symbol>
+        <symbol id="icon-share" viewBox="0 0 24 24"><circle cx="18" cy="5.6" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="18.4" r="3"/><path d="M8.3 10.9 15.7 7.2l.9 1.8-7.4 3.7z"/><path d="M9.2 13.1 16.6 16.8l-.9 1.8-7.4-3.7z"/></symbol>
+        <symbol id="icon-twitter" viewBox="0 0 24 24"><path d="M4.2 3h4.3l11.3 18h-4.3z"/><path d="M19.3 3h-2.6L4.2 21h2.6z"/></symbol>
+        <symbol id="icon-university" viewBox="0 0 24 24"><path d="M12 2.4 21.6 7.2v1.6H2.4V7.2z"/><path d="M4.8 10.4h2.4v8H4.8z"/><path d="M9.2 10.4h2.4v8H9.2z"/><path d="M13.4 10.4h2.4v8h-2.4z"/><path d="M17.6 10.4H20v8h-2.4z"/><path d="M3.2 19.8h17.6v1.8H3.2z"/></symbol>
+        <symbol id="icon-volume-up" viewBox="0 0 24 24"><path d="M3.2 9.2h3.3l5-4.2v14l-5-4.2H3.2z"/><path d="M14.6 8.4a5 5 0 0 1 0 7.2l1.6 1.6a7.2 7.2 0 0 0 0-10.4z"/><path d="M17.4 5.6a8.8 8.8 0 0 1 0 12.8l1.5 1.5a10.9 10.9 0 0 0 0-15.8z"/></symbol>
+        <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.4a9.5 9.5 0 0 0-8.1 14.5L2.4 21.6l4.8-1.4A9.5 9.5 0 1 0 12 2.4zm0 2.2a7.3 7.3 0 1 1-3.8 13.5l-.4-.2-2.6.7.7-2.5-.3-.4A7.3 7.3 0 0 1 12 4.6z"/><path d="M9.4 7.8c-.2-.5-.4-.5-.6-.5h-.5a1 1 0 0 0-.7.3c-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.7 2.8 4.3 3.8 2.1.8 2.6.7 3 .6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.3-1.6-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.6 6.6 0 0 1-1.2-1.6c-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.5z"/></symbol>
+        <symbol id="icon-youtube" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.9 4.8 12 4.8 12 4.8s-5.9 0-7.6.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8zM10.2 15.1V8.9l5.1 3.1z"/></symbol>
+    </defs>
+</svg>
+
+    <form method="post" action="./PressReleasePage.aspx?PRID=2332375&amp;reg=48&amp;lang=2" id="form1">
+<input type="hidden" name="sc_HiddenField" id="sc_HiddenField" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+
+<script src="/ScriptResource.axd?d=x6wALODbMJK5e0eRC_p1LdIxBJXt0U_WW5GWfJqHAqo6frgCmGRfEywglicTersO2OKrFhK1gAIp0Wk2al2YrpdR3uWqH6f4nfjBsCyRUfTUUVmb0&amp;t=ffffffffecf8d3f2" type="text/javascript"></script>
+<script src="/PressReleasePage.aspx?_TSM_HiddenField_=sc_HiddenField&amp;_TSM_CombinedScripts_=%3b%3bAjaxControlToolkit%2c+Version%3d3.5.7.123%2c+Culture%3dneutral%2c+PublicKeyToken%3d28f01b0e84b6d53e%3aen-US%3a5a4df314-b4a2-4da2-a207-9284f1b1e96c%3ade1feab2%3af2c8e708%3a8613aea7%3af9cec9bc%3a3202a5a2%3aab09e3fe%3a87104b7c%3a720a52bf%3a589eaa30%3aa67c2700%3abe6fb298" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="59B53027" />
+<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="467x2Ns2ps8Q2WChwF3EdWEK5/SjHwA9gYJfeaxLHTazqGjXjjSkPSUxEzuMpe5TWMW6LhpX/8M/VBG1q9YxjC8h/+c9Yk9Mevrr4tbkahIzMC7XHIg61TB0zWUEpQBHoKXcSMxfv2z1IOmQFHIwkTiAyx8l/AwpS9EZqGOMZGZIZElIk8xdPkpJlMTGUBb35HYeTsNGo4G3ScdZWvA6OMWMMm5gkHvkXBtzNciJX5em2HXw4T5PDEuA0vdlBNFgXbpbUB6f44wD8qHB/LhwvFB6euY=" />
+        
+        <div id="templateCss"></div>
+        
+        <input type="hidden" name="hfGridHtml" id="hfGridHtml" />
+        <div class="container" style='margin-bottom: 50px;'>
+            <div id="accessories">
+                
+                <div class="pull-right" style="display: flex">
+                    <div id="voll"></div>
+                    <div id="vollDT"></div>
+                    
+
+<span class="print-icons">
+<input type="image" name="Print1$print" id="Print1_print" aria-label="Print" src="images/printer_icon.png" alt="print page button" style="padding: 5px 10px 5px 10px;" />
+</span>
+                </div>
+            </div>
+            <input type="hidden" name="hydpermid" id="hydpermid" value="2332375" />
+            
+
+            <div class="innner-page-main-about-us-content-right-part">
+                <div id="MinistryName" class="MinistryNameSubhead text-center">
+                    Ministry of Railways
+                </div>
+                <div id="lg_g"><div class='log_oo'>  <img src='https://static.pib.gov.in/WriteReadData/specificdocs/photo/2026/sep/ph_9768_20260902_10000501.png' alt='azadi ka amrit mahotsav' /> </div></div>
+
+                <div class="text-center event-heading-background">
+                    
+                    <h1 id="Titleh2">
+                        Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026
+                    </h1>
+                    <h3 id="Subtitleh3">
+                        <span id="ltrSubtitle"><br/>Food Grains Loading Grows by 26.3%, Domestic Coal by 16.0%, Balance Other Goods by 11.0% and Domestic Container by 6.3% in October 2026 Over October 2025<br/><br/>Coal Supply to Power Houses Rises by 19.5%&#160; in October 2026<br/><br/>Freight Loading Reaches 978.78 Million Tonnes During April–October 2026, Surpassing the Corresponding Period Performance of FY 2025-26</span>
+                    </h3>
+                    
+                    
+                </div>
+
+                
+                
+
+                <div id="PrDateTime" class="ReleaseDateSubHeaddateTime text-center pt20">
+                    Posted On:
+                              04 NOV 2026 11:30AM by PIB Delhi
+                </div>
+                
+                <div class='pt20'>
+                </div>
+                <input type="hidden" name="hydphotoUrl" id="hydphotoUrl" />
+                
+
+                <!-- Release content wrapper for client-side zero-reflow word count -->
+                <div id="pibReleaseBody">
+                    <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Indian Railways continued its strong operational performance during October 2026, registering robust growth in freight transportation. Higher freight loading and increased freight earnings reflect Indian Railways&rsquo; efforts towards supporting economic growth and strengthening the country&rsquo;s logistics sector.</span></p>
+
+<p style="text-align:justify"><strong style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Freight Loading Registers Robust Growth</strong></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Indian Railways achieved its highest-ever freight loading for October, transporting 145.07 million tonnes of freight during the month, compared to 133.93 million tonnes in October 2025, registering a growth of 8.32 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Several major commodities registered encouraging growth during the month. Food Grains loading increased by 26.3 per cent, Domestic Coal by 16.0 per cent, Balance Other Goods by 11.0 per cent, Clinker by 10.4 per cent, Domestic Containers by 6.3 per cent, Iron Ore by 5.0 per cent, Mineral Oil by 1.9 per cent and Finished Steel by 0.5 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">To meet the increased requirement of power houses, Indian Railways stepped up domestic coal transportation, supplying an average of 469.8 rakes per day during October 2026, compared to 393.2 rakes per day in the corresponding month last year, registering a growth of 19.5 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">The strong performance in October 2026 builds upon the growth recorded during the first seven months of FY 2026-27 (April&ndash;October). During this period, Indian Railways loaded 978.78 million tonnes of freight, compared to 935.10 million tonnes during the corresponding period last year, registering a growth of 4.67 per cent.</span></p>
+
+<p style="text-align:justify"><strong style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Passenger Traffic Continues to Grow</strong></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Passenger mobility also witnessed steady growth during October 2026. Indian Railways carried 64.72 crore passengers, compared to 63.52 crore passengers during the corresponding month last year.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">During April&ndash;October 2026, Indian Railways carried 443.8 crore passengers, compared to 431.4 crore during the corresponding period last year. The Non-Suburban segment recorded growth of 4.2 per cent, while the Suburban segment registered an increase of 1.7 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">The growth in freight loading reflects Indian Railways&rsquo; commitment to strengthening logistics and supporting India&rsquo;s economic growth. Through capacity augmentation and improved operational efficiency, Indian Railways continues to enhance its transportation network.</span></p>
+
+<p style="text-align:center"><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px">*****</span></span></p>
+
+<p style="margin-left:-22.5pt; margin-right:-22.5pt; text-align:justify"><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px"><strong><span style="color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dharmendra Tewari/ Dr. Nayan Solanki/ Vanshita Jaiswal</span></strong></span></span></p>
+
+                </div>
+
+                <div id="reel_pic">
+                </div>
+
+                <br />
+                <span id="ReleaseId">(Release ID: 2332375)</span>
+                <span id="lblViews">Visitor Counter : 1301</span>
+                <div>
+                    
+                </div>
+                
+
+                <span id="lblRefPhoto"></span>
+
+                <div class="BackgroundRelease">
+                    
+                </div>
+                <div>
+                    
+                </div>
+                <div class="ReleaseLang">Read this release in: 
+                
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332527' target="_blank">
+                            Telugu </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332425' target="_blank">
+                            Assamese </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332548' target="_blank">
+                            Bengali-TR </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332409' target="_blank">
+                            Urdu </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332450' target="_blank">
+                            हिन्दी </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332666' target="_blank">
+                            Nepali </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332506' target="_blank">
+                            Marathi </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2333168' target="_blank">
+                            Punjabi </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332384' target="_blank">
+                            Gujarati </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332671' target="_blank">
+                            Odia </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332428' target="_blank">
+                            Tamil </a>
+                    
+                        ,
+                    
+                        <a href='https://pib.gov.in/PressReleasePage.aspx?PRID=2332444' target="_blank">
+                            Kannada </a>
+                    
+                </div>
+
+                
+                
+
+                <div class="RelTag">
+                    <ul>
+                        
+                    </ul>
+                </div>
+                <div class="clear">
+                </div>
+
+                <!-- DBIM 3.0 Option 4: Separator Line with Left Share Rail & Right Reading Metrics -->
+                <div class="pr-share pr-share--footer" role="region" aria-label="Share and reading details">
+                    <div class="pr-share__left">
+                        <span class="pr-share__label" aria-hidden="true">Share</span>
+                        <ul class="pr-share__list">
+                            <li><a class="pr-share__btn pr-share__btn--facebook"
+                                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpib.gov.in%2fPressReleasePage.aspx%3fPRID%3d2332375"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="Share on Facebook">
+                                <svg class="dbim-icon dbim-icon-24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <use href="#icon-facebook" xlink:href="#icon-facebook"></use>
+                                </svg>
+                            </a></li>
+                            <li><a class="pr-share__btn pr-share__btn--twitter"
+                                href="https://twitter.com/intent/tweet?url=https%3a%2f%2fpib.gov.in%2fPressReleasePage.aspx%3fPRID%3d2332375"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="Share on X">
+                                <svg class="dbim-icon dbim-icon-24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <use href="#icon-twitter" xlink:href="#icon-twitter"></use>
+                                </svg>
+                            </a></li>
+                            <li><a class="pr-share__btn pr-share__btn--whatsapp"
+                                href="https://api.whatsapp.com/send?text=https%3a%2f%2fpib.gov.in%2fPressReleasePage.aspx%3fPRID%3d2332375"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="Share on WhatsApp">
+                                <svg class="dbim-icon dbim-icon-24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <use href="#icon-whatsapp" xlink:href="#icon-whatsapp"></use>
+                                </svg>
+                            </a></li>
+                            <li><a class="pr-share__btn pr-share__btn--linkedin"
+                                href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fpib.gov.in%2fPressReleasePage.aspx%3fPRID%3d2332375"
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="Share on LinkedIn">
+                                <svg class="dbim-icon dbim-icon-24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <use href="#icon-linkedin" xlink:href="#icon-linkedin"></use>
+                                </svg>
+                            </a></li>
+                            <li><a class="pr-share__btn pr-share__btn--mail"
+                                href="mailto:?subject=Press+release+from+PIB&amp;body=https%3a%2f%2fpib.gov.in%2fPressReleasePage.aspx%3fPRID%3d2332375"
+                                aria-label="Share by email">
+                                <svg class="dbim-icon dbim-icon-24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+                                    <use href="#icon-mail" xlink:href="#icon-mail"></use>
+                                </svg>
+                            </a></li>
+                        </ul>
+                    </div>
+                    <div class="pr-reading-meta" id="prReadingMeta" aria-label="Reading statistics">
+                        <span class="pr-reading-meta__item">
+                            <!-- Modern Document / Word Count Icon -->
+                            <svg class="pr-reading-meta__icon" width="18" height="18" viewbox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false">
+                                <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
+                                <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                            </svg>
+                            <span id="prWordCount">-- words</span>
+                        </span>
+
+                        <span class="pr-reading-meta__divider" aria-hidden="true">|</span>
+
+                        <span class="pr-reading-meta__item">
+                            <!-- Modern Precision Clock / Read Time Icon -->
+                            <svg class="pr-reading-meta__icon" width="18" height="18" viewbox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
+                            </svg>
+                            <span id="prReadTime">-- min read</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div id="RelLink" class="RelLink">
+                    <ul>
+                        
+                    </ul>
+                </div>
+                <center>
+                    
+                </center>
+            </div>
+
+            <div id="update12">
+	
+                    
+                    <input type="hidden" name="Hidden" id="Hidden" />
+                    <div id="P_CategoryManagement" class="ModalWindow" style="display: none">
+		
+                        <div>
+                            <input type="image" name="btnClose" id="btnClose" src="images/close_flat_icon.png" />
+                        </div>
+                        <div id="description">
+                        </div>
+                        <div class="text-center">
+                            <h2>
+                                
+                                <br>
+                                
+                            </h2>
+                        </div>
+                        <br />
+                        <div class="clear">
+                        </div>
+                        
+                    
+	</div>
+                
+</div>
+        </div>
+
+        <div id="PdfDiv" style="display: none;">
+            <table width="100%">
+                <tr>
+                    <td style="font-weight: 200; text-align: center">
+                        Ministry of Railways
+                        <div style="height: 30px; width: 100%;">
+                        </div>
+                        <div style="font-weight: 200; text-align: center; font-size: 30px;">
+                            Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026
+                        </div>
+                        <div style="height: 30px; width: 100%;">
+                        </div>
+                        <div style="font-weight: 200; text-align: center; font-size: 30px;">
+                            <div style='height:30px;width:100%;'></div>Food Grains Loading Grows by 26.3%, Domestic Coal by 16.0%, Balance Other Goods by 11.0% and Domestic Container by 6.3% in October 2026 Over October 2025<div style='height:30px;width:100%;'></div><div style='height:30px;width:100%;'></div>Coal Supply to Power Houses Rises by 19.5%&#160; in October 2026<div style='height:30px;width:100%;'></div><div style='height:30px;width:100%;'></div>Freight Loading Reaches 978.78 Million Tonnes During April–October 2026, Surpassing the Corresponding Period Performance of FY 2025-26
+                        </div>
+                        <div style="height: 30px; width: 100%;">
+                        </div>
+                        <div style="text-align: center; font-size: 14px;">
+                            Posted On:
+                                          04 NOV 2026 11:30AM by PIB Delhi
+                        </div>
+                        <div style="height: 30px; width: 100%;">
+                        </div>
+                        <div style="font-weight: 200; text-align: left; font-size: 16px;">
+                            <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Indian Railways continued its strong operational performance during October 2026, registering robust growth in freight transportation. Higher freight loading and increased freight earnings reflect Indian Railways&rsquo; efforts towards supporting economic growth and strengthening the country&rsquo;s logistics sector.</span></p>
+
+<p style="text-align:justify"><strong style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Freight Loading Registers Robust Growth</strong></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Indian Railways achieved its highest-ever freight loading for October, transporting 145.07 million tonnes of freight during the month, compared to 133.93 million tonnes in October 2025, registering a growth of 8.32 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Several major commodities registered encouraging growth during the month. Food Grains loading increased by 26.3 per cent, Domestic Coal by 16.0 per cent, Balance Other Goods by 11.0 per cent, Clinker by 10.4 per cent, Domestic Containers by 6.3 per cent, Iron Ore by 5.0 per cent, Mineral Oil by 1.9 per cent and Finished Steel by 0.5 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">To meet the increased requirement of power houses, Indian Railways stepped up domestic coal transportation, supplying an average of 469.8 rakes per day during October 2026, compared to 393.2 rakes per day in the corresponding month last year, registering a growth of 19.5 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">The strong performance in October 2026 builds upon the growth recorded during the first seven months of FY 2026-27 (April&ndash;October). During this period, Indian Railways loaded 978.78 million tonnes of freight, compared to 935.10 million tonnes during the corresponding period last year, registering a growth of 4.67 per cent.</span></p>
+
+<p style="text-align:justify"><strong style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Passenger Traffic Continues to Grow</strong></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">Passenger mobility also witnessed steady growth during October 2026. Indian Railways carried 64.72 crore passengers, compared to 63.52 crore passengers during the corresponding month last year.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">During April&ndash;October 2026, Indian Railways carried 443.8 crore passengers, compared to 431.4 crore during the corresponding period last year. The Non-Suburban segment recorded growth of 4.2 per cent, while the Suburban segment registered an increase of 1.7 per cent.</span></p>
+
+<p style="text-align:justify"><span style="font-family:&quot;Times New Roman&quot;,Times,serif; font-size:16px">The growth in freight loading reflects Indian Railways&rsquo; commitment to strengthening logistics and supporting India&rsquo;s economic growth. Through capacity augmentation and improved operational efficiency, Indian Railways continues to enhance its transportation network.</span></p>
+
+<p style="text-align:center"><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px">*****</span></span></p>
+
+<p style="margin-left:-22.5pt; margin-right:-22.5pt; text-align:justify"><span style="font-family:Times New Roman,Times,serif"><span style="font-size:16px"><strong><span style="color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dharmendra Tewari/ Dr. Nayan Solanki/ Vanshita Jaiswal</span></strong></span></span></p>
+
+                        </div>
+                        <div style="height: 30px; width: 100%;">
+                        </div>
+                        <div style="height: 30px; width: 100%;">
+                        </div>
+                        <div style="font-weight: 100; text-align: left; font-size: 16px;">
+                            (Release ID: 2332375)
+                        </div>
+                        <div style="height: 30px; width: 100%;">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 200; text-align: center; font-size: 24px;"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="clearfix">
+        </div>
+
+        <div class="section1">
+            <div id="frst_t">
+                <div id="arr_rm"><div class='sticky-social_mb'><ul class='social_mb'><a href='http://www.facebook.com/share.php?u=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375' target='_blank'><li class='fb_b'   ></li></a><a href='https://twitter.com/intent/tweet?url=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375&text=Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026' target='_blank'><li class='twitter_r'  > </li></a><a href='https://api.whatsapp.com/send?text=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375' target='_blank'><li class='whatsapp_r'  ></li></a><a href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026&body=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375&ui=2&tf=1&pli=1' title='Share by Email' target='_blank'><li class='fa-envelope_r' ></li></a><a href='https://www.linkedin.com/shareArticle?mini=true&url=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375&title=Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026&summary=My%20favorite%20developer%20program&source=LinkedIn' target='_blank'><li class='fa-linkedin_r'  ></li></a></ul></div></div>
+            </div>
+            <div id="second_t">
+                <div id="sndr_rm"><div class='sticky-social'><ul class='social'><a href='http://www.facebook.com/share.php?u=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375' target='_blank'><li class='fb_b'   ></li></a><a href='https://twitter.com/intent/tweet?url=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375&text=Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026' target='_blank'><li class='twitter_r'  > </li></a><a href='https://api.whatsapp.com/send?text=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375' target='_blank'><li class='whatsapp_r'  ></li></a><a href='https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026&body=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375&ui=2&tf=1&pli=1' title='Share by Email' target='_blank'><li class='fa-envelope_r' ></li></a><a href='https://www.linkedin.com/shareArticle?mini=true&url=https://pib.gov.in/PressReleasePage.aspx?PRID=2332375&title=Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026&summary=My%20favorite%20developer%20program&source=LinkedIn' target='_blank'><li class='fa-linkedin_r'  ></li></a></ul></div></div>
+            </div>
+        </div>
+        <input type="hidden" name="ltrTitlee" id="ltrTitlee" value="Indian Railways Registers Freight Loading of 145.07 Million Tonnes in October 2026" />
+        <input type="hidden" name="ltrSubtitlee" id="ltrSubtitlee" value="&lt;br/>Food Grains Loading Grows by 26.3%, Domestic Coal by 16.0%, Balance Other Goods by 11.0% and Domestic Container by 6.3% in October 2026 Over October 2025&lt;br/>&lt;br/>Coal Supply to Power Houses Rises by 19.5%&amp;#160; in October 2026&lt;br/>&lt;br/>Freight Loading Reaches 978.78 Million Tonnes During April–October 2026, Surpassing the Corresponding Period Performance of FY 2025-26" />
+        <input type="hidden" name="ltrDescriptionn" id="ltrDescriptionn" value="&lt;p style=&quot;margin-left:0cm; margin-right:0cm; text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>Indian Railways continued its strong operational performance during October 2026, registering robust growth in freight transportation. Higher freight loading and increased freight earnings reflect Indian Railways&amp;rsquo; efforts towards supporting economic growth and strengthening the country&amp;rsquo;s logistics sector.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;strong style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>Freight Loading Registers Robust Growth&lt;/strong>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>Indian Railways achieved its highest-ever freight loading for October, transporting 145.07 million tonnes of freight during the month, compared to 133.93 million tonnes in October 2025, registering a growth of 8.32 per cent.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>Several major commodities registered encouraging growth during the month. Food Grains loading increased by 26.3 per cent, Domestic Coal by 16.0 per cent, Balance Other Goods by 11.0 per cent, Clinker by 10.4 per cent, Domestic Containers by 6.3 per cent, Iron Ore by 5.0 per cent, Mineral Oil by 1.9 per cent and Finished Steel by 0.5 per cent.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>To meet the increased requirement of power houses, Indian Railways stepped up domestic coal transportation, supplying an average of 469.8 rakes per day during October 2026, compared to 393.2 rakes per day in the corresponding month last year, registering a growth of 19.5 per cent.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>The strong performance in October 2026 builds upon the growth recorded during the first seven months of FY 2026-27 (April&amp;ndash;October). During this period, Indian Railways loaded 978.78 million tonnes of freight, compared to 935.10 million tonnes during the corresponding period last year, registering a growth of 4.67 per cent.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;strong style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>Passenger Traffic Continues to Grow&lt;/strong>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>Passenger mobility also witnessed steady growth during October 2026. Indian Railways carried 64.72 crore passengers, compared to 63.52 crore passengers during the corresponding month last year.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>During April&amp;ndash;October 2026, Indian Railways carried 443.8 crore passengers, compared to 431.4 crore during the corresponding period last year. The Non-Suburban segment recorded growth of 4.2 per cent, while the Suburban segment registered an increase of 1.7 per cent.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:justify&quot;>&lt;span style=&quot;font-family:&amp;quot;Times New Roman&amp;quot;,Times,serif; font-size:16px&quot;>The growth in freight loading reflects Indian Railways&amp;rsquo; commitment to strengthening logistics and supporting India&amp;rsquo;s economic growth. Through capacity augmentation and improved operational efficiency, Indian Railways continues to enhance its transportation network.&lt;/span>&lt;/p>
+
+&lt;p style=&quot;text-align:center&quot;>&lt;span style=&quot;font-family:Times New Roman,Times,serif&quot;>&lt;span style=&quot;font-size:16px&quot;>*****&lt;/span>&lt;/span>&lt;/p>
+
+&lt;p style=&quot;margin-left:-22.5pt; margin-right:-22.5pt; text-align:justify&quot;>&lt;span style=&quot;font-family:Times New Roman,Times,serif&quot;>&lt;span style=&quot;font-size:16px&quot;>&lt;strong>&lt;span style=&quot;color:#333333&quot;>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Dharmendra Tewari/ Dr. Nayan Solanki/ Vanshita Jaiswal&lt;/span>&lt;/strong>&lt;/span>&lt;/span>&lt;/p>
+" />
+        <script type="text/javascript">
+                  var mPlayer = document.getElementById("background_music");
+                  var mPlayAction = document.getElementById("playbutton");
+                  var isPlaying = false;
+
+                  function playAudio() {
+                        mPlayer.play();
+                        isPlaying = true;
+                        document.getElementById('stopA').style.display = "block";
+                        document.getElementById('playA').style.display = "none";
+                  }
+
+                  function pauseAudio() {
+                        mPlayer.pause();
+                        isPlaying = false;
+                        document.getElementById('playA').style.display = "block";
+                        document.getElementById('stopA').style.display = "none";
+                  }
+        </script>
+        <script type="text/javascript">
+                  var synth = window.speechSynthesis;
+
+                  function CleanHtml(html) {
+                        html = html.replace(/<script[\s\S]*?<\/script>/gi, '');
+                        return html;
+                  }
+                  function stripHtml(html) {
+                        let tmp = document.createElement("DIV");
+                        tmp.innerHTML = CleanHtml(html);
+                        return tmp.textContent || tmp.innerText || "";
+                  }
+        </script>
+        <script type="text/javascript">
+                  $(document).ready(function () {
+                        $("table").each(function () {
+                              if (!$(this).closest(".table-responsive").length) {
+                                    $(this).wrap("<div class='table-responsive'></div>");
+                              }
+                        });
+
+                        var width = $(window).width();
+                        if (width < 768) {
+                              document.getElementById('frst_t').style.display = "block";
+                              document.getElementById('second_t').style.display = "none";
+                        } else if (width < 991) {
+                              document.getElementById('frst_t').style.display = "block";
+                              document.getElementById('second_t').style.display = "none";
+                        } else if (width < 1199) {
+                              document.getElementById('frst_t').style.display = "none";
+                              document.getElementById('second_t').style.display = "block";
+                        } else {
+                              document.getElementById('frst_t').style.display = "none";
+                              document.getElementById('second_t').style.display = "block";
+                        }
+                  });
+        </script>
+        <style type="text/css">
+            @media print {
+                .sticky-social, .sticky-social_mb, .pull-right, #printPDF {
+                    display: none !important;
+                }
+            }
+
+            .f_vl {
+                padding-right: 30px;
+                font-size: 17px;
+                cursor: pointer;
+            }
+
+            .log_oo {
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .log_oo img {
+                    width: 150px;
+                }
+
+            .sticky-social_mb {
+                position: fixed;
+                bottom: 0px;
+                padding: 0px;
+                margin: 0px;
+                width: 100%;
+            }
+
+            .social_mb {
+                list-style: none;
+                display: flex;
+                width: 100%;
+                margin-bottom: -8px;
+            }
+
+                .social_mb a {
+                    padding: 8px 0px;
+                    font-size: 30px;
+                    transition: all 0.8s ease-in-out;
+                    width: 20% !important;
+                    text-align: center;
+                }
+        </style>
+        <style type="text/css">
+            .section1 {
+                position: relative;
+                padding: 10px 0px;
+                width: 100%;
+            }
+
+            .sticky-social {
+                position: fixed;
+                top: 20px;
+                left: 0px;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            .social {
+                list-style: none;
+            }
+
+                .social a li {
+                    padding: 8px 12px;
+                    font-size: 25px;
+                    transition: all 0.8s ease-in-out;
+                }
+
+                    .social a li:hover {
+                        margin-right: -30px;
+                        box-shadow: 2px 5px 10px grey;
+                    }
+
+                        .social a li:hover .fa {
+                            margin-left: 20px;
+                        }
+
+            .fb_b {
+                background-color: var(--dbim-key, #0F5757);
+            }
+
+            .twitter_r {
+                background-color: var(--dbim-key, #0F5757);
+            }
+
+            .whatsapp_r {
+                background-color: var(--dbim-key, #0F5757);
+            }
+
+            .fa-envelope_r {
+                background-color: var(--dbim-key, #0F5757);
+            }
+
+            .fa-linkedin_r {
+                background-color: var(--dbim-key, #0F5757);
+            }
+        </style>
+        <style type="text/css">
+            @media only screen and (max-device-width: 767px) {
+                p span img {
+                    max-width: 90% !important;
+                    height: auto !important;
+                }
+
+                p img {
+                    max-width: 90% !important;
+                    height: auto !important;
+                }
+
+                h2 {
+                    font-size: var(--dbim-h2, 20px);
+                    font-weight: 600 !important;
+                }
+
+                h3 {
+                    font-size: var(--dbim-h3, 16px);
+                    font-weight: 600 !important;
+                }
+            }
+        </style>
+        <style type="text/css">
+            .film-roll-badge {
+                position: absolute;
+                top: 82%;
+                right: 20px;
+                width: 230px;
+                height: 70px;
+                background: repeating-linear-gradient( to right, var(--dbim-green-key, #0F5757) 0px, var(--dbim-green-key, #0F5757) 18px, var(--dbim-text, #150202) 18px, var(--dbim-text, #150202) 36px );
+                border-top: 8px solid var(--dbim-green-key, #0F5757);
+                border-bottom: 8px solid var(--dbim-green-key, #0F5757);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                animation: moveFilm 8s linear infinite;
+                z-index: 10;
+            }
+
+                .film-roll-badge::before,
+                .film-roll-badge::after {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 10px;
+                    background: repeating-linear-gradient( to right, var(--dbim-green-key, #0F5757) 0px, var(--dbim-green-key, #0F5757) 10px, #fff 10px, #fff 20px );
+                    left: 0;
+                    z-index: 2;
+                }
+
+                .film-roll-badge::before {
+                    top: -4px;
+                }
+
+                .film-roll-badge::after {
+                    bottom: -4px;
+                }
+
+            .film-roll-inner {
+                position: relative;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: flicker 2s infinite ease-in-out;
+            }
+
+            .countdown-text {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #fff;
+                text-shadow: 0 0 6px rgba(255, 255, 255, 0.4), 0 0 10px #000;
+                white-space: nowrap;
+            }
+
+            @keyframes moveFilm {
+                0% {
+                    background-position: 0 0;
+                }
+
+                100% {
+                    background-position: 120px 0;
+                }
+            }
+
+            @keyframes flicker {
+                0%, 100% {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0.9;
+                }
+
+                25% {
+                    opacity: 0.95;
+                }
+
+                75% {
+                    opacity: 0.85;
+                }
+            }
+
+            @media (max-width: 1500px) {
+                .film-roll-badge {
+                    top: 68%;
+                    right: 18px;
+                    height: 65px;
+                    font-size: 0.85rem;
+                }
+
+                .press-section {
+                    margin-top: 35px;
+                }
+            }
+
+            @media (max-width: 992px) {
+                .film-roll-badge {
+                    top: 52%;
+                    right: 10px;
+                    width: 200px;
+                    height: 60px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .film-roll-badge {
+                    top: 56%;
+                    right: 10px;
+                    width: 124px;
+                    height: 55px;
+                }
+
+                .countdown-text {
+                    font-size: 0.9rem;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .film-roll-badge {
+                    top: 59%;
+                    right: 5px;
+                    height: 50px;
+                }
+
+                .countdown-text {
+                    font-size: 0.85rem;
+                }
+            }
+        </style>
+        <script type="text/javascript">
+                  const festivalStart = new Date("2025-11-20T00:00:00").getTime();
+                  const festivalEnd = new Date("2025-11-28T23:59:59").getTime();
+                  const countdownElement = document.getElementById("countdown");
+
+                  if (countdownElement) {
+                        const interval = setInterval(() => {
+                              const now = new Date().getTime();
+
+                              if (now < festivalStart) {
+                                    const diff = festivalStart - now;
+                                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                                    countdownElement.innerHTML = `${days} Day${days !== 1 ? 's' : ''} ${hours} Hour${hours !== 1 ? 's' : ''} to go`;
+                              } else if (now >= festivalStart && now <= festivalEnd) {
+                                    const dayNumber = Math.floor((now - festivalStart) / (1000 * 60 * 60 * 24)) + 1;
+                                    countdownElement.innerHTML = `56th IFFI - Day ${dayNumber}`;
+                              } else {
+                                    countdownElement.innerHTML = `✨ IFFI closes but never ends…`;
+                                    const elements = document.querySelectorAll('.film-roll-badge');
+                                    elements.forEach(el => el.style.width = "350px");
+                                    clearInterval(interval);
+                              }
+                        }, 1000);
+                  }
+        </script>
+        <script type="text/javascript">
+                  const miffStart = new Date("2026-06-15T00:00:00").getTime();
+                  const miffEnd = new Date("2026-06-15T23:59:59").getTime();
+                  const miffElement = document.getElementById("miff");
+
+                  if (miffElement) {
+                        const miffInterval = setInterval(() => {
+                              const now = new Date().getTime();
+
+                              if (now < miffStart) {
+                                    const diff = miffStart - now;
+                                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                                    miffElement.innerHTML = `${days} Day${days === 1 ? '' : 's'} to MIFF ...`;
+                              } else if (now >= miffStart && now <= miffEnd) {
+                                    const dayNumber = Math.floor((now - miffStart) / (1000 * 60 * 60 * 24)) + 1;
+                                    miffElement.innerHTML = `19th MIFF - Day ${dayNumber}`;
+                              } else {
+                                    miffElement.innerHTML = `✨ MIFF concludes, cinema lives on...`;
+                                    document.querySelectorAll('.film-roll-badge').forEach(el => el.style.width = "350px");
+                                    clearInterval(miffInterval);
+                              }
+                        }, 1000);
+                  }
+        </script>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {var fn = function() {$get("sc_HiddenField").value = '';Sys.Application.remove_init(fn);};Sys.Application.add_init(fn);})();Sys.Application.add_init(function() {
+    $create(Sys.Extended.UI.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","PopupControlID":"P_CategoryManagement","dynamicServicePath":"/PressReleasePage.aspx","id":"mpe"}, null, null, $get("Hidden"));
+});
+//]]>
+</script>
+<input type="hidden" name="__ncforminfo" value="c9w0mggkSsOGsUlTXATc7kkfZFZaX3g_PUfK1UaJXLreO3BuU1PCR1T9cT12exPGMbQCRH8A5oKB_RH5ZW7ghEANDc6pT_Lb"/></form>
+    
+
+<script type="application/json" id="pibConsentConfig">{"ga4Id":"G-Q414Y0X6EE,G-QJJ6LZ8LHV","policyUrl":"/CookiePolicy.aspx","text":{"bannerLabel":"Cookie consent","title":"Cookies on this website","body":"We use essential cookies to make this website work. We also set analytics cookies when you arrive, so we can see how the site is used and improve it - you can switch these off below or at any time from the Cookie Policy page. Cookies from embedded social media content are set only if you allow them.","policyLink":"Read our Cookie Policy","accept":"Accept all","reject":"Reject optional","customize":"Customise","prefsTitle":"Cookie preferences","prefsIntro":"Choose which cookies this website may set. Essential cookies cannot be switched off because the site does not work without them. Analytics cookies are on unless you turn them off. Social media cookies stay off until you allow them. You can change these choices at any time from the Cookie Policy page.","essentialName":"Essential cookies","essentialDesc":"Needed for the site to function. These remember your session, your language and region, your text size and colour theme, and verify the security check on forms. They are always on.","analyticsName":"Analytics cookies","analyticsDesc":"Help us understand how visitors use the site - which pages are read and how long people stay - so it can be improved. The information is collected in a form that does not directly identify you. These are on when you arrive; switching them off here stops them and deletes the ones already set.","socialName":"Social media cookies","socialDesc":"Set by content embedded from X, Facebook and YouTube, such as timelines and videos. These platforms may use them to track you across websites. They stay off until you allow them.","save":"Save preferences","cancel":"Cancel"}}</script>
+<script type="text/javascript" src='/js/consent.js?v=10'></script>
+
+<script type="text/javascript" src='/js/consent-embeds.js?v=10'></script>
+
+
+    <!-- Minimal O(N) Time and O(1) Auxiliary Space Word Count & Read Time Calculation -->
+    <script type="text/javascript">
+            (function () {
+                  function calculateReadingStats() {
+                        var bodyEl = document.getElementById("pibReleaseBody");
+                        if (!bodyEl) return;
+
+                        // textContent extracts text without triggering expensive layout/reflow computations
+                        var text = bodyEl.textContent || "";
+                        var words = 0;
+                        var inWord = false;
+
+                        // O(N) single pass character code scan: achieves O(1) space with zero array allocations
+                        for (var i = 0, len = text.length; i < len; i++) {
+                              var code = text.charCodeAt(i);
+                              // Delimits on ASCII whitespace, control characters, tabs, newlines, and non-breaking spaces (160)
+                              if (code <= 32 || code === 160) {
+                                    inWord = false;
+                              } else if (!inWord) {
+                                    inWord = true;
+                                    words++;
+                              }
+                        }
+
+                        // Standard 250 WPM reading speed (e.g., 612 words yields 2 min read)
+                        var minutes = Math.max(1, Math.round(words / 250));
+
+                        var elWords = document.getElementById("prWordCount");
+                        var elTime = document.getElementById("prReadTime");
+
+                        if (elWords) elWords.textContent = words + (words === 1 ? " word" : " words");
+                        if (elTime) elTime.textContent = minutes + " min read";
+                  }
+
+                  if (document.readyState === "loading") {
+                        document.addEventListener("DOMContentLoaded", calculateReadingStats);
+                  } else {
+                        calculateReadingStats();
+                  }
+            })();
+    </script>
+
+    <script type="text/javascript">
+(function () {
+    try {
+        if (window.self === window.top) { return; }
+    } catch (e) { return; }
+    var s = document.createElement("style");
+    s.textContent = ".sticky-social, .sticky-social_mb { display: none !important; }";
+    (document.head || document.documentElement).appendChild(s);
+}());
+    </script>
+</body>
+</html>
