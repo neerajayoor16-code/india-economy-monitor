@@ -31,9 +31,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      # Always start from the latest main. A "Re-run" of an old run would otherwise reuse that
+      # run's old commit, and its push would be rejected because main has moved on.
+      - uses: actions/checkout@v5
+        with:
+          ref: main
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip
@@ -60,7 +64,7 @@ jobs:
 
       - name: Keep the run log for 30 days
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: run-log-${{ github.run_id }}
           path: logs/
@@ -78,7 +82,13 @@ jobs:
             echo "Nothing changed."
           else
             git commit -q -m "Data update $(TZ=Asia/Kolkata date '+%d %b %Y %H:%M IST')" -m "$(sed -n '/## Changes/,/## Alerts/p' reports/last-run.md | head -40)"
-            git push
+            if ! git push; then
+              # main changed while this run was working (for example a merge). Publish nothing now;
+              # the next run starts from the new main and publishes. This is not a data problem.
+              echo "::warning::main changed during this run, so nothing was published. The next run will publish."
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             echo "changed=true" >> "$GITHUB_OUTPUT"
             echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           fi
