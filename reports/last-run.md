@@ -1,4 +1,4 @@
-# Update run 24 Nov 2026, 20:04 IST
+# Update run 25 Nov 2026, 04:27 IST
 
 Phase: **Late-stage expansion** (OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs)
 
