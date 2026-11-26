@@ -1,4 +1,4 @@
-# Update run 27 Nov 2026, 03:41 IST
+# Update run 27 Nov 2026, 03:47 IST
 
 Phase: **Late-stage expansion** (OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs)
 
@@ -20,11 +20,11 @@ Phase: **Late-stage expansion** (OECD leading index 101.45 is above 100 and risi
 - oecd_cli: ok
 - rbi_home: ok
 - rbi_bank_credit: no_new_release (WSS extract not in RBI's latest 10 press releases; will retry next run)
-- rbi_consumer_confidence: no_new_release (no feed item for 'Consumer Confidence Survey'; full search skipped on light runs)
-- rbi_industrial_outlook: no_new_release (no feed item for 'Industrial Outlook Survey'; full search skipped on light runs)
+- rbi_consumer_confidence: no_new_release (no new publication matching 'Consumer Confidence Survey' after id 24093)
+- rbi_industrial_outlook: no_new_release (no new publication matching 'Industrial Outlook Survey' after id 24090)
 - pib_core_industries: no_new_release (Core industries release not in PIB's latest feed items; will retry next run)
 - pib_rail_freight: no_new_release (Rail freight release not in PIB's latest feed items; will retry next run)
 - gstn_gst: ok
-- siam_vehicles: error (SIAM: site is reachable again, but the page parser is not built yet. Save the press-release page as a test fixture and build parse_vehicles().)
+- siam_vehicles: error (SIAM: site not reachable: HTTPSConnectionPool(host='www.siam.in', port=443): Read timed out. (read timeout=30))
 
 To undo this run: revert its commit in GitHub (Commits → this commit → Revert).

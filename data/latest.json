@@ -369,7 +369,7 @@
     "vehicles": {
       "last_checked": "2026-11-27",
       "seeded_from": "old dashboard value",
-      "last_error": "SIAM: site is reachable again, but the page parser is not built yet. Save the press-release page as a test fixture and build parse_vehicles()."
+      "last_error": "SIAM: site not reachable: HTTPSConnectionPool(host='www.siam.in', port=443): Read timed out. (read timeout=30)"
     },
     "cpi": {
       "last_checked": "2026-11-27",
