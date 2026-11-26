@@ -1,10 +1,15 @@
-# Update run 26 Nov 2026, 03:58 IST
+# Update run 26 Nov 2026, 19:04 IST
 
 Phase: **Late-stage expansion** (OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs)
 
 ## Changes
 
-- None
+- repo_rate: updated: 5.50% → 5.50%
+- yield_spread: updated: +171 bps → +166 bps
+- nifty: updated: 25,349.65 → 25,819.25
+- repo_rate: text (template):  → RBI Repo Rate (Policy Rate): 5.50% on Nov 25, 2026.
+- nifty: text (template):  → Nifty 50 (Stock Market): 25,819.25 on Nov 25, 2026.
+- yield_spread: text (template):  → Bond Yield Spread (10Y vs Repo): +166 bps on Nov 25, 2026.
 
 ## Alerts (need a human look)
 
@@ -20,8 +25,8 @@ Phase: **Late-stage expansion** (OECD leading index 101.45 is above 100 and risi
 - oecd_cli: ok
 - rbi_home: ok
 - rbi_bank_credit: no_new_release (WSS extract not in RBI's latest 10 press releases; will retry next run)
-- rbi_consumer_confidence: no_new_release (no new publication matching 'Consumer Confidence Survey' after id 24093)
-- rbi_industrial_outlook: no_new_release (no new publication matching 'Industrial Outlook Survey' after id 24090)
+- rbi_consumer_confidence: no_new_release (no feed item for 'Consumer Confidence Survey'; full search skipped on light runs)
+- rbi_industrial_outlook: no_new_release (no feed item for 'Industrial Outlook Survey'; full search skipped on light runs)
 - pib_core_industries: no_new_release (Core industries release not in PIB's latest feed items; will retry next run)
 - pib_rail_freight: no_new_release (Rail freight release not in PIB's latest feed items; will retry next run)
 - gstn_gst: ok

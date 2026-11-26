@@ -266,48 +266,48 @@
       "value": 5.5,
       "unit": "%",
       "display": "5.50%",
-      "period_label": "Nov 23, 2026",
-      "period_end": "2026-11-23",
+      "period_label": "Nov 25, 2026",
+      "period_end": "2026-11-25",
       "source_name": "RBI website (Current Rates)",
       "source_url": "https://www.rbi.org.in/home.aspx",
       "previous": null,
       "previous_label": null,
       "details": {},
-      "fetched_at": "2026-11-25T13:55:14+00:00"
+      "fetched_at": "2026-11-26T13:34:32+00:00"
     },
     "yield_spread": {
       "indicator": "yield_spread",
-      "value": 171.0,
+      "value": 166.0,
       "unit": "bps",
-      "display": "+171 bps",
-      "period_label": "Nov 23, 2026",
-      "period_end": "2026-11-23",
+      "display": "+166 bps",
+      "period_label": "Nov 25, 2026",
+      "period_end": "2026-11-25",
       "source_name": "RBI website (Government Securities Market)",
       "source_url": "https://www.rbi.org.in/home.aspx",
       "previous": null,
       "previous_label": null,
       "details": {
         "ten_year_bond": "6.94% GS 2036",
-        "ten_year_yield": 7.2105,
+        "ten_year_yield": 7.1641,
         "repo_rate": 5.5
       },
-      "fetched_at": "2026-11-25T13:55:14+00:00"
+      "fetched_at": "2026-11-26T13:34:32+00:00"
     },
     "nifty": {
       "indicator": "nifty",
-      "value": 25349.65,
+      "value": 25819.25,
       "unit": "points",
-      "display": "25,349.65",
-      "period_label": "Nov 23, 2026",
-      "period_end": "2026-11-23",
+      "display": "25,819.25",
+      "period_label": "Nov 25, 2026",
+      "period_end": "2026-11-25",
       "source_name": "RBI website (Capital Market; index by NSE)",
       "source_url": "https://www.rbi.org.in/home.aspx",
       "previous": null,
       "previous_label": null,
       "details": {
-        "sensex": 82435.99
+        "sensex": 83938.28
       },
-      "fetched_at": "2026-11-25T13:55:14+00:00"
+      "fetched_at": "2026-11-26T13:34:32+00:00"
     },
     "bank_credit": {
       "indicator": "bank_credit",
@@ -397,15 +397,15 @@
     },
     "repo_rate": {
       "last_checked": "2026-11-26",
-      "last_updated": "2026-11-25"
+      "last_updated": "2026-11-26"
     },
     "yield_spread": {
       "last_checked": "2026-11-26",
-      "last_updated": "2026-11-25"
+      "last_updated": "2026-11-26"
     },
     "nifty": {
       "last_checked": "2026-11-26",
-      "last_updated": "2026-11-25"
+      "last_updated": "2026-11-26"
     },
     "bank_credit": {
       "last_checked": "2026-11-22",
@@ -446,10 +446,10 @@
       "writer": "template"
     },
     "repo_rate": {
-      "summary": "RBI Repo Rate (Policy Rate): 5.50% on Nov 23, 2026.",
+      "summary": "RBI Repo Rate (Policy Rate): 5.50% on Nov 25, 2026.",
       "goodOrBadVerdict": "Watch closely right now: real policy rate -0.59 points (repo minus CPI) outside the 0.5 to 2.5 band.",
       "everydayIndianExample": "The repo rate sets the base for loan rates. When RBI raises it, EMIs on new and floating-rate home and car loans usually go up within a few months; when it cuts, they go down.",
-      "fingerprint": "5.5|2026-11-23|None|watch|2",
+      "fingerprint": "5.5|2026-11-25|None|watch|2",
       "writer": "template"
     },
     "core_industries": {
@@ -495,17 +495,17 @@
       "writer": "template"
     },
     "nifty": {
-      "summary": "Nifty 50 (Stock Market): 25,349.65 on Nov 23, 2026.",
+      "summary": "Nifty 50 (Stock Market): 25,819.25 on Nov 25, 2026.",
       "goodOrBadVerdict": "Watch closely right now: not enough history yet to judge the trend; shown as watch closely until it can be judged (kept from the last run: not enough history yet to judge the trend).",
       "everydayIndianExample": "If you put a fixed amount into an index fund every month through a SIP, your fund tracks this index. A rising Nifty lifts the value of those savings; a falling Nifty lowers it.",
-      "fingerprint": "25349.65|2026-11-23|None|watch|2",
+      "fingerprint": "25819.25|2026-11-25|None|watch|2",
       "writer": "template"
     },
     "yield_spread": {
-      "summary": "Bond Yield Spread (10Y vs Repo): +171 bps on Nov 23, 2026.",
+      "summary": "Bond Yield Spread (10Y vs Repo): +166 bps on Nov 25, 2026.",
       "goodOrBadVerdict": "Good right now: a 10-year yield well above the repo rate signals normal growth expectations; below zero (inversion) is a warning.",
       "everydayIndianExample": "When long-term government bonds pay clearly more than the repo rate, lenders expect normal growth ahead. If the gap closes or turns negative, markets expect a slowdown.",
-      "fingerprint": "171.0|2026-11-23|None|good|2",
+      "fingerprint": "166.0|2026-11-25|None|good|2",
       "writer": "template"
     },
     "consumer_confidence": {
