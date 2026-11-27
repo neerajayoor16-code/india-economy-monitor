@@ -1,17 +1,10 @@
-# Update run 27 Nov 2026, 19:00 IST
+# Update run 28 Nov 2026, 03:21 IST
 
 Phase: **Late-stage expansion** (OECD leading index 101.45 is above 100 and rising; prices or credit show overheating signs)
 
 ## Changes
 
-- repo_rate: updated: 5.50% → 5.50%
-- yield_spread: updated: +166 bps → +174 bps
-- nifty: updated: 25,819.25 → 25,884.50
-- bank_credit: updated: 19.54% YoY → 19.31% YoY
-- bank_credit: text (template):  → Bank Credit Growth: 19.31% YoY on Nov 15, 2026.
-- repo_rate: text (template):  → RBI Repo Rate (Policy Rate): 5.50% on Nov 26, 2026.
-- nifty: text (template):  → Nifty 50 (Stock Market): 25,884.50 on Nov 26, 2026.
-- yield_spread: text (template):  → Bond Yield Spread (10Y vs Repo): +174 bps on Nov 26, 2026.
+- None
 
 ## Alerts (need a human look)
 
